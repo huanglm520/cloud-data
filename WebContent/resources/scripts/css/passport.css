@@ -1,0 +1,110 @@
+div.passport {
+	width: 600px;
+	margin: 0px auto;
+	margin-bottom: 100px;
+	margin-top:70px;
+	padding-top: 35px;
+	padding-bottom: 45px;
+	border: none;
+	border-radius: 15px;
+	background-color: #D7D8DC;
+}
+
+div.info {
+	width: 400px;
+	margin-left: 100px;
+	background-color: #FFFFFF;
+	padding-bottom: 25px;
+	padding-top: 5px;
+	border-radius: 5px;
+	border: none;
+}
+
+div.hint, div.inner {
+	width: 350px;
+	margin-left: 25px;
+}
+
+div.hint {
+	margin-top: 20px;
+}
+span.hint {
+	font-family: "Î¢ÈíÑÅºÚ", "»ªÎÄÏ¸ºÚ";
+	font-size: 14px;
+	color: #54698D;
+}
+
+div.inner {
+	margin-top: 5px;
+}
+input.inner {
+	width: 340px;
+	height: 20px;
+	padding: 5px;
+	border: 1px solid #BDBDBD;
+	border-radius: 5px;
+	font-family: "Î¢ÈíÑÅºÚ", "»ªÎÄÏ¸ºÚ";
+	font-size: 14px;
+	color: #54698D;
+	outline: none;
+}
+
+.error {
+	font-family: "Î¢ÈíÑÅºÚ", "»ªÎÄÏ¸ºÚ";
+	font-size: 12px;
+	color: #FF0000;
+}
+
+div.submit {
+	width: 352px;
+	border: none;
+	margin-left: 25px;
+	margin-top: 30px;
+}
+button.submit {
+	width: 100%;
+	height: 40px;
+	border: none;
+	border-radius: 5px;
+	background-color: #0070D2;
+	font-family: "Î¢ÈíÑÅºÚ", "»ªÎÄÏ¸ºÚ";
+	font-size: 14px;
+	color: #FFFFFF;
+	outline: none;
+	cursor: pointer;
+}
+
+div.line {
+	width: 100%;
+	margin-top: 30px;
+}
+hr {
+	border: none;
+	width: 100%;
+	height: 1px;
+	background-color: #AAAA8D;
+}
+
+div.bottom {
+	width: 100%;
+	margin-top: 20px;
+}
+span.bottom {
+	font-family: "Î¢ÈíÑÅºÚ", "»ªÎÄÏ¸ºÚ";
+	font-size: 14px;
+	color: #0070D2;
+}
+
+div.b_left {
+	width: 170px;
+	height: 20px;
+	margin-left: 30px;
+	text-align: left;
+}
+div.b_right {
+	width: 170px;
+	height: 20px;
+	margin-left: 200px;
+	margin-top: -20px;
+	text-align: right;
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.net.sunrise.su.config.mapper.container-mapper.xml">
+	<!-- 容器数据库字段配置 -->
+	<insert id="insertContainer" useGeneratedKeys="true" keyProperty="id"
+		parameterType="cn.net.sunrise.su.beans.container.ContainerBean">
+		insert into tb_container values(null, #{name}, #{api}, #{status}, #{field}, #{data}, #{buildtime});
+	</insert>
+	<update id="updateContainer" parameterType="cn.net.sunrise.su.beans.container.ContainerBean">
+		update tb_container set id=#{id}, name=#{name}, api=#{api}, status=#{status},
+		field=#{field}, data=#{data}, buildtime=#{buildtime} where id=#{id};
+	</update>
+	<delete id="deleteContainer" parameterType="cn.net.sunrise.su.beans.container.ContainerBean">
+		delete from tb_container where id=#{id};
+	</delete>
+	<select id="selectContainerById" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerBean">
+		select * from tb_container where id=#{id};
+	</select>
+	<select id="selectContainerByUid" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerBean">
+		select tb_container.* from tb_container, tb_container_privilege where tb_container_privilege.uid=#{uid} and
+		tb_container_privilege.cid=tb_container.id;
+	</select>
+	<select id="selectContainerByStatus" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerBean">
+		select tb_container.* from tb_container, tb_container_privilege where tb_container.id=tb_container_privilege.cid
+		and tb_container.status=#{status} and tb_container_privilege.uid=#{uid};
+	</select>
+	<select id="selectContainerByName" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerBean">
+		select tb_container.* from tb_container, tb_container_privilege where tb_container.id=tb_container_privilege.cid
+		and tb_container.name like #{name} and tb_container_privilege.uid=#{uid};
+	</select>
+	<select id="selectContainerByPrivilege" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerBean">
+		select tb_container.* from tb_container, tb_container_privilege where tb_container.id=tb_container_privilege.cid
+		and tb_container_privilege.privilege=#{privilege} and tb_container_privilege.uid=#{uid};
+	</select>
+	<select id="selectContainerByStatusName" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerBean">
+		select tb_container.* from tb_container, tb_container_privilege where tb_container.id=tb_container_privilege.cid
+		and tb_container.status=#{status} and tb_container.name like #{name} and tb_container_privilege.uid=#{uid};
+	</select>
+	<select id="selectContainerByStatusPrivilege" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerBean">
+		select tb_container.* from tb_container, tb_container_privilege where tb_container.id=tb_container_privilege.cid
+		and tb_container.status=#{status} and tb_container_privilege.privilege=#{privilege}
+		and tb_container_privilege.uid=#{uid};
+	</select>
+	<select id="selectContainerByNamePrivilege" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerBean">
+		select tb_container.* from tb_container, tb_container_privilege where tb_container.id=tb_container_privilege.cid
+		and tb_container.name like #{name} and tb_container_privilege.privilege=#{privilege}
+		and tb_container_privilege.uid=#{uid};
+	</select>
+	<select id="selectContainerByStatusNamePrivilege" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerBean">
+		select tb_container.* from tb_container, tb_container_privilege where tb_container.id=tb_container_privilege.cid
+		and tb_container.status=#{status} and tb_container.name like #{name}
+		and tb_container_privilege.privilege=#{privilege} and tb_container_privilege.uid=#{uid};
+	</select>
+	<select id="existsContainer" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="java.lang.Object">
+		select 1 from tb_container, tb_container_privilege where tb_container_privilege.uid=#{uid} and
+		tb_container_privilege.cid=tb_container.id and tb_container.name=#{name};
+	</select>
+	<select id="existsApi" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="java.lang.Object">
+		select 1 from tb_container, tb_container_privilege where tb_container_privilege.uid=#{uid} and
+		tb_container_privilege.cid=tb_container.id and tb_container.api=#{api};
+	</select>
+	<select id="selectStatistics" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerStatisticsBean">
+		select count(tb_container.id) as value, tb_container.status from tb_container, tb_container_privilege
+		where tb_container_privilege.uid=#{uid} and tb_container_privilege.cid=tb_container.id
+		group by tb_container.status order by status;
+	</select>
+	<select id="hasPrivilege" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="java.lang.Object">
+		select 1 from tb_container, tb_container_privilege where tb_container_privilege.uid=#{uid}
+		and tb_container.id=tb_container_privilege.cid and tb_container.id=#{id} and
+		(tb_container_privilege.privilege=1 or tb_container_privilege.privilege=2);
+	</select>
+	
+	<!-- 容器空间配置 -->
+	<update id="createContainerSpace" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">
+		create table `${tablename}` (id int primary key auto_increment) engine=InnoDB default charset=utf8;
+	</update>
+	<update id="dropContainerSpace" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">
+		drop table `${tablename}`;
+	</update>
+	<select id="queryContainerStruct" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean"
+		resultType="cn.net.sunrise.su.beans.container.FieldBean">
+		desc `${tablename}`;
+	</select>
+</mapper>

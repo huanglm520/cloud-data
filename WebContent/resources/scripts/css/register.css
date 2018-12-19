@@ -1,0 +1,42 @@
+div.passport {
+	box-shadow: 0 0 50px #6D726E;
+}
+
+div.progress {
+	width: 400px;
+	height: 80px;
+	margin-left: 100px;
+}
+
+div.p_number {
+	float: left;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+div.p_number_inner {
+	float: left;
+	margin-top: 7px;
+	margin-left: 14px;
+}
+span.p_number {
+	font-family: "Consolas";
+	font-size: 20px;
+	color: #FFFFFF;
+}
+
+div.p_line {
+	float: left;
+	width: 80px;
+	height: 3px;
+	border: none;
+	margin-top: 19px;
+}
+
+div.used {
+	background-color: #3DD242;
+}
+
+div.unused {
+	background-color: #ADB0AD;
+}

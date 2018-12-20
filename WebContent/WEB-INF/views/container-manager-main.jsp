@@ -170,7 +170,7 @@
 				<span class="db_name">{{ name }}</span>
 			</div>
 		</div>
-		<div class="db_info">
+		<a name="info"><div class="db_info">
 			<div class="db_info_title">
 				<span class="text_title">容器基本信息</span>
 			</div>
@@ -201,8 +201,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="db_field">
+		</div></a>
+		<a name="field"><div class="db_field">
 			<div class="db_field_title">
 				<span class="text_title">容器字段信息</span>
 			</div>
@@ -228,8 +228,8 @@
 					</tr>
 				</table>
 			</div>
-		</div>
-		<div class="db_privilege">
+		</div></a>
+		<a name="privilege"><div class="db_privilege">
 			<div class="db_privilege_title">
 				<span class="text_title">容器权限信息</span>
 			</div>
@@ -253,7 +253,7 @@
 					</tr>
 				</table>
 			</div>
-		</div>
+		</div></a>
 	</div>
 	<div class="bottombar">
 		<div class="cr_one">

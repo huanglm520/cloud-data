@@ -13,7 +13,6 @@ import cn.net.sunrise.su.beans.container.ContainerStatusBean;
 import cn.net.sunrise.su.beans.container.FieldBean;
 import cn.net.sunrise.su.dao.ContainerPrivilegeDao;
 import cn.net.sunrise.su.dao.ContainerQueryDao;
-import cn.net.sunrise.su.dao.FieldQueryDao;
 import cn.net.sunrise.su.enums.ContainerKey;
 import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 import cn.net.sunrise.su.enums.ContainerStatusKey;

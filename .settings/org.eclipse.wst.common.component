@@ -2,10 +2,10 @@
     <wb-module deploy-name="cloud-data-0.0.1-SNAPSHOT">
         <wb-resource deploy-path="/WEB-INF/web.xml" source-path="/WebContent/WEB-INF/web.xml"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <property name="java-output-path" value="/cloud-data/target/classes"/>
         <property name="context-root" value="cloud-data"/>
     </wb-module>

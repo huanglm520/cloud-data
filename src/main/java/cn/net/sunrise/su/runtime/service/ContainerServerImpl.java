@@ -13,10 +13,12 @@ import cn.net.sunrise.su.beans.container.ContainerStatusBean;
 import cn.net.sunrise.su.beans.container.FieldBean;
 import cn.net.sunrise.su.dao.ContainerPrivilegeDao;
 import cn.net.sunrise.su.dao.ContainerQueryDao;
+import cn.net.sunrise.su.dao.FieldQueryDao;
 import cn.net.sunrise.su.enums.ContainerKey;
 import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 import cn.net.sunrise.su.enums.ContainerStatusKey;
 import cn.net.sunrise.su.service.ContainerService;
+import cn.net.sunrise.su.service.FieldService;
 
 @Service
 public class ContainerServerImpl implements ContainerService {
@@ -25,6 +27,8 @@ public class ContainerServerImpl implements ContainerService {
 	private ContainerQueryDao containerQueryDao;
 	@Autowired
 	private ContainerPrivilegeDao containerPrivilegeDao;
+	@Autowired
+	private FieldService fs;
 
 	@Override
 	public ContainerStatusBean addContainer(ContainerBean containerBean) {
@@ -49,6 +53,11 @@ public class ContainerServerImpl implements ContainerService {
 		containerPrivilegeBean.setUid(containerBean.getUid());
 		containerPrivilegeBean.setPrivilege(ContainerPrivilegeKey.OWNER.key);
 		containerPrivilegeDao.insertPrivilegeByUid(containerPrivilegeBean);
+		// 写入容器初始字段
+		FieldBean fieldBean = new FieldBean(FieldBean.DEFAULT_ID);
+		fieldBean.setCid(containerBean.getId());
+		fieldBean.encode();
+		fs.addField(fieldBean);
 		// 创建容器空间
 		containerQueryDao.createContainerSpace(new ContainerNewBean(containerBean.tableName()));
 		
@@ -99,12 +108,6 @@ public class ContainerServerImpl implements ContainerService {
 	public boolean hasPrivilege(ContainerBean containerBean) {
 		// TODO Auto-generated method stub
 		return this.containerQueryDao.hasPrivilege(containerBean);
-	}
-
-	@Override
-	public List<FieldBean> queryContainerStruct(ContainerNewBean containerNewBean) {
-		// TODO Auto-generated method stub
-		return this.containerQueryDao.queryContainerStruct(containerNewBean);
 	}
 
 }

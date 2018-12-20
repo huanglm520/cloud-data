@@ -1,55 +1,132 @@
 package cn.net.sunrise.su.beans.container;
 
 import java.io.Serializable;
+import java.util.Base64;
 
 public class FieldBean implements Serializable {
 
 	private static final long serialVersionUID = 415289649423849263L;
 	
-	private String Field;
-	private String Type;
-	private String Null;
-	private String Key;
-	private String Default;
-
+	private int id;
+	private int cid;
+	private String name;
+	private String type;
+	private int isnull;
+	private int key;
+	private String defaultdata;
+	
+	public static final int ALLOW_NULL = 1;
+	public static final int PROHIBIT_NULL = 0;
+	
+	public static final int PRI = 0;
+	public static final int UNI = 1;
+	
+	public static final String NULL_DEFAULT = "NULL";
+	
+	public static final String BIT = "1";
+	public static final String INT = "2";
+	public static final String BIGINT = "3";
+	public static final String FLOAT = "4";
+	public static final String DOUBLE = "5";
+	public static final String DECIMAL = "6";
+	public static final String CHAR = "7";
+	public static final String VARCHAR = "8";
+	public static final String LONGTEXT = "9";
+	
+	public static final FieldBean DEFAULT_ID;
+	static {
+		DEFAULT_ID = new FieldBean();
+		DEFAULT_ID.setId(-1);
+		DEFAULT_ID.setName("id");
+		DEFAULT_ID.setType(INT);
+		DEFAULT_ID.setIsnull(PROHIBIT_NULL);
+		DEFAULT_ID.setKey(PRI);
+		DEFAULT_ID.setDefaultdata(NULL_DEFAULT);
+	}
+	
 	public FieldBean() {
-		this.Default = "NULL";
+		this.defaultdata = NULL_DEFAULT;
 	}
+	
 	public FieldBean(FieldBean fieldBean) {
-		this.Field = fieldBean.getField();
-		this.Type = fieldBean.getType();
-		this.Null = fieldBean.getNull();
-		this.Key = fieldBean.Key;
-		this.Default = fieldBean.getDefault();
+		this.id = fieldBean.getId();
+		this.cid = fieldBean.getCid();
+		this.name = fieldBean.getName();
+		this.type = fieldBean.getType();
+		this.isnull = fieldBean.getIsnull();
+		this.key = fieldBean.getKey();
+		this.defaultdata = fieldBean.getDefaultdata();
 	}
-	public String getField() {
-		return Field;
+
+	public int getId() {
+		return id;
 	}
-	public void setField(String field) {
-		Field = field;
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
+	public int getCid() {
+		return cid;
+	}
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getType() {
-		return Type;
+		return type;
 	}
+
 	public void setType(String type) {
-		Type = type;
+		this.type = type;
 	}
-	public String getNull() {
-		return Null;
+
+	public int getIsnull() {
+		return isnull;
 	}
-	public void setNull(String null1) {
-		Null = null1;
+
+	public void setIsnull(int isnull) {
+		this.isnull = isnull;
 	}
-	public String getKey() {
-		return Key;
+
+	public int getKey() {
+		return key;
 	}
-	public void setKey(String key) {
-		Key = key;
+
+	public void setKey(int key) {
+		this.key = key;
 	}
-	public String getDefault() {
-		return Default;
+
+	public String getDefaultdata() {
+		return defaultdata;
 	}
-	public void setDefault(String default1) {
-		Default = default1;
+
+	public void setDefaultdata(String defaultdata) {
+		this.defaultdata = defaultdata;
+	}
+	
+	public String textTypeString(String type, int length) {
+		if (!type.matches("7|8|9")) {
+			return type;
+		}
+		return type+"+"+length;
+	}
+	
+	public void encode() {
+		this.name = Base64.getEncoder().encodeToString(name.getBytes());
+		this.defaultdata = Base64.getEncoder().encodeToString(defaultdata.getBytes());
+	}
+	public void decode() {
+		this.name = new String(Base64.getDecoder().decode(name));
+		this.defaultdata = new String(Base64.getDecoder().decode(defaultdata));
 	}
 }

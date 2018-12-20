@@ -92,8 +92,4 @@
 	<update id="dropContainerSpace" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">
 		drop table `${tablename}`;
 	</update>
-	<select id="queryContainerStruct" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean"
-		resultType="cn.net.sunrise.su.beans.container.FieldBean">
-		desc `${tablename}`;
-	</select>
 </mapper>

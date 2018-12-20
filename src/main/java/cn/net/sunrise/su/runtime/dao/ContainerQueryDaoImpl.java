@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import cn.net.sunrise.su.beans.container.ContainerBean;
 import cn.net.sunrise.su.beans.container.ContainerNewBean;
 import cn.net.sunrise.su.beans.container.ContainerStatisticsBean;
-import cn.net.sunrise.su.beans.container.FieldBean;
 import cn.net.sunrise.su.dao.BaseDao;
 import cn.net.sunrise.su.dao.ContainerQueryDao;
 
@@ -104,11 +103,6 @@ public class ContainerQueryDaoImpl extends BaseDao implements ContainerQueryDao 
 	public boolean existsApi(ContainerBean containerBean) {
 		// TODO Auto-generated method stub
 		return super.selectOne("existsApi", containerBean) != null;
-	}
-	
-	@Override
-	public List<FieldBean> queryContainerStruct(ContainerNewBean containerNewBean) {
-		return super.select("queryContainerStruct", containerNewBean);
 	}
 	
 	@Override

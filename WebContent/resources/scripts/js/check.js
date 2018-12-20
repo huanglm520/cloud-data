@@ -6,3 +6,4 @@ var companyCheck = /^[\S ]{1,64}$/;
 var vercodeCheck = /^[0-9]{6}$/;
 var containerNameCheck = /^[A-Za-z_][A-Za-z_0-9]{0,15}$/;
 var containerApiCheck = /^[A-Za-z_][A-Za-z_0-9]{0,31}$/;
+var fieldNameCheck = /^[A-Za-z][A-Za-z_]{0,15}$/;

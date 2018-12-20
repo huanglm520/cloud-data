@@ -202,58 +202,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="db_field">
-			<div class="db_field_title">
-				<span class="text_title">容器字段信息</span>
-			</div>
-			<div class="tb_field">
-				<table class="tb_field">
-					<tr class="tb_field">
-						<td class="tb_field"><span class="tb_field">字段名</span></td>
-						<td class="tb_field"><span class="tb_field">字段类型</span></td>
-						<td class="tb_field"><span class="tb_field">允许Null</span></td>
-						<td class="tb_field"><span class="tb_field">字段约束</span></td>
-						<td class="tb_field"><span class="tb_field">默认值</span></td>
-						<td class="tb_field"><span class="tb_field">操作</span></td>
-					</tr>
-				</table>
-				<table class="tb_field">
-					<tr class="tb_field" v-for="site in field">
-						<td class="tb_field"><span class="tb_field">{{ site.Field }}</span></td>
-						<td class="tb_field"><span class="tb_field">{{ site.Type }}</span></td>
-						<td class="tb_field"><span class="tb_field">{{ site.Null }}</span></td>
-						<td class="tb_field"><span class="tb_field">{{ site.Key }}</span></td>
-						<td class="tb_field"><span class="tb_field">{{ site.Default }}</span></td>
-						<td class="tb_field"><span class="tb_field">修改/删除</span></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-		<div class="db_privilege">
-			<div class="db_privilege_title">
-				<span class="text_title">容器权限信息</span>
-			</div>
-			<div class="tb_privilege">
-				<table class="tb_privilege">
-					<tr class="tb_privilege">
-						<td class="tb_privilege"><span class="tb_privilege">权限ID</span></td>
-						<td class="tb_privilege"><span class="tb_privilege">用户名</span></td> 
-						<td class="tb_privilege" style="width: 220px"><span class="tb_privilege">用户账户</span></td>
-						<td class="tb_privilege"><span class="tb_privilege">权限</span></td>
-						<td class="tb_privilege"><span class="tb_privilege">操作</span></td>
-					</tr>
-				</table>
-				<table class="tb_privilege">
-					<tr class="tb_privilege" v-for="site in privilege">
-						<td class="tb_privilege"><span class="tb_privilege">{{ site.id }}</span></td>
-						<td class="tb_privilege"><span class="tb_privilege">{{ site.name }}</span></td>
-						<td class="tb_privilege" style="width: 220px"><span class="tb_privilege">{{ site.account }}</span></td>
-						<td class="tb_privilege"><span class="tb_privilege">{{ site.privileges }}</span></td>
-						<td class="tb_privilege"><span class="tb_privilege">修改/删除</span></td>
-					</tr>
-				</table>
-			</div>
-		</div>
 	</div>
 	<div class="bottombar">
 		<div class="cr_one">
@@ -281,8 +229,6 @@
 			data: {
 				name: <%=request.getAttribute(SecurityKey.CONTAINER_NAME.key)%>,
 				info: <%=request.getAttribute(SecurityKey.CONTAINER_MANAGER_INFO.key)%>,
-				field: <%=request.getAttribute(SecurityKey.CONTAINER_MANAGER_FIELD.key)%>,
-				privilege: <%=request.getAttribute(SecurityKey.CONTAINER_MANAGER_PRIVILEGE.key)%>
 			}
 		});
 	</script>

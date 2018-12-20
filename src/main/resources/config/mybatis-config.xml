@@ -10,5 +10,6 @@
 		<mapper resource="mapper/login-record-mapper.xml" />
 		<mapper resource="mapper/container-mapper.xml" />
 		<mapper resource="mapper/container-privilege-mapper.xml" />
+		<mapper resource="mapper/field-mapper.xml" />
 	</mappers>
 </configuration>

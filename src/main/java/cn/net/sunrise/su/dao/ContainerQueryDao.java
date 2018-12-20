@@ -5,7 +5,6 @@ import java.util.List;
 import cn.net.sunrise.su.beans.container.ContainerBean;
 import cn.net.sunrise.su.beans.container.ContainerNewBean;
 import cn.net.sunrise.su.beans.container.ContainerStatisticsBean;
-import cn.net.sunrise.su.beans.container.FieldBean;
 
 public interface ContainerQueryDao {
 
@@ -23,7 +22,6 @@ public interface ContainerQueryDao {
 	public List<ContainerBean> selectContainerByStatusNamePrivilege(ContainerBean containerBean);
 	public boolean existsContainer(ContainerBean containerBean);
 	public boolean existsApi(ContainerBean containerBean);
-	public List<FieldBean> queryContainerStruct(ContainerNewBean containerNewBean);
 	
 	public List<ContainerStatisticsBean> selectStatistics(ContainerBean containerBean);
 	

@@ -3,6 +3,7 @@ encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/resources/check/app-check.properties=UTF-8
 encoding//src/main/resources/check/container-check.properties=UTF-8
+encoding//src/main/resources/check/field-check.properties=UTF-8
 encoding//src/main/resources/check/user-check.properties=UTF-8
 encoding//src/main/resources/config/mail-config.properties=UTF-8
 encoding//src/test/java=UTF-8

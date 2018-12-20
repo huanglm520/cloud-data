@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.net.sunrise.su.config.mapper.login-record-mapper.xml">
+	<insert id="insertRecord" parameterType="cn.net.sunrise.su.beans.passport.LoginRecordBean">
+		insert into tb_record values(null, #{uid}, #{address}, #{time}, #{position});
+	</insert>
+	<select id="selectRecord" parameterType="cn.net.sunrise.su.beans.passport.LoginRecordTimeBean"
+		resultType="cn.net.sunrise.su.beans.passport.LoginRecordBean">
+		select * from tb_record where time&gt;=#{sTime} and time&lt;=#{eTime} and uid=#{uid} order by time desc;
+	</select>
+	<select id="selectRecordLimit" parameterType="cn.net.sunrise.su.beans.passport.LoginRecordTimeBean"
+		resultType="cn.net.sunrise.su.beans.passport.LoginRecordBean">
+		select * from tb_record where uid=#{uid} order by time desc limit #{left},#{right};
+	</select>
+	<select id="selectRecordStatistics" parameterType="cn.net.sunrise.su.beans.passport.LoginRecordTimeBean"
+		resultType="cn.net.sunrise.su.beans.passport.LoginRecordStatisticsBean">
+		select count(id) as value, position as name from tb_record where uid=#{uid} 
+			and time&gt;=#{sTime} and time&lt;=#{eTime} group by position
+	</select>
+</mapper>

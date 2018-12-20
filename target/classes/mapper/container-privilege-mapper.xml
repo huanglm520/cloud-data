@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.net.sunrise.su.config.mapper.container-privilege-mapper.xml">
+	<!-- 容器数据库权限字段配置 -->
+	<insert id="insertPrivilegeByAccount" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+		insert into tb_container_privilege values(null, (select id from tb_user where account=#{account}),
+		#{cid}, #{privilege});
+	</insert>
+	<insert id="insertPrivilegeByUid" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+		insert into tb_container_privilege values(null, #{uid}, #{cid}, #{privilege});
+	</insert>
+	<update id="updatePrivilege" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+		update tb_container_privilege set id=#{id}, uid=#{uid}, cid=#{cid}, privilege=#{privilege} where id=#{id};
+	</update>
+	<delete id="deletePrivilegeById" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+		delete from tb_container_privilege where id=#{id};
+	</delete>
+	<delete id="deletePrivilegeByCid" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+		delete from tb_container_privilege where cid=#{cid};
+	</delete>
+	<delete id="deletePrivilegeByUid" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+		delete from tb_container_privilege where cid=#{cid} and uid=#{uid};
+	</delete>
+	<select id="selectPrivilegeById" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+		select tb_container_privilege.*, tb_user.account from tb_container_privilege, tb_user where
+		tb_container_privilege.id=#{id} and tb_container_privilege.uid=tb_user.id;
+	</select>
+	<select id="selectPrivilegeByCid" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+		select tb_container_privilege.*, tb_user.account from tb_container_privilege, tb_user where
+		tb_container_privilege.cid=#{cid} and tb_container_privilege.uid=tb_user.id;
+	</select>
+	<select id="selectPrivilegeByAccount" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
+		resultType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+		select tb_container_privilege.*, tb_user.account from tb_container_privilege, tb_user where
+		tb_container_privilege.uid=(select id from tb_user where account=#{account})
+		and tb_container_privilege.uid=tb_user.id;
+	</select>
+	<select id="existsPrivilege" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
+		resultType="java.lang.Object">
+		select 1 from tb_container_privilege where uid=(select id from tb_user where account=#{account})
+		and cid=#{cid} and privilege=#{privilege};
+	</select>
+</mapper>

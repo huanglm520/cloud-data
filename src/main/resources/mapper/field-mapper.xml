@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.net.sunrise.su.config.mapper.field-mapper.xml">
+	<insert id="insertField" parameterType="cn.net.sunrise.su.beans.container.FieldBean">
+		insert into tb_field values(null, #{cid}, #{name}, #{type}, #{isnull}, #{key}, #{defaultdata});
+	</insert>
+	<select id="existsField" parameterType="cn.net.sunrise.su.beans.container.FieldBean"
+		resultType="java.lang.Object">
+		select 1 from tb_field where cid=#{cid} and name=#{name};
+	</select>
+</mapper>

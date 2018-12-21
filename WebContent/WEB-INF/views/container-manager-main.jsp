@@ -19,7 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>容器详细信息 - Cloud-Data 数据一体化管理平台</title>
+    <title>容器基本信息 - Cloud-Data 数据一体化管理平台</title>
     <link rel="icon" href="<%=path %>/resources/images/cloud.png" />
     <link rel="stylesheet" href="<%=path %>/resources/scripts/css/public.css" />
     <link rel="stylesheet" href="<%=path %>/resources/scripts/css/toolbar.css" />
@@ -100,6 +100,57 @@
 		div.tb_info_time {
 			width: auto;
 			text-align: center;
+		}
+		div.status_button, div.delete_button, div.imtern_button {
+			width: 500px;
+			margin: auto;
+			margin-top: 30px;
+		}
+		button.operator {
+			width: 150px;
+			height: 40px;
+			border: none;
+			outline: none;
+			border-radius: 5px;
+			font-family: "微软雅黑", "华文细黑";
+			font-size: 13px;
+			color: #FFFFFF;
+			cursor: pointer;
+		}
+		button.modify {
+			background-color: #1460A6;
+		}
+		button.run {
+ 			background-color: #1AB821;
+ 			margin-left: 20px;
+		}
+		button.stop {
+			background-color: #D1301F; 
+			margin-left: 20px;
+		}
+		button.delete {
+			width: 100%;
+			height: 40px;
+			border: none;
+			outline: none;
+			border-radius: 5px;
+			font-family: "微软雅黑", "华文细黑";
+			font-size: 15px;
+			color: #FFFFFF;
+			background-color: #FF0000;
+			cursor: pointer;
+		}
+		button.imtern {
+			width: 232px;
+			height: 40px;
+			border: none;
+			outline: none;
+			border-radius: 5px;
+			font-family: "微软雅黑", "华文细黑";
+			font-size: 15px;
+			color: #FFFFFF;
+			background-color: #1296DB;
+			cursor: pointer;
 		}
 	</style>
 
@@ -189,6 +240,18 @@
 				</div>
 			</div>
 		</div>
+		<div class="status_button">
+			<button class="operator modify" id="modify" onmouseover="$(this).animate({'background-color':'#3E87CA'}, 200);" onmouseout="$(this).animate({'background-color':'#1460A6'}, 200);">修改此容器</button>
+			<button class="operator run" id="run" onmouseover="$(this).animate({'background-color':'#31D738'}, 200);" onmouseout="$(this).animate({'background-color':'#1AB821'}, 200);">运行此容器</button>
+			<button class="operator stop" id="stop" onmouseover="$(this).animate({'background-color':'#E75A4B'}, 200);" onmouseout="$(this).animate({'background-color':'#D1301F'}, 200);">停用此容器</button>
+		</div>
+		<div class="imtern_button" v-for="site in info">
+			<button class="imtern"  onmouseover="$(this).animate({'background-color':'#46B4EE'}, 200);" onmouseout="$(this).animate({'background-color':'#1296DB'}, 200);" @click='window.location.href="<%=path%>/container/manager/field?cid="+site.id'>修改此容器结构</button>
+			<button class="imtern" style="margin-left: 30px;"  onmouseover="$(this).animate({'background-color':'#46B4EE'}, 200);" onmouseout="$(this).animate({'background-color':'#1296DB'}, 200);" @click='window.location.href="<%=path%>/container/manager/privilege?cid="+site.id'>管理此容器权限</button>
+		</div>
+		<div class="delete_button">
+			<button class="delete" id="delete" onmouseover="$(this).animate({'background-color':'#F45454'}, 200);" onmouseout="$(this).animate({'background-color':'#FF0000'}, 200);">删除此容器</button>
+		</div>
 	</div>
 	<div class="bottombar">
 		<div class="cr_one">
@@ -215,7 +278,7 @@
 			el: "#content",
 			data: {
 				name: <%=request.getAttribute(SecurityKey.CONTAINER_NAME.key)%>,
-				info: <%=request.getAttribute(SecurityKey.CONTAINER_MANAGER_INFO.key)%>,
+				info: <%=request.getAttribute(SecurityKey.CONTAINER_MANAGER_INFO.key)%>
 			}
 		});
 	</script>

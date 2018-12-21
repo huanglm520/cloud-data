@@ -55,12 +55,12 @@
 			font-size: 30px;
 			color: #6F726F;
 		}
-		div.db_info, div.db_field, div.db_privilege {
+		div.db_info {
 			width: 1000px;
 			margin: auto;
 			margin-top: 30px;
 		}
-		div.db_info_title, div.db_field_title, div.db_privilege_title {
+		div.db_info_title {
 			width: 100%;
 			text-align: center;
 		}
@@ -71,23 +71,27 @@
 			color: #767976;
 		}
 		div.tb_info {
-			width: 500px;
+			width: 700px;
 			margin: auto;
 			margin-top: 20px;
 		}
-		table.tb_info, td.tb_info, div.tb_info_time, table.tb_field, td.tb_field, table.tb_privilege, td.tb_privilege { 
+		table.tb_info, td.tb_info_l, td.tb_info_r, div.tb_info_time {  
 			border: 1px solid #767976;
 		}
-		table.tb_info, table.tb_field, table.tb_privilege {
+		table.tb_info {
 			border-collapse: collapse;  
 			border-spacing: 0;  
 		}
-		tr.tb_info, tr.tb_field, div.tb_info_time, tr.tb_privilege {
+		tr.tb_info, div.tb_info_time {
 			height: 40px;
 		}
-		td.tb_info {
+		td.tb_info_l {
+			width: 100px;
 		}
-		span.tb_info, span.tb_field, span.tb_privilege {
+		td.tb_info_r {
+			width: 250px;
+		}
+		span.tb_info {
 			font-family: "微软雅黑", "华文细黑";
 			font-weight: 600;
 			font-size: 18px;
@@ -96,23 +100,6 @@
 		div.tb_info_time {
 			width: auto;
 			text-align: center;
-		}
-		div.tb_field {
-			width: 1000px;
-			margin: auto;
-			margin-top: 20px;
-			text-align: center;
-		}
-		td.tb_field {
-			width: 140px; 
-		}
-		td.tb_privilege {
-			width: 120px;
-		}
-		div.tb_privilege {
-			width: 1000px;
-			margin: auto;
-			margin-top: 20px;
 		}
 	</style>
 
@@ -177,22 +164,22 @@
 			<div class="tb_info" v-for="site in info">
 				<table class="tb_info">
 					<tr class="tb_info">
-						<td class="tb_info"><span class="tb_info">容器ID</span></td>
-						<td class="tb_info"><span class="tb_info">{{ site.id }}</span></td>
-						<td class="tb_info"><span class="tb_info">容器状态</span></td>
-						<td class="tb_info"><span class="tb_info">{{ site.state }}</span></td>
+						<td class="tb_info_l"><span class="tb_info">容器ID</span></td>
+						<td class="tb_info_r"><span class="tb_info">{{ site.id }}</span></td>
+						<td class="tb_info_l"><span class="tb_info">容器状态</span></td>
+						<td class="tb_info_r"><span class="tb_info">{{ site.state }}</span></td>
 					</tr>
 					<tr class="tb_info">
-						<td class="tb_info"><span class="tb_info">容器名称</span></td>
-						<td class="tb_info"><span class="tb_info">{{ site.name }}</span></td>
-						<td class="tb_info"><span class="tb_info">API名称</span></td>
-						<td class="tb_info"><span class="tb_info">{{ site.api }}</span></td>
+						<td class="tb_info_l"><span class="tb_info">容器名称</span></td>
+						<td class="tb_info_r"><span class="tb_info">{{ site.name }}</span></td>
+						<td class="tb_info_l"><span class="tb_info">API名称</span></td>
+						<td class="tb_info_r"><span class="tb_info">{{ site.api }}</span></td>
 					</tr>
 					<tr class="tb_info">
-						<td class="tb_info"><span class="tb_info">字段数</span></td>
-						<td class="tb_info"><span class="tb_info">{{ site.field }}</span></td>
-						<td class="tb_info"><span class="tb_info">数据量</span></td>
-						<td class="tb_info"><span class="tb_info">{{ site.data }}</span></td>
+						<td class="tb_info_l"><span class="tb_info">字段数</span></td>
+						<td class="tb_info_r"><span class="tb_info">{{ site.field }}</span></td>
+						<td class="tb_info_l"><span class="tb_info">数据量</span></td>
+						<td class="tb_info_r"><span class="tb_info">{{ site.data }}</span></td>
 					</tr>
 				</table>
 				<div class="tb_info_time">

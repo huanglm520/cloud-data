@@ -14,19 +14,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>找回密码(第3/3步) - Cloud-Data 数据一体化管理平台</title>
-    <link rel="icon" href="<%=path %>/resources/images/cloud.png" />
-    <link rel="stylesheet" href="<%=path %>/resources/scripts/css/public.css" />
-    <link rel="stylesheet" href="<%=path %>/resources/scripts/css/passport.css" />
-    <link rel="stylesheet" href="<%=path %>/resources/scripts/css/register.css" />
-    <link rel="stylesheet" href="<%=path %>/resources/scripts/css/toolbar.css" />
-    <link rel="stylesheet" href="<%=path %>/resources/scripts/css/jquery-ui.min.css">
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/jquery.color-2.1.2.min.js"></script>
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/vue.min.js"></script>
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/code.js"></script>
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/timer.js"></script>
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/check.js"></script>
+    <link rel="icon" href="https://static.sunrise-su.net.cn/cloud-data/images/cloud.png" />
+    <link rel="stylesheet" href="https://static.sunrise-su.net.cn/cloud-data/scripts/css/public.css" />
+    <link rel="stylesheet" href="https://static.sunrise-su.net.cn/cloud-data/scripts/css/toolbar.css" />
+    <link rel="stylesheet" href="https://static.sunrise-su.net.cn/cloud-data/scripts/css/passport.css" />
+    <link rel="stylesheet" href="https://static.sunrise-su.net.cn/cloud-data/scripts/css/register.css" />
+    <link rel="stylesheet" href="https://static.sunrise-su.net.cn/jquery-ui.min.css" />
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/jquery.color-2.1.2.min.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/vue.min.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/timer.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/public.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/toolbar.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/code.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/check.js"></script>
     
     <style type="text/css">
     	div.quarantine {

@@ -8,12 +8,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/jquery.color-2.1.2.min.js"></script>
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/vue.min.js"></script>
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/code.js"></script>
-    <script type="text/javascript" src="<%=path %>/resources/scripts/js/check.js"></script>
-    
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/jquery.color-2.1.2.min.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/vue.min.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/code.js"></script>
+    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/check.js"></script>    
     <style type="text/css">
     	* {
     		margin: 0;

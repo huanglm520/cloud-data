@@ -140,6 +140,9 @@
 	</div>
 	
 	<div class="content">
+		<div style="width: 100%;text-align: center;">
+			<span style="font-family: '微软雅黑'; font-size: 17px; color: red;">容器创建完成后容器名称和API名称将不可修改<br>请谨慎填写</span>
+		</div>
 		<div class="container">
 			<div class="containername">
 				<span class="containername">容器名称</span>

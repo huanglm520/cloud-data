@@ -1,6 +1,7 @@
 package cn.net.sunrise.su.beans.container;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
 public class FieldBean implements Serializable {
@@ -122,11 +123,21 @@ public class FieldBean implements Serializable {
 	}
 	
 	public void encode() {
-		this.name = Base64.getEncoder().encodeToString(name.getBytes());
-		this.defaultdata = Base64.getEncoder().encodeToString(defaultdata.getBytes());
+		try {
+			this.name = Base64.getEncoder().encodeToString(name.getBytes("GBK"));
+			this.defaultdata = Base64.getEncoder().encodeToString(defaultdata.getBytes("GBK"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void decode() {
-		this.name = new String(Base64.getDecoder().decode(name));
-		this.defaultdata = new String(Base64.getDecoder().decode(defaultdata));
+		try {
+			this.name = new String(Base64.getDecoder().decode(name), "GBK");
+			this.defaultdata = new String(Base64.getDecoder().decode(defaultdata), "GBK");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package cn.net.sunrise.su.beans.passport;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -94,33 +95,51 @@ public class UserBean implements Serializable {
 	}
 	
 	public void encodeAccount() {
-		this.account = this.account==null ? null : Base64.getEncoder().encodeToString(this.account.getBytes());
+		try {
+			this.account = this.account==null ? null : Base64.getEncoder().encodeToString(this.account.getBytes("GBK"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void decodeAccount() {
-		this.account = this.account==null ? null : new String(Base64.getDecoder().decode(this.account));
+		try {
+			this.account = this.account==null ? null : new String(Base64.getDecoder().decode(this.account), "GBK");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void encode() {
-		this.first_name = this.first_name==null ? null : Base64.getEncoder().encodeToString(this.first_name.getBytes());
-		this.last_name = this.last_name==null ? null : Base64.getEncoder().encodeToString(this.last_name.getBytes());
-		this.company = this.company==null ? null : Base64.getEncoder().encodeToString(this.company.getBytes());
+		try {
+			this.first_name = this.first_name==null ? null : Base64.getEncoder().encodeToString(this.first_name.getBytes("GBK"));
+			this.last_name = this.last_name==null ? null : Base64.getEncoder().encodeToString(this.last_name.getBytes("GBK"));
+			this.company = this.company==null ? null : Base64.getEncoder().encodeToString(this.company.getBytes("GBK"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void decode() {
-		this.first_name = this.first_name==null ? null : new String(Base64.getDecoder().decode(this.first_name));
-		this.last_name = this.last_name==null ? null : new String(Base64.getDecoder().decode(this.last_name));
-		this.company = this.company==null ? null : new String(Base64.getDecoder().decode(this.company));
+		try {
+			this.first_name = this.first_name==null ? null : new String(Base64.getDecoder().decode(this.first_name), "GBK");
+			this.last_name = this.last_name==null ? null : new String(Base64.getDecoder().decode(this.last_name), "GBK");
+			this.company = this.company==null ? null : new String(Base64.getDecoder().decode(this.company), "GBK");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void encodePassword() {
 		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");
 			MessageDigest sha1 = MessageDigest.getInstance("SHA-1");
-			String p = Base64.getEncoder().encodeToString(md5.digest(this.password.getBytes()));
-			String s = Base64.getEncoder().encodeToString(md5.digest(this.salt.getBytes()));
-			this.password = Base64.getEncoder().encodeToString(sha1.digest((p+s).getBytes()));
-		} catch (NoSuchAlgorithmException e) {
+			String p = Base64.getEncoder().encodeToString(md5.digest(this.password.getBytes("GBK")));
+			String s = Base64.getEncoder().encodeToString(md5.digest(this.salt.getBytes("GBK")));
+			this.password = Base64.getEncoder().encodeToString(sha1.digest((p+s).getBytes("GBK")));
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

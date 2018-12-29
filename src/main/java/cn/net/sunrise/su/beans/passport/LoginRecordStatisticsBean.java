@@ -1,6 +1,7 @@
 package cn.net.sunrise.su.beans.passport;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
 public class LoginRecordStatisticsBean implements Serializable {
@@ -20,6 +21,11 @@ public class LoginRecordStatisticsBean implements Serializable {
 		this.name = position;
 	}
 	public void decode() {
-		this.name = this.name==null ? null : new String(Base64.getDecoder().decode(this.name));
+		try {
+			this.name = this.name==null ? null : new String(Base64.getDecoder().decode(this.name), "GBK");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

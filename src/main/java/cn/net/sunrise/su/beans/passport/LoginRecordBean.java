@@ -1,6 +1,7 @@
 package cn.net.sunrise.su.beans.passport;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
 import cn.net.sunrise.su.tool.IpTool;
@@ -62,13 +63,23 @@ public class LoginRecordBean implements Serializable {
 	}
 	
 	public void encode() {
-		this.address = this.address==null ? null : Base64.getEncoder().encodeToString(this.address.getBytes());
-		this.position = this.position==null ? null : Base64.getEncoder().encodeToString(this.position.getBytes());
+		try {
+			this.address = this.address==null ? null : Base64.getEncoder().encodeToString(this.address.getBytes("GBK"));
+			this.position = this.position==null ? null : Base64.getEncoder().encodeToString(this.position.getBytes("GBK"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void decode() {
-		this.address = this.address==null ? null : new String(Base64.getDecoder().decode(this.address));
-		this.position = this.position==null ? null : new String(Base64.getDecoder().decode(this.position));
+		try {
+			this.address = this.address==null ? null : new String(Base64.getDecoder().decode(this.address), "GBK");
+			this.position = this.position==null ? null : new String(Base64.getDecoder().decode(this.position),"GBK");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

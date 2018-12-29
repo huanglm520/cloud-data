@@ -1,6 +1,7 @@
 package cn.net.sunrise.su.beans.container;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -146,6 +147,12 @@ public class ContainerBean implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "zb_"+Base64.getEncoder().encodeToString(md5.digest((this.id+this.name).getBytes()));
+		try {
+			return "zb_"+Base64.getEncoder().encodeToString(md5.digest((this.id+this.name).getBytes("GBK")));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

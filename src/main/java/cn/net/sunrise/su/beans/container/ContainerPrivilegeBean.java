@@ -1,6 +1,7 @@
 package cn.net.sunrise.su.beans.container;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
 import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
@@ -76,11 +77,21 @@ public class ContainerPrivilegeBean implements Serializable {
 	}
 	
 	public void encodeAccount() {
-		this.account = this.account==null ? null : Base64.getEncoder().encodeToString(this.account.getBytes());
+		try {
+			this.account = this.account==null ? null : Base64.getEncoder().encodeToString(this.account.getBytes("GBK"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void decodeAccount() {
-		this.account = this.account==null ? null : new String(Base64.getDecoder().decode(this.account));
+		try {
+			this.account = this.account==null ? null : new String(Base64.getDecoder().decode(this.account), "GBK");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void privileges() {

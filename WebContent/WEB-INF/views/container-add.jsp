@@ -116,7 +116,7 @@
 		<table class="navigation">
 			<tr class="navigation">
 				<td class="navigation">
-					<img class="navigation" src="https://static.sunrise-su.net.cn/cloud-datas/images/home.svg">
+					<img class="navigation" src="https://static.sunrise-su.net.cn/cloud-data/images/home.svg">
 					<span class="navigation">&nbsp;个人主页</span>
 					<div class="navigationPointer" id="personalHome"></div>
 				</td>

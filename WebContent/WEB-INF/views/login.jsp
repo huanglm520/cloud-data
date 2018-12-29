@@ -32,7 +32,7 @@
 	<div class="topbar">
 		<div class="topbarinner">
 			<div>
-				<img class="topbarimg" src="<%=path%>/resources/images/cloud.svg">
+				<img class="topbarimg" src="https://static.sunrise-su.net.cn/cloud-data/images/cloud.svg">
 			</div>
 			<div class="topbarspan">
 				<span class="topbarspan">Cloud-Data&nbsp;数据一体化管理平台</span>

@@ -146,7 +146,7 @@
 	<div class="topbar"> 
 		<div class="topbarinner">
 			<div>
-				<img class="topbarimg" src="<%=path%>/resources/images/cloud.svg">
+				<img class="topbarimg" src="https://static.sunrise-su.net.cn/cloud-data/images/cloud.svg">
 			</div>
 			<div class="topbarspan">
 				<span class="topbarspan">Cloud-Data&nbsp;数据一体化管理平台</span>
@@ -164,22 +164,22 @@
 		<table class="navigation">
 			<tr class="navigation">
 				<td class="navigation">
-					<img class="navigation" src="<%=path%>/resources/images/home.svg">
+					<img class="navigation" src="https://static.sunrise-su.net.cn/cloud-data/images/home.svg">
 					<span class="navigation">&nbsp;个人主页</span>
 					<div class="navigationPointer" id="personalHome"></div>
 				</td>
 				<td class="navigation">
-					<img class="navigation" src="<%=path%>/resources/images/container.svg">
+					<img class="navigation" src="https://static.sunrise-su.net.cn/cloud-data/images/container.svg">
 					<span class="navigation">&nbsp;容器管理</span>
 					<div class="navigationPointer" id="containerManager"></div>
 				</td>
 				<td class="navigation">
-					<img class="navigation" src="<%=path%>/resources/images/account.svg">
+					<img class="navigation" src="https://static.sunrise-su.net.cn/cloud-data/images/account.svg">
 					<span class="navigation">&nbsp;账号管理</span>
 					<div class="navigationPointer" id="accountManager"></div>
 				</td>
 				<td class="navigation">
-					<img class="navigation" src="<%=path%>/resources/images/security.svg">
+					<img class="navigation" src="https://static.sunrise-su.net.cn/cloud-data/images/security.svg">
 					<span class="navigation">&nbsp;安全中心</span>
 					<div class="navigationPointer" id="securityCenter"></div>
 				</td>

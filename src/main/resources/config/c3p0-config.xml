@@ -20,5 +20,8 @@
 		</property>
 		<property name="user" value="admin"></property>
 		<property name="password" value="YWRtaW5AbG9jYWxob3N0"></property>
+		<property name="testConnectionOnCheckin" value="false"/>
+    	<property name="testConnectionOnCheckout" value="true"/>
+		
 	</bean>
 </beans>

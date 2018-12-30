@@ -264,7 +264,7 @@
 				keys[p[0]] = p[1];
 			}
 			$("#status").val(/^all|running|stoping|modifying|creating$/.test(keys["status"]) ? keys["status"] : "all");
-			$("#privilege").val(/^all|owner|admin|guest$/.test(keys["privilege"]) ? keys["status"] : "all");
+			$("#privilege").val(/^all|owner|admin|guest$/.test(keys["privilege"]) ? keys["privilege"] : "all");
 		}
 	</script>
 	

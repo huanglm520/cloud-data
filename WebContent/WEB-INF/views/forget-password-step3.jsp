@@ -14,21 +14,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>找回密码(第3/3步) - Cloud-Data 数据一体化管理平台</title>
-    <link rel="icon" href="https://static.sunrise-su.net.cn/cloud-data/images/cloud.png" />
-    <link rel="stylesheet" href="https://static.sunrise-su.net.cn/cloud-data/scripts/css/public.css" />
-    <link rel="stylesheet" href="https://static.sunrise-su.net.cn/cloud-data/scripts/css/toolbar.css" />
-    <link rel="stylesheet" href="https://static.sunrise-su.net.cn/cloud-data/scripts/css/passport.css" />
-    <link rel="stylesheet" href="https://static.sunrise-su.net.cn/cloud-data/scripts/css/register.css" />
-    <link rel="stylesheet" href="https://static.sunrise-su.net.cn/jquery-ui.min.css" />
-    <script type="text/javascript" src="https://static.sunrise-su.net.cn/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="https://static.sunrise-su.net.cn/jquery.color-2.1.2.min.js"></script>
-    <script type="text/javascript" src="https://static.sunrise-su.net.cn/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="https://static.sunrise-su.net.cn/vue.min.js"></script>
-    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/timer.js"></script>
-    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/public.js"></script>
-    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/toolbar.js"></script>
-    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/code.js"></script>
-    <script type="text/javascript" src="https://static.sunrise-su.net.cn/cloud-data/scripts/js/check.js"></script>
+    <link rel="icon" href="https://huanglm520.github.io/cloud-data.static.io/images/cloud.png" />
+    <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/public.css" />
+    <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/toolbar.css" />
+    <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/passport.css" />
+    <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/register.css" />
+    <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/jquery-ui.min.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+    <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/timer.js"></script>
+    <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/public.js"></script>
+    <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/toolbar.js"></script>
+    <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/code.js"></script>
+    <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/check.js"></script>
     
     <style type="text/css">
     	div.quarantine {
@@ -52,7 +52,7 @@
 	<div class="topbar">
 		<div class="topbarinner">
 			<div>
-				<img class="topbarimg" src="https://static.sunrise-su.net.cn/cloud-data/images/cloud.svg">
+				<img class="topbarimg" src="https://huanglm520.github.io/cloud-data.static.io/images/cloud.svg">
 			</div>
 			<div class="topbarspan">
 				<span class="topbarspan">Cloud-Data&nbsp;数据一体化管理平台</span>

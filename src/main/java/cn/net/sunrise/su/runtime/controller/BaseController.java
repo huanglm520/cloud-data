@@ -8,6 +8,7 @@ public class BaseController {
 	
 	public static final String LOGIN_OUT = "login-out";
 	public static final String NO_PRIVILEGE = "no-privilege";
+	public static final String NOT_OWNER = "not-owner";
 
 	protected String pageName(HttpSession session, String name) {
 		if (!this.checkLogin(session)) {

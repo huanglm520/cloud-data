@@ -29,4 +29,5 @@ public interface ContainerQueryDao {
 	public void dropContainerSpace(ContainerNewBean containerNewBean);
 	
 	public boolean hasPrivilege(ContainerBean containerBean);
+	public boolean isOwner(ContainerBean containerBean);
 }

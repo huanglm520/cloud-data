@@ -48,4 +48,26 @@ public class ContainerManagerGetController extends BaseController {
 		request.setAttribute(SecurityKey.CONTAINER_NAME.key, "\""+list.get(0).getName()+"\"");
 		return "container-manager-main";
 	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String delete_01(HttpSession session, HttpServletRequest request) {
+		if (!super.checkLogin(session)) {
+			return BaseController.LOGIN_OUT;
+		}
+		String cid = request.getParameter("cid");
+		if (cid==null || !cid.matches("^[0-9]{1,10}$")) {
+			return BaseController.NO_PRIVILEGE;
+		}
+		UserBean userBean = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);
+		ContainerBean containerBean = new ContainerBean();
+		containerBean.setUid(userBean.getId());
+		containerBean.setId(Integer.parseInt(cid));
+		if (!this.cs.isOwner(containerBean)) {
+			return BaseController.NOT_OWNER;
+		}
+		// 提取此容器的信息
+		containerBean = this.cs.selectContainer(containerBean).get(0);
+		request.setAttribute(SecurityKey.CONTAINER_NAME.key, containerBean.getName());
+		return "container-manager-delete";
+	}
 }

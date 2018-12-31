@@ -6,6 +6,12 @@
 	<insert id="insertField" parameterType="cn.net.sunrise.su.beans.container.FieldBean">
 		insert into tb_field values(null, #{cid}, #{name}, #{type}, #{isnull}, #{key}, #{defaultdata});
 	</insert>
+	<delete id="deleteField" parameterType="cn.net.sunrise.su.beans.container.FieldBean">
+		delete from tb_field where id=#{id};
+	</delete>
+	<delete id="deleteFieldByCid" parameterType="cn.net.sunrise.su.beans.container.FieldBean">
+		delete from tb_field where cid=#{cid};
+	</delete>
 	<select id="existsField" parameterType="cn.net.sunrise.su.beans.container.FieldBean"
 		resultType="java.lang.Object">
 		select 1 from tb_field where cid=#{cid} and name=#{name};

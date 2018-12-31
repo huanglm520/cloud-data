@@ -25,4 +25,16 @@ public class FieldServiceImpl implements FieldService {
 		return new FieldStatusBean(FieldKey.OK);
 	}
 
+	@Override
+	public void deleteField(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		this.fieldQuerDao.deleteField(fieldBean);
+	}
+
+	@Override
+	public void deleteFieldByCid(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		this.fieldQuerDao.deleteFieldByCid(fieldBean);
+	}
+
 }

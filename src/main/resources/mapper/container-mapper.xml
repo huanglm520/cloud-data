@@ -84,6 +84,11 @@
 		and tb_container.id=tb_container_privilege.cid and tb_container.id=#{id} and
 		(tb_container_privilege.privilege=1 or tb_container_privilege.privilege=2);
 	</select>
+	<select id="isOwner" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="java.lang.Object">
+		select 1 from tb_container, tb_container_privilege where tb_container_privilege.uid=#{uid}
+		and tb_container.id=tb_container_privilege.cid and tb_container.id=#{id} and tb_container_privilege.privilege=1;
+	</select>
 	
 	<!-- 容器空间配置 -->
 	<update id="createContainerSpace" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">

@@ -11,6 +11,8 @@ public enum ContainerKey {
 	API_NAME_TOO_LONG(-3006, "api name too long"),
 	API_NAME_NOT_ACCEPT(-3007, "api name not accept"),
 	API_NAME_ALREADY_EXISTS(-3008, "api name already exists"),
+	NO_PRIVILEGE(-3009, "no privilege"),
+	ERROR_STATUS(-3010, "error status"),
 	SERVER_EXCEPTION(PassportKey.SERVER_EXCEPTION.code, PassportKey.SERVER_EXCEPTION.message);
 	
 	public final int code;

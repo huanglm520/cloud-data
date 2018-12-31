@@ -24,4 +24,16 @@ public class FieldQueryDaoImpl extends BaseDao implements FieldQueryDao {
 		// TODO Auto-generated method stub
 		return super.selectOne("existsField", fieldBean) != null;
 	}
+
+	@Override
+	public void deleteField(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		super.delete("deleteField", fieldBean);
+	}
+
+	@Override
+	public void deleteFieldByCid(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		super.delete("deleteFieldByCid", fieldBean);
+	}
 }

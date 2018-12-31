@@ -109,4 +109,35 @@ public class ContainerServerImpl implements ContainerService {
 		return this.containerQueryDao.hasPrivilege(containerBean);
 	}
 
+	@Override
+	public void updateContainer(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		this.containerQueryDao.updateContainer(containerBean);
+	}
+
+	@Override
+	public boolean isOwner(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		return this.containerQueryDao.isOwner(containerBean);
+	}
+
+	@Override
+	public void dropContainer(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		// 删除容器记录
+		this.containerQueryDao.deleteContainer(containerBean);
+		// 删除容器权限
+		ContainerPrivilegeBean containerPrivilegeBean = new ContainerPrivilegeBean();
+		containerPrivilegeBean.setCid(containerBean.getId());
+		this.containerPrivilegeDao.deletePrivilegeByCid(containerPrivilegeBean);
+		// 删除容器字段
+		FieldBean fieldBean = new FieldBean();
+		fieldBean.setCid(containerBean.getId());
+		this.fs.deleteFieldByCid(fieldBean);
+		// 删除容器空间
+		ContainerNewBean containerNewBean = new ContainerNewBean();
+		containerNewBean.setTablename(containerBean.tableName());
+		this.containerQueryDao.dropContainerSpace(containerNewBean);
+	}
+
 }

@@ -6,4 +6,6 @@ public interface FieldQueryDao {
 
 	public void insertField(FieldBean fieldBean);
 	public boolean existsField(FieldBean fieldBean);
+	public void deleteField(FieldBean fieldBean);
+	public void deleteFieldByCid(FieldBean fieldBean);
 }

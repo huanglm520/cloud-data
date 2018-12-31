@@ -6,4 +6,6 @@ import cn.net.sunrise.su.beans.container.FieldStatusBean;
 public interface FieldService {
 
 	public FieldStatusBean addField(FieldBean fieldBean);
+	public void deleteField(FieldBean fieldBean);
+	public void deleteFieldByCid(FieldBean fieldBean);
 }

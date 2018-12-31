@@ -15,4 +15,7 @@ public interface ContainerService {
 	public List<ContainerBean> selectContainerById(ContainerBean containerBean);
 	public List<ContainerPrivilegeBean> selectPrivilegeByCid(ContainerPrivilegeBean containerPrivilegeBean);
 	public boolean hasPrivilege(ContainerBean containerBean);
+	public void updateContainer(ContainerBean containerBean);
+	public boolean isOwner(ContainerBean containerBean);
+	public void dropContainer(ContainerBean containerBean);
 }

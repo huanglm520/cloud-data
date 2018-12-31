@@ -128,4 +128,10 @@ public class ContainerQueryDaoImpl extends BaseDao implements ContainerQueryDao 
 		return super.selectOne("hasPrivilege", containerBean) != null;
 	}
 
+	@Override
+	public boolean isOwner(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		return super.selectOne("isOwner", containerBean) != null;
+	}
+
 }

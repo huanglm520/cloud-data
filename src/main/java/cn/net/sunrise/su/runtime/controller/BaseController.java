@@ -9,6 +9,7 @@ public class BaseController {
 	public static final String LOGIN_OUT = "login-out";
 	public static final String NO_PRIVILEGE = "no-privilege";
 	public static final String NOT_OWNER = "not-owner";
+	public static final String NO_CHANGE = "no-change";
 	public static final String USER_NOT_EXISTS = "user-not-exists";
 
 	protected String pageName(HttpSession session, String name) {

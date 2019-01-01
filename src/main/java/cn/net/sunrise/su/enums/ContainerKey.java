@@ -13,6 +13,7 @@ public enum ContainerKey {
 	API_NAME_ALREADY_EXISTS(-3008, "api name already exists"),
 	NO_PRIVILEGE(-3009, "no privilege"),
 	ERROR_STATUS(-3010, "error status"),
+	UNKNOWN_PRIVILEGE(-3011, "unknown privilege"),
 	SERVER_EXCEPTION(PassportKey.SERVER_EXCEPTION.code, PassportKey.SERVER_EXCEPTION.message);
 	
 	public final int code;

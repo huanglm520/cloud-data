@@ -188,6 +188,19 @@
 	</div>
 	
 	<script type="text/javascript">
+		function disable() {
+			$("#submit").css({"background-color":"#8B8F93", "cursor":"not-allow"});
+			$("#submit").text("正在删除...");
+			$("#submit").attr("disabled", "true");
+		}
+		function enable() {
+			$("#submit").css({"background-color":"#FF0000", "cursor":"pointer"});
+			$("#submit").text("删除容器");
+			$("#submit").removeAttr("disabled");
+		}
+	</script>
+	
+	<script type="text/javascript">
 		var param = window.location.search;
 		var id = -1;
 		if (param.indexOf("?") != -1) {
@@ -201,6 +214,8 @@
 		}
 		
 		$("#submit").click(function() {
+			
+			disable();
 			
 			var name = $("#name").val();
 			if (name != "<%=request.getAttribute(SecurityKey.CONTAINER_NAME.key) %>") {
@@ -218,6 +233,7 @@
 							$("#quarantine").css("display", "none");
 							$("#pop").empty();
 							$("#ui-id-1").empty();
+							enable();
 						}
 					},
 					open: function(event, ui) {
@@ -250,6 +266,7 @@
 								$("#quarantine").css("display", "none");
 								$("#pop").empty();
 								$("#ui-id-1").empty();
+								enable();
 							}
 						},
 						open: function(event, ui) {
@@ -284,6 +301,7 @@
 								if (data.code == Code["OK"]) {
 									window.location.href = "<%=path%>/container/manager";
 								}
+								enable();
 							}
 						},
 						open: function(event, ui) {

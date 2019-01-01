@@ -10,7 +10,9 @@ public enum SecurityKey {
 	CONTAINER_MANAGER_PRIVILEGE("containermanagerprivilege"),
 	CONTAINER_MANAGER_FIELD("containermanagerfield"),
 	CONTAINER_NAME("containername"),
+	CONTAINER_ID("containerid"),
 	SECURITY_CONTAINER_LIST("securitycontainerlist"),
+	VIEW_USER("viewuser"),
 	QUERY_SUCCESS("querysuccess");
 	
 	public final String key;

@@ -1,3 +1,4 @@
+<%@page import="cn.net.sunrise.su.enums.SecurityKey"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="cn.net.sunrise.su.enums.AttributeKey"%>
@@ -6,6 +7,7 @@
 <% String path = request.getContextPath(); %>
 <%
 	UserBean usb = (UserBean)session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);
+	UserBean u   = (UserBean)request.getAttribute(SecurityKey.VIEW_USER.key);
 %>
 <!DOCTYPE html>
 <html lang="cn">
@@ -18,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>账号管理 - Cloud-Data 数据一体化管理平台</title>
+    <title>查看用户 - Cloud-Data 数据一体化管理平台</title>
     <link rel="icon" href="https://huanglm520.github.io/cloud-data.static.io/images/cloud.png" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/public.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/toolbar.css" />
@@ -192,7 +194,7 @@
 					<span class="data_t">注册邮箱：</span>
 				</div>
 				<div class="data_i">
-					<input class="data_id" id="account" type="text" value="<%=usb.getAccount() %>" disabled="disabled" />
+					<input class="data_id" id="account" type="text" value="<%=u.getAccount() %>" disabled="disabled" />
 				</div>
 			<!-- 	<div class="operator">
 					<img class="operator" id="account_o" />
@@ -202,15 +204,8 @@
 				<div class="data_t">
 					<span class="data_t">用户姓名：</span>
 				</div>
-				<div class="data_i" id="name_ie" style="display: none;">
-					<input class="data_ie lastname_ie" id="lastname" type="text" value="<%=usb.getLast_name() %>" />
-					<input class="data_ie firstname_ie" id="firstname" type="text" value="<%=usb.getFirst_name() %>" />
-				</div>
 				<div class="data_i" id="name_id">
-					<input class="data_id" type="text" id="name_full" value="<%=usb.getLast_name()+usb.getFirst_name() %>" disabled="disabled" />
-				</div>
-				<div class="operator">
-					<img class="operator" id="name_o" title="修改姓名" />
+					<input class="data_id" type="text" id="name_full" value="<%=u.getLast_name()+u.getFirst_name() %>" disabled="disabled" />
 				</div>
 			</div>
 			<div class="data">
@@ -218,10 +213,7 @@
 					<span class="data_t">所属公司：</span>
 				</div>
 				<div class="data_i">
-					<input class="data_id" id="company" type="text" value="<%=usb.getCompany() %>" disabled="disabled" />
-				</div>
-				<div class="operator">
-					<img class="operator" id="company_o" title="修改公司" />
+					<input class="data_id" id="company" type="text" value="<%=u.getCompany() %>" disabled="disabled" />
 				</div>
 			</div>
 			<div class="data">
@@ -229,7 +221,7 @@
 					<span class="data_t">注册时间：</span>
 				</div>
 				<div class="data_i">
-					<input class="data_id" id="regtime" type="text" value="<%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(usb.getRegtime())) %>" disabled="disabled" />
+					<input class="data_id" id="regtime" type="text" value="<%=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(u.getRegtime())) %>" disabled="disabled" />
 				</div>
 			<!-- 	<div class="operator">
 					<img class="operator" id="account_o" />
@@ -260,129 +252,5 @@
 	    	</table>
 	    </div>
 	</div>
-	
-	<script type="text/javascript">
-		var $img_change = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTQyNDY3MTQ1NDU2IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjIwNzAiIGRhdGEtc3BtLWFuY2hvci1pZD0iYTMxM3guNzc4MTA2OS4wLmk4IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PC9zdHlsZT48L2RlZnM+PHBhdGggZD0iTTkzMi45ODEgNjQ0LjUzOGMtMTYuMzc5IDAtMzUuMjkgMTMuNDAxLTM1LjI5IDI5Ljc4djEyMC4xNjVjMCA1Ny4wMzAtNDYuMDExIDEwMy4xODktMTAyLjU5NCAxMDMuMTg5aC01NjkuMTA2Yy01Ni43MzIgMC0xMDIuNTk0LTQ2LjE1OS0xMDIuNTk0LTEwMy4xODl2LTU2Ny45MTRjMC01Ny4wMzAgNDUuODYyLTEwMy4xODkgMTAyLjU5NC0xMDMuMTg5aDI1Mi4wOTFjMTYuMzc5IDAgMjkuNjMyIDEuNDg5IDI5LjYzMi0xNC44OXMtMTMuMjUyLTQ0LjY3LTI5LjYzMi00NC42N2gtMjk1Ljg3Yy02NS4zNjggMC0xMTguMzc3IDUzLjMwNy0xMTguMzc3IDExOS4xMjJ2NjU1LjE3MWMwIDY1LjgxNSA1My4wMDkgMTE5LjEyMiAxMTguMzc3IDExOS4xMjJoNjU2LjY2YzY1LjM2OCAwIDExOC4zNzctNTMuMzA3IDExOC4zNzctMTE5LjEyMnYtMTYzLjc5M2MwLjAwMS0xNi4zNzktNy44OTEtMjkuNzgtMjQuMjctMjkuNzh6TTI0Ny43MzEgNzQyLjk2M2MtNC43NjUgMzIuNDYgMTcuNDIyIDU0LjIgNDkuNTg0IDQ4LjI0NWwxODguODA4LTM0LjA5OS0yMDkuMjA4LTIxMC41NDktMjkuMTg1IDE5Ni40MDN6TTYzOS42NDMgMjgwLjAyNGMyMy4yMjktMjMuMzc3IDYwLjYwMy0yMy4zNzcgODMuODMyIDBsNDEuODQyIDQxLjk5YzIzLjA4MCAyMy4zNzcgMjMuMDgwIDYxLjA1MCAwIDg0LjI3OGwtMTg4LjM2MyAxODkuNTU0Yy0yMy4wODAgMjMuMjI5LTYwLjYwMyAyMy4yMjktODMuNjgzIDBsLTQxLjg0Mi00Mi4xNGMtMjMuMDgwLTIzLjIyOS0yMy4wODAtNjAuOTAxIDAtODQuMjc4bDE4OC4yMTQtMTg5LjQwNXpNNTM1LjExMyA3MjIuMjY0bDM1NS43MjgtMzU4LjExLTIwOS4yMDgtMjEwLjU0OC0zNTUuNzI4IDM1Ny45NjIgMjA5LjIwOCAyMTAuNjk3ek05MzUuODA5IDMwNC41OTRjMzQuNjk0LTM0Ljg0NCAyNC40Mi04MS4xNTItMTAuMjc0LTExNS45OTVsLTgzLjY4My04NC4yNzljLTM0LjY5NC0zNC44NDQtOTAuODMxLTM0Ljg0NC0xMjUuNTI1IDBsMjA5LjIwOCAyMTAuNTQ4IDEwLjI3NC0xMC4yNzR6IiBwLWlkPSIyMDcxIiBmaWxsPSIjOEM5NDhDIiBkYXRhLXNwbS1hbmNob3ItaWQ9ImEzMTN4Ljc3ODEwNjkuMC5pNyIgY2xhc3M9IiI+PC9wYXRoPjwvc3ZnPg==";
-		var $img_save = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTQyNDY3MjU4OTM5IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjI4ODQiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNMTAxMy4zIDIyMy4ybC0xNDguNy0xNDguNWMtNi44LTYuOC0xNi0xMC44LTI2LjItMTAuOC03LjQgMC0zMi45IDAtNzAuMyAwTDI1NiA2My45Yy04My43IDAtMTQ1IDAtMTU0LjMgMGwtMSAwYy0yMC40IDAtMzYuNyAxNi4zLTM2LjcgMzYuN2wwIDg4NS42IDAgMC44YzAgMjAuNCAxNi4zIDM2LjkgMzYuNyAzNi45bDExNy45IDAgMC44IDAgNjQ4LjMgMCAxIDAgMC44IDBMOTg2IDEwMjMuOWwxLjEgMGMyMC43IDAgMzYuOS0xNi41IDM2LjktMzYuOWwwLTczNi42IDAtMC41QzEwMjQgMjQwLjIgMTAyMC45IDIzMSAxMDEzLjMgMjIzLjJ6TTcwNCAxMjhsMCAyNTZMMzIwIDM4NGwwLTI1Nkw3MDQgMTI4ek0zMjAgOTYwbDAtMzIwIDQ0OCAwIDAgMzIwTDMyMCA5NjB6TTk2MCA5NjBsLTkwLjYgMC0wLjggMC0xIDBMODMyIDk2MCA4MzIgNjIzLjJjMC0yNi44LTIxLjEtNDcuMy00Ny4yLTQ3LjNMMzAzLjIgNTc1LjljLTI1LjkgMC00Ny4yIDIwLjQtNDcuMiA0Ny4zbDAgMzM2LjctMzYuNyAwLTAuOCAwTDEyOCA5NTkuOWwwLTgzMiAxMjggMEwyNTYgNDAwLjdjMCAyNi44IDIxLjQgNDcuMyA0Ny4yIDQ3LjNsNDE3LjUgMGMyNi4yIDAgNDcuMi0yMC40IDQ3LjItNDcuM2wwLTI3Mi43IDU5LjMgMEw5NjAgMjYwLjQgOTYwIDk2MHoiIHAtaWQ9IjI4ODUiIGZpbGw9IiM4Qzk0OEMiPjwvcGF0aD48cGF0aCBkPSJNNjcyIDcwNCA0MTYgNzA0Yy0xNy43IDAtMzIgMTQuMy0zMiAzMnMxNC4zIDMyIDMyIDMybDI1NiAwYzE3LjcgMCAzMi0xNC4zIDMyLTMyUzY4OS43IDcwNCA2NzIgNzA0eiIgcC1pZD0iMjg4NiIgZmlsbD0iIzhDOTQ4QyI+PC9wYXRoPjxwYXRoIGQ9Ik02NzIgODMyIDQxNiA4MzJjLTE3LjcgMC0zMiAxNC4zLTMyIDMyczE0LjMgMzIgMzIgMzJsMjU2IDBjMTcuNyAwIDMyLTE0LjMgMzItMzJTNjg5LjcgODMyIDY3MiA4MzJ6IiBwLWlkPSIyODg3IiBmaWxsPSIjOEM5NDhDIj48L3BhdGg+PC9zdmc+";
-		
-		// 添加操作标记
-		var $flag_change = 0;
-		var $flag_save = 1;
-		var $arr_flag = new Array();
-		$arr_flag["name"] = $flag_change;
-		$arr_flag["company"] = $flag_change;
-		
-		$("#name_o").attr("src", $img_change);
-		$("#company_o").attr("src", $img_change);
-	</script>
-	
-	<script type="text/javascript">
-		// name事件
-		$("#name_o").click(function () {
-			if ($arr_flag["name"] === $flag_change) {
-				$arr_flag["name"] = $flag_save;
-				$("#name_o").attr("src", $img_save);
-				$("#name_o").attr("title", "保存姓名");
-				$("#name_ie").css("display", "block");
-				$("#name_id").css("display", "none");
-			} else if ($arr_flag["name"] === $flag_save) {
-				
-				var $firstname = $("#firstname").val();
-				if (!(firstNameCheck.test($firstname))) {
-	    			$("#error").text("名字只能使用字母或汉字，并且不能超过32个字符，不可为空");
-	    			return;
-	    		}
-				var $lastname = $("#lastname").val();
-				if (!(lastNameCheck.test($lastname))) {
-	    			$("#error").text("姓氏只能使用字母或汉字，并且不能超过32个字符，不可为空");
-	    			return;
-	    		}
-				
-				$.ajax({
-	    			url: "<%=path%>/account/change-name/", // Write request url
-	    			type: "POST",
-	    			timeout: 5000,
-	    			async: true,
-	    			data: {"first_name":$firstname, "last_name":$lastname},
-	    			dataType: "json",
-	    			error: function(XMLHttpRequest, textStatus, errorThrown) {
-	    				$("#error").text("连接到服务器时出现问题，请检查您的网络连接或者稍后重试");
-	    			},
-	    			success: function(data, textStatus) {
-	    				if (data.code == Code["OK"]) {
-	    					$("#name_full").val($lastname+$firstname);
-	    					
-	    					$arr_flag["name"] = $flag_change;
-	    					$("#name_o").attr("src", $img_change);
-	    					$("#name_o").attr("title", "修改姓名");
-	    					$("#name_ie").css("display", "none");
-	    					$("#name_id").css("display", "block");
-	    				} else {
-	    					if (data.code == Code["FIRST_NAME_NOT_ACCEPT"]) {
-	    						$("#error").text("名字只能使用字母或数字，并且不能超过32个字符，不可为空");
-	    					} else if (data.code == Code["LAST_NAME_NOT_ACCEPT"]) {
-	    						$("#error").text("姓氏只能使用字母或汉字，并且不能超过32个字符，不可为空");
-	    					} else if (data.code == Code["NOT_LOGIN"]) {
-	    						$("#error").text("身份已过期，请重新登录");
-	    					} else if (data.code == Code["SERVER_ERROR"]) {
-	    						$("#error").text("服务端发生未知错误，请稍后重试");
-	    					}
-	    				}
-	    			}
-	    		});
-				
-				
-			}
-		});
-	</script>
-	
-	<script type="text/javascript">
-		// company事件
-		$("#company_o").click(function() {
-			if ($arr_flag["company"] === $flag_change) {
-				$arr_flag["company"] = $flag_save;
-				$("#company_o").attr("src", $img_save);
-				$("#company_o").attr("title", "保存公司");
-				$("#company").attr("class", "data_ie");
-				$("#company").removeAttr("disabled");
-			} else if ($arr_flag["company"] === $flag_save) {
-				var $company = $("#company").val();
-				if (!(companyCheck.test($company))) {
-	    			$("#error").text("公司名称格式不规范，公司名称最长为64个字符，不可为空");
-	    			return;
-	    		}
-				$.ajax({
-	    			url: "<%=path%>/account/change-company/", // Write request url
-	    			type: "POST",
-	    			timeout: 5000,
-	    			async: true,
-	    			data: {"company":$company},
-	    			dataType: "json",
-	    			error: function(XMLHttpRequest, textStatus, errorThrown) {
-	    				$("#error").text("连接到服务器时出现问题，请检查您的网络连接或者稍后重试");
-	    			},
-	    			success: function(data, textStatus) {
-	    				if (data.code == Code["OK"]) {
-	    					$("#company").val($company);
-	    					$arr_flag["company"] = $flag_change;
-	    					$("#company_o").attr("src", $img_change);
-	    					$("#company_o").attr("title", "修改公司");
-	    					$("#company").attr("class", "data_id");
-	    					$("#company").attr("disabled", "disabled");
-	    				} else {
-	    					if (data.code == Code["COMPANY_NOT_ACCEPT"]) {
-	    						$("#error").text("公司名称格式不规范，公司名称最长为64个字符，不可为空");
-	    					} else if (data.code == Code["NOT_LOGIN"]) {
-	    						$("#error").text("身份已过期，请重新登录");
-	    					} else if (data.code == Code["SERVER_ERROR"]) {
-	    						$("#error").text("服务端发生未知错误，请稍后重试");
-	    					}
-	    				}
-	    			}
-	    		});
-			}
-		});
-	</script>
-	
 </body>
 </html>

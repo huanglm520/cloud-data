@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.google.gson.Gson;
 
 import cn.net.sunrise.su.beans.container.ContainerBean;
+import cn.net.sunrise.su.beans.container.ContainerPrivilegeBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.SecurityKey;
@@ -69,5 +70,40 @@ public class ContainerManagerGetController extends BaseController {
 		containerBean = this.cs.selectContainer(containerBean).get(0);
 		request.setAttribute(SecurityKey.CONTAINER_NAME.key, containerBean.getName());
 		return "container-manager-delete";
+	}
+	
+	@RequestMapping(value="/field", method=RequestMethod.GET)
+	public String field_01(HttpSession session, HttpServletRequest request) {
+		return "container-manager-field";
+	}
+	
+	@RequestMapping(value="/privilege", method=RequestMethod.GET)
+	public String privilege_01(HttpSession session, HttpServletRequest request) {
+		if (!super.checkLogin(session)) {
+			return BaseController.LOGIN_OUT;
+		}
+		String cid = request.getParameter("cid");
+		if (cid==null || !cid.matches("^[0-9]{1,10}$")) {
+			return BaseController.NO_PRIVILEGE;
+		}
+		UserBean userBean = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);
+		ContainerBean containerBean = new ContainerBean();
+		containerBean.setUid(userBean.getId());
+		containerBean.setId(Integer.parseInt(cid));
+		if (!this.cs.isOwner(containerBean)) {
+			return BaseController.NOT_OWNER;
+		}
+		containerBean = this.cs.selectContainerById(containerBean).get(0);
+		ContainerPrivilegeBean containerPrivilegeBean = new ContainerPrivilegeBean();
+		containerPrivilegeBean.setCid(containerBean.getId());
+		List<ContainerPrivilegeBean> list = this.cs.selectPrivilegeByCid(containerPrivilegeBean);
+		for (ContainerPrivilegeBean c: list) {
+			c.decodeAccount();
+			c.privileges();
+		}
+		request.setAttribute(SecurityKey.CONTAINER_ID.key, containerBean.getId());
+		request.setAttribute(SecurityKey.CONTAINER_NAME.key, containerBean.getName());
+		request.setAttribute(SecurityKey.CONTAINER_MANAGER_PRIVILEGE.key, new Gson().toJson(list));
+		return "container-manager-privilege";
 	}
 }

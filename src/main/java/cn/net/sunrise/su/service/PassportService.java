@@ -36,4 +36,7 @@ public interface PassportService {
 	
 	public List<UserBean> selectUserByAccount(UserBean userBean);
 	public List<UserBean> selectUserById(UserBean userBean);
+	
+	public boolean exists(UserBean userBean);
+	public boolean existsById(UserBean userBean);
 }

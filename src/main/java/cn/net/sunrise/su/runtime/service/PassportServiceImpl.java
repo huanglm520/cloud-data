@@ -273,5 +273,17 @@ public class PassportServiceImpl implements PassportService {
 		// TODO Auto-generated method stub
 		return this.userQueryDao.selectUserById(userBean);
 	}
+
+	@Override
+	public boolean exists(UserBean userBean) {
+		// TODO Auto-generated method stub
+		return this.userQueryDao.exists(userBean);
+	}
+
+	@Override
+	public boolean existsById(UserBean userBean) {
+		// TODO Auto-generated method stub
+		return this.userQueryDao.existsById(userBean);
+	}
 	
 }

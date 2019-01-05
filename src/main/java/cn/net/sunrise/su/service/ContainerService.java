@@ -18,4 +18,6 @@ public interface ContainerService {
 	public void updateContainer(ContainerBean containerBean);
 	public boolean isOwner(ContainerBean containerBean);
 	public void dropContainer(ContainerBean containerBean);
+	public boolean existsPrivilege(ContainerPrivilegeBean containerPrivilegeBean);
+	public void addPrivilege(ContainerPrivilegeBean containerPrivilegeBean);
 }

@@ -12,4 +12,5 @@ public interface UserQueryDao {
 	public List<UserBean> select(UserBean usb);
 	public List<UserBean> selectUserById(UserBean usb);
 	public boolean exists(UserBean usb);
+	public boolean existsById(UserBean usb);
 }

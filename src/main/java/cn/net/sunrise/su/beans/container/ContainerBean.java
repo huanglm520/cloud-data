@@ -14,15 +14,15 @@ public class ContainerBean implements Serializable {
 	private static final long serialVersionUID = -7711511423288898873L;
 	
 	private int id;
-	private transient int uid;
+	private int uid;
 	private String name;
 	private String api;
-	private transient int status;
+	private int status;
 	private String state;
 	private int field;
 	private int data;
 	private long buildtime;
-	private transient int privilege;
+	private int privilege;
 	private String privileges;
 	
 	public ContainerBean() {

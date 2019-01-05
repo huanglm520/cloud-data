@@ -41,7 +41,6 @@
 	</select>
 	<select id="existsPrivilege" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
 		resultType="java.lang.Object">
-		select 1 from tb_container_privilege where uid=(select id from tb_user where account=#{account})
-		and cid=#{cid} and privilege=#{privilege};
+		select 1 from tb_container_privilege where uid=#{uid} and cid=#{cid} and privilege=#{privilege};
 	</select>
 </mapper>

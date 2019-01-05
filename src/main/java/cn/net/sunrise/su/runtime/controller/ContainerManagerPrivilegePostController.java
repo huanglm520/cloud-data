@@ -15,11 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
-import cn.net.sunrise.su.beans.passport.PassportStatusBean;
+import cn.net.sunrise.su.beans.container.ContainerBean;
+import cn.net.sunrise.su.beans.container.ContainerPrivilegeBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
+import cn.net.sunrise.su.enums.AttributeKey;
+import cn.net.sunrise.su.enums.ContainerKey;
+import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 import cn.net.sunrise.su.enums.PassportKey;
 import cn.net.sunrise.su.service.ContainerService;
 import cn.net.sunrise.su.service.PassportService;
+import cn.net.sunrise.su.tool.AppCheck;
+import cn.net.sunrise.su.tool.ResultBody;
 
 @Controller
 @RequestMapping(value="/container/manager/privilege", method=RequestMethod.POST)
@@ -34,21 +40,70 @@ public class ContainerManagerPrivilegePostController extends BaseController {
 	@ResponseBody
 	public String search_user_01(@RequestParam("account") String account, HttpSession session) {
 		if (!super.checkLogin(session)) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.NOT_LOGIN));
+			return ResultBody.result(PassportKey.NOT_LOGIN);
 		}
 		if (account==null || account.length()==0) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.ACCOUNT_NOT_ACCEPT));
+			return ResultBody.result(PassportKey.ACCOUNT_NOT_ACCEPT);
 		}
 		UserBean userBean = new UserBean();
 		userBean.setAccount(account);
 		userBean.encodeAccount();
 		List<UserBean> list = this.ps.selectUserByAccount(userBean);
 		if (list==null || list.isEmpty()) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.ACCOUNT_NOT_EXISTS));
+			return ResultBody.result(PassportKey.ACCOUNT_NOT_EXISTS);
 		}
 		Map<String, Object> map = new HashMap<>();
 		map.put("code", PassportKey.OK.code);
-		map.put("obj", new Gson().toJson(list.get(0)));
+		userBean = list.get(0);
+		userBean.decode();
+		userBean.decodeAccount();
+		map.put("obj", new Gson().toJson(userBean));
 		return new Gson().toJson(map);
+	}
+	
+	@RequestMapping(value="/add/", method=RequestMethod.POST)
+	@ResponseBody
+	public String add_privilege_01(@RequestParam("cid") String cid, @RequestParam("uid") String uid,
+								   @RequestParam("privilege") String privilege, HttpSession session) {
+		
+		if (!super.checkLogin(session)) {
+			return ResultBody.result(PassportKey.NOT_LOGIN);
+		}
+		if (cid==null || !AppCheck.checkId(cid)) {
+			return ResultBody.result(ContainerKey.NO_PRIVILEGE);
+		}
+		if (uid==null || !AppCheck.checkId(uid)) {
+			return ResultBody.result(PassportKey.ACCOUNT_NOT_EXISTS);
+		}
+		int privilegeCode = -1;
+		switch(privilege) {
+			case "admin": privilegeCode = ContainerPrivilegeKey.ADMIN.key;break;
+			case "guest": privilegeCode = ContainerPrivilegeKey.GUEST.key;break;
+		}
+		if (privilegeCode == -1) {
+			return ResultBody.result(ContainerKey.UNKNOWN_PRIVILEGE);
+		}
+		
+		ContainerBean containerBean = new ContainerBean();
+		containerBean.setId(Integer.parseInt(cid));
+		UserBean sUserBean = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);
+		containerBean.setUid(sUserBean.getId());
+		if (!this.cs.isOwner(containerBean)) {
+			return ResultBody.result(ContainerKey.NO_PRIVILEGE);
+		}
+		UserBean userBean = new UserBean();
+		userBean.setId(Integer.parseInt(uid));
+		if (!this.ps.existsById(userBean)) {
+			return ResultBody.result(PassportKey.ACCOUNT_NOT_EXISTS);
+		}
+		ContainerPrivilegeBean containerPrivilegeBean = new ContainerPrivilegeBean();
+		containerPrivilegeBean.setCid(containerBean.getId());
+		containerPrivilegeBean.setUid(userBean.getId());
+		containerPrivilegeBean.setPrivilege(privilegeCode);
+		if (this.cs.existsPrivilege(containerPrivilegeBean)) {
+			return ResultBody.result(ContainerKey.PRIVILEGE_ALREADY_EXIXTS);
+		}
+		this.cs.addPrivilege(containerPrivilegeBean);
+		return ResultBody.result(ContainerKey.OK);
 	}
 }

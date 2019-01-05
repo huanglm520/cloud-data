@@ -9,14 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-
 import cn.net.sunrise.su.beans.passport.LoginRecordBean;
 import cn.net.sunrise.su.beans.passport.PassportStatusBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.PassportKey;
 import cn.net.sunrise.su.service.PassportService;
+import cn.net.sunrise.su.tool.ResultBody;
 
 @Controller
 @RequestMapping(value="/passport/login", method=RequestMethod.POST)
@@ -37,11 +36,11 @@ public class LoginPostController extends BaseController {
 		usb.setPassword(password);
 		
 		if (usb.getAccount()==null || usb.getAccount().length()==0) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.ACCOUNT_EMPTY));
+			return ResultBody.result(PassportKey.ACCOUNT_EMPTY);
 		}
 		
 		if (usb.getPassword()==null || usb.getPassword().length()==0) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.PASSWORD_EMPTY));
+			return ResultBody.result(PassportKey.PASSWORD_EMPTY);
 		}
 		
 		usb.encode();
@@ -65,7 +64,7 @@ public class LoginPostController extends BaseController {
 		}
 		
 		if (lsb == null) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.SERVER_EXCEPTION));
+			return ResultBody.result(PassportKey.SERVER_EXCEPTION);
 		}
 		
 		// 如果用户验证通过
@@ -92,6 +91,6 @@ public class LoginPostController extends BaseController {
 			session.setAttribute(AttributeKey.IS_LOGIN.key, true);
 		}
 		
-		return new Gson().toJson(lsb);
+		return ResultBody.result(lsb);
 	}
 }

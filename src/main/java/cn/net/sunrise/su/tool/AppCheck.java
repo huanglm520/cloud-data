@@ -12,7 +12,9 @@ public class AppCheck {
 	public static boolean checkVercode(String vercode) {
 		return vercode.matches(AppCheck.properties.getProperty("vercode"));
 	}
-	
+	public static boolean checkId(String id) {
+		return id.matches(AppCheck.properties.getProperty("id"));
+	}
 	private AppCheck() {
 		throw new Error("No such object for class: AppCheck");
 	}

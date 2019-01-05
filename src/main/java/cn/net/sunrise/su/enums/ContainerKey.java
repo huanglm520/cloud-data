@@ -14,6 +14,7 @@ public enum ContainerKey {
 	NO_PRIVILEGE(-3009, "no privilege"),
 	ERROR_STATUS(-3010, "error status"),
 	UNKNOWN_PRIVILEGE(-3011, "unknown privilege"),
+	PRIVILEGE_ALREADY_EXIXTS(-3012, "privilege already exists"),
 	SERVER_EXCEPTION(PassportKey.SERVER_EXCEPTION.code, PassportKey.SERVER_EXCEPTION.message);
 	
 	public final int code;

@@ -15,7 +15,7 @@ public class ContainerPrivilegeBean implements Serializable {
 	private String account;
 	private String name;
 	private int cid;
-	private transient int privilege;
+	private int privilege;
 	private String privileges;
 	
 	public ContainerPrivilegeBean() {

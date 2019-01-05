@@ -9,7 +9,7 @@ public class ContainerStatisticsBean implements Serializable {
 	private static final long serialVersionUID = 7350061263158691205L;
 	
 	private int value;
-	private transient int status;
+	private int status;
 	@SuppressWarnings("unused")
 	private String name;
 	public int getValue() {

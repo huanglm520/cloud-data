@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/toolbar.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/timer.js"></script>
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/public.js"></script>
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/toolbar.js"></script>
@@ -163,19 +162,9 @@
 		<div class="account">
 			<input type="text" id="account" class="account" placeholder="请在此处输入用户账户" spellcheck="false" />
 		</div>
-		<div class="result" v-show="v_result">
-			<span class="result" v-if="s_success">已搜索到用户，请<span style="color:#1296DB;cursor: pointer;" id="view_user">单击此处</span>查看用户详细信息</span>
-			<span class="result" v-else>未搜索到该用户，请检查用户账户是否正确</span>
-			<div style="margin-top: 5px" v-show="s_success">
-				<span class="result">请选择给该账户添加的权限：</span>
-				<select class="result" id="privilege">
-					<option value="admin">ADMIN</option>
-					<option value="guest">GUEST</option>
-				</select>
-			</div>
-		</div>
-		<div class="error" v-show="error">
-			<span class="error" id="error">连接到服务器时出现错误</span>
+		<div class="result"  id="result"></div>
+		<div class="error">
+			<span class="error" id="error"></span>
 		</div>
 		<div class="submit">
 			<button class="submit" id="submit"  onmouseover="$(this).animate({'background-color':'#46B4EE'}, 200);" onmouseout="$(this).animate({'background-color':'#1296DB'}, 200);">搜索用户</button>
@@ -199,15 +188,6 @@
 	</div>
 	
 	<script type="text/javascript">
-		var vueObj = new Vue({
-			el: "#content",
-			data: {
-				v_result: false,
-				s_success: false,
-				error: false,
-			}
-		});
-		
 		var param = window.location.search;
 		var cid = -1;
 		if (param.indexOf("?") != -1) {
@@ -238,15 +218,12 @@
 	
 	<script type="text/javascript">
 		$("#submit").click(function() {
-			
-			vueObj.error = false;
 			$("#error").empty();
 			
 			if (step == 0) {
 				var account = $("#account").val();
 				if (account.length == 0) {
 					$("#error").text("请输入用户账户");
-					vueObj.error = true;
 					return;
 				}
 				disable("正在搜索...");
@@ -259,16 +236,20 @@
 					dataType: "json",
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
 						$("#error").text("连接到服务器时出现问题，请检查您的网络连接或者稍后重试");
-						vueObj.error = true;
 						enable("搜索用户");
 					},
 					success: function(data, textStatus) {
-						vueObj.v_result = true;
 						if (data.code == Code["OK"]) {
-							vueObj.s_success = true;
+							$("div#result").append('<span class="result">已搜索到用户，请<span style="color:#1296DB;cursor: pointer;" id="view_user">单击此处</span>查看用户详细信息</span>');
 							$("#view_user").click(function() {
-								window.open("<%=path %>/account/view?uid="+data.obj.id);
+								uid = eval('(' + data.obj + ')').id;
+								window.open("<%=path%>/account/view?uid="+uid);
 							});
+							$("div#result").append("<div style='margin-top:5px' id='r_double'></div>");
+							$("#r_double").append("<span class='result'>请选择给该账户添加的权限：</span>");
+							$("#r_double").append("<select class='result' id='privilege'>");
+							$("#privilege").append("<option value='admin'>ADMIN</option>");
+							$("#privilege").append("<option value='guest'>GUEST</option>");
 							enable("添加权限");
 							step++;
 						} else {
@@ -276,9 +257,41 @@
 								// 身份过期
 								window.location.reload();
 							} 
-							vueObj.s_success = false;
-							$("#view_user").unbind("click");
+							$("div#result").append('<span class="result">未搜索到该用户，请检查用户账户是否正确</span>');
 							enable("搜索用户");
+						}
+					}
+				});
+			} else if (step == 1) {
+				disable("正在添加...");
+				$.ajax({
+					url: "<%=path%>/container/manager/privilege/add/", // Write request url
+					type: "POST",
+					timeout: 5000,
+					async: true,
+					data: {"cid":cid, "uid":uid, "privilege":$("#privilege").val()},
+					dataType: "json",
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						$("#error").text("连接到服务器时出现问题，请检查您的网络连接或者稍后重试");
+						enable("添加权限");
+					},
+					success: function(data, textStatus) {
+						if (data.code == Code["OK"]) {
+							window.location.href = "<%=path %>/container/manager/privilege?cid="+cid;
+						} else {
+							if (data.code == Code["NOT_LOGIN"]) {
+								// 身份过期
+								window.location.reload();
+							} else if (data.code == Code["NO_PRIVILEGE"]) {
+								$("#error").text("权限不足，操作失败");
+							} else if (data.code == Code["ACCOUNT_NOT_EXISTS"]) {
+								$("#error").text("该用户不存在");
+							} else if (data.code == Code["UNKNOWN_PRIVILEGE"]) {
+								$("#error").text("未知权限代码");
+							} else if (data.code == Code["PRIVILEGE_ALREADY_EXIXTS"]) {
+								$("#error").text("该权限条目已存在");
+							}
+							enable("添加权限");
 						}
 					}
 				});

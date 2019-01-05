@@ -9,17 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-
 import cn.net.sunrise.su.beans.container.ContainerBean;
-import cn.net.sunrise.su.beans.container.ContainerStatusBean;
-import cn.net.sunrise.su.beans.passport.PassportStatusBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.ContainerKey;
 import cn.net.sunrise.su.enums.ContainerStatusKey;
 import cn.net.sunrise.su.enums.PassportKey;
 import cn.net.sunrise.su.service.ContainerService;
+import cn.net.sunrise.su.tool.AppCheck;
+import cn.net.sunrise.su.tool.ResultBody;
 
 @Controller
 public class ContainerChangeStatusPostController extends BaseController {
@@ -34,20 +32,20 @@ public class ContainerChangeStatusPostController extends BaseController {
 								HttpSession session) {
 		
 		if (!super.checkLogin(session)) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.NOT_LOGIN));
+			return ResultBody.result(PassportKey.NOT_LOGIN);
 		}
-		if (cid == null || !cid.matches("^[0-9]{1,10}$")) {
-			return new Gson().toJson(new ContainerStatusBean(ContainerKey.NO_PRIVILEGE));
+		if (cid == null || !AppCheck.checkId(cid)) {
+			return ResultBody.result(ContainerKey.NO_PRIVILEGE);
 		}
 		if (status == null || !status.matches("modify|running|stop")) {
-			return new Gson().toJson(new ContainerStatusBean(ContainerKey.ERROR_STATUS));
+			return ResultBody.result(ContainerKey.ERROR_STATUS);
 		}
 		UserBean userBean = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);
 		ContainerBean containerBean = new ContainerBean();
 		containerBean.setId(Integer.parseInt(cid));
 		containerBean.setUid(userBean.getId());
 		if (!this.cs.hasPrivilege(containerBean)) {
-			return new Gson().toJson(new ContainerStatusBean(ContainerKey.NO_PRIVILEGE));
+			return ResultBody.result(ContainerKey.NO_PRIVILEGE);
 		}
 		
 		// 修改状态
@@ -64,6 +62,6 @@ public class ContainerChangeStatusPostController extends BaseController {
 		}
 		// 回写数据库状态
 		this.cs.updateContainer(containerBean);
-		return new Gson().toJson(new ContainerStatusBean(ContainerKey.OK));
+		return ResultBody.result(ContainerKey.OK);
 	}
 }

@@ -51,4 +51,10 @@ public class UserQueryDaoImpl extends BaseDao implements UserQueryDao {
 		return super.selectOne("existsUser", usb) != null;
 	}
 
+	@Override
+	public boolean existsById(UserBean usb) {
+		// TODO Auto-generated method stub
+		return super.selectOne("existsUserById", usb) != null;
+	}
+
 }

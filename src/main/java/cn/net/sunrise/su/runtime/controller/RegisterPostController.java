@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-
 import cn.net.sunrise.su.beans.passport.PassportStatusBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
@@ -18,6 +16,7 @@ import cn.net.sunrise.su.enums.PassportKey;
 import cn.net.sunrise.su.service.PassportService;
 import cn.net.sunrise.su.tool.AppCheck;
 import cn.net.sunrise.su.tool.Mail;
+import cn.net.sunrise.su.tool.ResultBody;
 import cn.net.sunrise.su.tool.VerCode;
 
 @Controller
@@ -37,19 +36,19 @@ public class RegisterPostController extends BaseController {
 
 		// 检查数据
 		if (mail==null || mail.length()==0) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.ACCOUNT_NOT_ACCEPT));
+			return ResultBody.result(PassportKey.ACCOUNT_NOT_ACCEPT);
 		}
 		
 		if (first_name==null || first_name.length()==0) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.FIRST_NAME_NOT_ACCEPT));
+			return ResultBody.result(PassportKey.FIRST_NAME_NOT_ACCEPT);
 		}
 		
 		if (last_name==null || last_name.length()==0) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.LAST_NAME_NOT_ACCEPT));
+			return ResultBody.result(PassportKey.LAST_NAME_NOT_ACCEPT);
 		}
 		
 		if (company==null || company.length()==0) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.COMPANY_NOT_ACCEPT));
+			return ResultBody.result(PassportKey.COMPANY_NOT_ACCEPT);
 		}
 		
 		// 检查当前会话中是否存在User
@@ -68,7 +67,7 @@ public class RegisterPostController extends BaseController {
 		PassportStatusBean psb = this.ps.doRegisterStep1(usb);
 		
 		if (psb == null) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.SERVER_EXCEPTION));
+			return ResultBody.result(PassportKey.SERVER_EXCEPTION);
 		}
 		
 		if (psb.getCode() == PassportKey.OK.code) {
@@ -78,7 +77,7 @@ public class RegisterPostController extends BaseController {
 			session.setAttribute(AttributeKey.REGISTER_STEP1.key, AttributeKey.ATTRIBUTE_OBJECT);
 		}
 		
-		return new Gson().toJson(psb);
+		return ResultBody.result(psb);
 	}
 
 	@RequestMapping(value="/step2/", method=RequestMethod.POST)
@@ -91,7 +90,7 @@ public class RegisterPostController extends BaseController {
 		}
 		
 		if (password==null || password.length()==0) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.PASSWORD_NOT_ACCEPT));
+			ResultBody.result(PassportKey.PASSWORD_NOT_ACCEPT);
 		}
 		
 		usb.setPassword(password);
@@ -105,7 +104,7 @@ public class RegisterPostController extends BaseController {
 			session.setAttribute(AttributeKey.REGISTER_STEP2.key, AttributeKey.ATTRIBUTE_OBJECT);
 		}
 		
-		return new Gson().toJson(psb);
+		return ResultBody.result(psb);
 	}
 
 	@RequestMapping(value="/step3/", method=RequestMethod.POST)
@@ -114,23 +113,23 @@ public class RegisterPostController extends BaseController {
 		// 获取用户输入的验证码
 		String uCode = vercode;
 		if (uCode==null || uCode.length()==0) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.VERCODE_EMPTY));
+			return ResultBody.result(PassportKey.VERCODE_EMPTY);
 		}
 		
 		if (!AppCheck.checkVercode(uCode)) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.VERCODE_NOT_ACCEPT));
+			return ResultBody.result(PassportKey.VERCODE_NOT_ACCEPT);
 		}
 		
 		// 获取session中的验证码
 		String sCode = (String) session.getAttribute(AttributeKey.REGISTER_VERCODE.key);
 		if (sCode==null || sCode.length()==0 || (!sCode.equals(uCode))) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.VERCODE_WRONG));
+			return ResultBody.result(PassportKey.VERCODE_WRONG);
 		}
 		
 		// 写入标记
 		session.setAttribute(AttributeKey.REGISTER_STEP3.key, AttributeKey.ATTRIBUTE_OBJECT);
 		
-		return new Gson().toJson(new PassportStatusBean(PassportKey.OK));
+		return ResultBody.result(PassportKey.OK);
 	}
 	
 	@RequestMapping(value="/step4/", method=RequestMethod.POST)
@@ -151,10 +150,10 @@ public class RegisterPostController extends BaseController {
 				session.removeAttribute(AttributeKey.REGISTER_STEP3.key);
 			}
 			
-			return new Gson().toJson(psb);
+			return ResultBody.result(psb);
 		} else {
 			// 信息不完整
-			return new Gson().toJson(new PassportStatusBean(PassportKey.INCOMPLETE_INFORMATION));
+			return ResultBody.result(PassportKey.INCOMPLETE_INFORMATION);
 		}
 	}
 	
@@ -163,7 +162,7 @@ public class RegisterPostController extends BaseController {
 	public String register_vercode(HttpSession session) {
 		// 判断是否拥有足够的信息
 		if (session.getAttribute(AttributeKey.REGISTER_STEP1.key) == null) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.ACCOUNT_EMPTY));
+			return ResultBody.result(PassportKey.ACCOUNT_EMPTY);
 		}
 		////////////////////////////////////////////////
 		String code = VerCode.vercode();
@@ -173,9 +172,9 @@ public class RegisterPostController extends BaseController {
 		// 发送邮件
 		if (mail.send(usb.getAccount(), usb.getLast_name()+usb.getFirst_name(),
 				mail.SubjectMessage, mail.RegisterMessage + code)) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.OK));
+			return ResultBody.result(PassportKey.OK);
 		} else {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.SERVER_EXCEPTION));
+			return ResultBody.result(PassportKey.SERVER_EXCEPTION);
 		}
 	}
 }

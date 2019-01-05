@@ -140,4 +140,16 @@ public class ContainerServerImpl implements ContainerService {
 		this.containerQueryDao.dropContainerSpace(containerNewBean);
 	}
 
+	@Override
+	public boolean existsPrivilege(ContainerPrivilegeBean containerPrivilegeBean) {
+		// TODO Auto-generated method stub
+		return this.containerPrivilegeDao.existsPrivilege(containerPrivilegeBean);
+	}
+
+	@Override
+	public void addPrivilege(ContainerPrivilegeBean containerPrivilegeBean) {
+		// TODO Auto-generated method stub
+		this.containerPrivilegeDao.insertPrivilegeByUid(containerPrivilegeBean);
+	}
+
 }

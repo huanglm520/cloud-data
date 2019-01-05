@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
-
 import cn.net.sunrise.su.beans.passport.PassportStatusBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.PassportKey;
 import cn.net.sunrise.su.service.PassportService;
+import cn.net.sunrise.su.tool.ResultBody;
 import cn.net.sunrise.su.tool.UserCheck;
 
 @Controller
@@ -31,15 +30,15 @@ public class AccountPostController extends BaseController {
 								@RequestParam("last_name") String lastname,
 								HttpSession session) {
 		if (!super.checkLogin(session)) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.NOT_LOGIN));
+			return ResultBody.result(PassportKey.NOT_LOGIN);
 		}
 		
 		// 校验数据
 		if (firstname == null || !UserCheck.checkFirst_Name(firstname)) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.FIRST_NAME_NOT_ACCEPT));
+			return ResultBody.result(PassportKey.FIRST_NAME_NOT_ACCEPT);
 		}
 		if (lastname == null || !UserCheck.checkLast_name(lastname)) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.LAST_NAME_NOT_ACCEPT));
+			return ResultBody.result(PassportKey.LAST_NAME_NOT_ACCEPT);
 		}
 		// 克隆session对象
 		UserBean usb = new UserBean((UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key));
@@ -51,7 +50,7 @@ public class AccountPostController extends BaseController {
 			// 写入成功，刷新session数据
 			session.setAttribute(AttributeKey.SESSION_ACCOUNT.key, usb);
 		}
-		return new Gson().toJson(psb);
+		return ResultBody.result(psb);
 	}
 	
 	@RequestMapping(value="/change-company/", method=RequestMethod.POST)
@@ -59,11 +58,11 @@ public class AccountPostController extends BaseController {
 	public String changeCompany_01(@RequestParam("company") String company, HttpSession session) {
 		
 		if (!super.checkLogin(session)) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.NOT_LOGIN));
+			return ResultBody.result(PassportKey.NOT_LOGIN);
 		}
 		
 		if (company == null || !UserCheck.checkCompany(company)) {
-			return new Gson().toJson(new PassportStatusBean(PassportKey.COMPANY_NOT_ACCEPT));
+			return ResultBody.result(PassportKey.COMPANY_NOT_ACCEPT);
 		}
 		
 		UserBean usb = new UserBean((UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key));
@@ -73,6 +72,6 @@ public class AccountPostController extends BaseController {
 			// 写入成功，刷新session数据
 			session.setAttribute(AttributeKey.SESSION_ACCOUNT.key, usb);
 		}
-		return new Gson().toJson(psb);
+		return ResultBody.result(psb);
 	}
 }

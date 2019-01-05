@@ -30,4 +30,9 @@
 		resultType="java.lang.Object">
 		select 1 from tb_user where account=#{account};
 	</select>
+	
+	<select id="existsUserById" parameterType="cn.net.sunrise.su.beans.passport.UserBean"
+		resultType="java.lang.Object">
+		select 1 from tb_user where id=#{id};
+	</select>
 </mapper>

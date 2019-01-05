@@ -11,6 +11,7 @@ public class BaseController {
 	public static final String NOT_OWNER = "not-owner";
 	public static final String NO_CHANGE = "no-change";
 	public static final String USER_NOT_EXISTS = "user-not-exists";
+	public static final String OWNER_NOT_DELETE = "owner-not-delete";
 
 	protected String pageName(HttpSession session, String name) {
 		if (!this.checkLogin(session)) {

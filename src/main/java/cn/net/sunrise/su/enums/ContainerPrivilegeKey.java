@@ -12,4 +12,17 @@ public enum ContainerPrivilegeKey {
 		this.key = key;
 		this.name = name;
 	}
+	
+	public static final String privilegeName(int key) {
+		if (key == OWNER.key) {
+			return OWNER.name;
+		}
+		else if (key == ADMIN.key) {
+			return ADMIN.name;
+		}
+		else if (key == GUEST.key) {
+			return GUEST.name;
+		}
+		throw new RuntimeException("Unsupport ContainerPrivilege Key");
+	}
 }

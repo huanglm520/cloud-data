@@ -226,6 +226,9 @@
 					$("#error").text("请输入用户账户");
 					return;
 				}
+				
+				$("div#result").empty();
+				
 				disable("正在搜索...");
 				$.ajax({
 					url: "<%=path%>/container/manager/privilege/add/search-user/", // Write request url
@@ -240,9 +243,9 @@
 					},
 					success: function(data, textStatus) {
 						if (data.code == Code["OK"]) {
+							uid = eval('(' + data.obj + ')').id;
 							$("div#result").append('<span class="result">已搜索到用户，请<span style="color:#1296DB;cursor: pointer;" id="view_user">单击此处</span>查看用户详细信息</span>');
 							$("#view_user").click(function() {
-								uid = eval('(' + data.obj + ')').id;
 								window.open("<%=path%>/account/view?uid="+uid);
 							});
 							$("div#result").append("<div style='margin-top:5px' id='r_double'></div>");
@@ -263,6 +266,7 @@
 					}
 				});
 			} else if (step == 1) {
+				console.log(uid);
 				disable("正在添加...");
 				$.ajax({
 					url: "<%=path%>/container/manager/privilege/add/", // Write request url
@@ -288,7 +292,7 @@
 								$("#error").text("该用户不存在");
 							} else if (data.code == Code["UNKNOWN_PRIVILEGE"]) {
 								$("#error").text("未知权限代码");
-							} else if (data.code == Code["PRIVILEGE_ALREADY_EXIXTS"]) {
+							} else if (data.code == Code["PRIVILEGE_ALREADY_EXISTS"]) {
 								$("#error").text("该权限条目已存在");
 							}
 							enable("添加权限");

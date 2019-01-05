@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 05/01/2019 16:11:06
+ Date: 05/01/2019 23:03:56
 */
 
 SET NAMES utf8mb4;
@@ -47,13 +47,14 @@ CREATE TABLE `tb_container_privilege`  (
   `cid` int(11) NOT NULL,
   `privilege` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_container_privilege
 -- ----------------------------
 INSERT INTO `tb_container_privilege` VALUES (33, 11, 35, 1);
 INSERT INTO `tb_container_privilege` VALUES (34, 12, 35, 2);
+INSERT INTO `tb_container_privilege` VALUES (37, 13, 35, 3);
 
 -- ----------------------------
 -- Table structure for tb_field
@@ -86,7 +87,7 @@ CREATE TABLE `tb_record`  (
   `time` bigint(20) NOT NULL,
   `position` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 263 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 276 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_record
@@ -334,6 +335,19 @@ INSERT INTO `tb_record` VALUES (259, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546675385436, 
 INSERT INTO `tb_record` VALUES (260, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546675402999, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (261, 12, 'MTExLjE5Ni4yNDAuNTk=', 1546675494601, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (262, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546675796931, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (263, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546681370154, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (264, 12, 'MTExLjE5Ni4yNDAuNTk=', 1546681382672, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (265, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546681388648, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (266, 13, 'MTExLjE5Ni4yNDAuNTk=', 1546682018847, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (267, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546682030243, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (268, 13, 'MTExLjE5Ni4yNDAuNTk=', 1546682615556, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (269, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546682664184, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (270, 12, 'MTExLjE5Ni4yNDAuNTk=', 1546682969104, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (271, 13, 'MTExLjE5Ni4yNDAuNTk=', 1546682991054, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (272, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546683003106, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (273, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546689138660, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (274, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546691729804, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (275, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546694705449, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 
 -- ----------------------------
 -- Table structure for tb_user
@@ -350,13 +364,14 @@ CREATE TABLE `tb_user`  (
   `salt` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `account`(`account`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
 INSERT INTO `tb_user` VALUES (11, 'Mjc4ODQ0NzY2MEBxcS5jb20=', 'TL8UVtVZiGO0HkZZDctyDGDoX6k=', 1540213752015, 'suLK1GE=', 'ztLKxw==', 'vKrB1sqmt7a089Gn', '5d(g~SO,zTQ$ToUF');
 INSERT INTO `tb_user` VALUES (12, 'c3VucmlzZTAxMEB2aXAucXEuY29t', 'JZaty/8OJJOjCKojkQw4zp1OhJU=', 1544766482737, 'suLK1GI=', 'ztLKxw==', 'vKrB1sqmt7a089Gn', 'akV=tAezymOkvKFf');
+INSERT INTO `tb_user` VALUES (13, 'MTgzNDM0NDcyMzhAMTYzLmNvbQ==', 'ojHY1lVsmPJyVAkOLMcxpCG7KvQ=', 1546682008870, 'suLK1GM=', 'ztLKxw==', 'vKrB1sqmt7a089Gn', 'XgLvvLQoEI`#DuO*');
 
 -- ----------------------------
 -- Table structure for zb_cyea8czkv+g9hwlqp1v6oa==

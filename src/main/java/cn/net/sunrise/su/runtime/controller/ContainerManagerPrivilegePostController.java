@@ -101,9 +101,39 @@ public class ContainerManagerPrivilegePostController extends BaseController {
 		containerPrivilegeBean.setUid(userBean.getId());
 		containerPrivilegeBean.setPrivilege(privilegeCode);
 		if (this.cs.existsPrivilege(containerPrivilegeBean)) {
-			return ResultBody.result(ContainerKey.PRIVILEGE_ALREADY_EXIXTS);
+			return ResultBody.result(ContainerKey.PRIVILEGE_ALREADY_EXISTS);
 		}
 		this.cs.addPrivilege(containerPrivilegeBean);
+		return ResultBody.result(ContainerKey.OK);
+	}
+	
+	@RequestMapping(value="/delete/", method=RequestMethod.POST)
+	@ResponseBody
+	public String delete_privilege_01(@RequestParam("pid") String pid, HttpSession session) {
+		if (!super.checkLogin(session)) {
+			return ResultBody.result(PassportKey.NOT_LOGIN);
+		}
+		if (pid==null || !AppCheck.checkId(pid)) {
+			return ResultBody.result(ContainerKey.NO_PRIVILEGE);
+		}
+		ContainerPrivilegeBean containerPrivilegeBean = new ContainerPrivilegeBean();
+		containerPrivilegeBean.setId(Integer.parseInt(pid));
+		List<ContainerPrivilegeBean> list = this.cs.selectPrivilegeById(containerPrivilegeBean);
+		if (list==null || list.isEmpty()) {
+			return ResultBody.result(ContainerKey.NO_PRIVILEGE);
+		}
+		containerPrivilegeBean = list.get(0);
+		if (containerPrivilegeBean.getPrivilege() == ContainerPrivilegeKey.OWNER.key) {
+			return ResultBody.result(ContainerKey.OWNER_NOT_ALLOW_DELETE);
+		}
+		UserBean userBean = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);
+		ContainerBean containerBean = new ContainerBean();
+		containerBean.setUid(userBean.getId());
+		containerBean.setId(containerPrivilegeBean.getCid());
+		if (!this.cs.isOwner(containerBean)) {
+			return ResultBody.result(ContainerKey.NO_PRIVILEGE);
+		}
+		this.cs.deletePrivilegeById(containerPrivilegeBean);
 		return ResultBody.result(ContainerKey.OK);
 	}
 }

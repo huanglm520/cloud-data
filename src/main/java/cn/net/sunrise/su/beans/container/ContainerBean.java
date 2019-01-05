@@ -114,29 +114,10 @@ public class ContainerBean implements Serializable {
 	}
 	
 	public void privileges() {
-		if (privilege == ContainerPrivilegeKey.ADMIN.key) {
-			setPrivileges(ContainerPrivilegeKey.ADMIN.name);
-		}
-		if (privilege == ContainerPrivilegeKey.GUEST.key) {
-			setPrivileges(ContainerPrivilegeKey.GUEST.name);
-		}
-		if (privilege == ContainerPrivilegeKey.OWNER.key) {
-			setPrivileges(ContainerPrivilegeKey.OWNER.name);
-		}
+		privileges = ContainerPrivilegeKey.privilegeName(privilege);
 	}
 	public void state() {
-		if (status == ContainerStatusKey.CREATING.key) {
-			setState(ContainerStatusKey.CREATING.name);
-		}
-		if (status == ContainerStatusKey.MODIFYING.key) {
-			setState(ContainerStatusKey.MODIFYING.name);
-		}
-		if (status == ContainerStatusKey.RUNNING.key) {
-			setState(ContainerStatusKey.RUNNING.name);
-		}
-		if (status == ContainerStatusKey.STOPING.key) {
-			setState(ContainerStatusKey.STOPING.name);
-		}
+		state = ContainerStatusKey.statusName(status);
 	}
 
 	public String tableName() {

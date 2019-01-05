@@ -152,4 +152,16 @@ public class ContainerServerImpl implements ContainerService {
 		this.containerPrivilegeDao.insertPrivilegeByUid(containerPrivilegeBean);
 	}
 
+	@Override
+	public List<ContainerPrivilegeBean> selectPrivilegeById(ContainerPrivilegeBean containerPrivilegeBean) {
+		// TODO Auto-generated method stub
+		return this.containerPrivilegeDao.selectPrivilegeById(containerPrivilegeBean);
+	}
+
+	@Override
+	public void deletePrivilegeById(ContainerPrivilegeBean containerPrivilegeBean) {
+		// TODO Auto-generated method stub
+		this.containerPrivilegeDao.deletePrivilegeById(containerPrivilegeBean);
+	}
+
 }

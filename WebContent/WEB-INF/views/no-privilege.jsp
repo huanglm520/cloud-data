@@ -91,7 +91,7 @@
 	</div>
 	
 	<div class="content">
-		<span class="content">当前账户没有权限访问此容器</span>
+		<span class="content">当前账户没有权限访问此页面</span>
 	</div>
 	
 	<div class="bottombar">

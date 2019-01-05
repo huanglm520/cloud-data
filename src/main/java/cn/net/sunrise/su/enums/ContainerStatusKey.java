@@ -13,4 +13,19 @@ public enum ContainerStatusKey {
 		this.key = key;
 		this.name = name;
 	}
+	public static final String statusName(int key) {
+		if (key == RUNNING.key) {
+			return RUNNING.name;
+		}
+		else if (key == STOPING.key) {
+			return STOPING.name;
+		}
+		else if (key == MODIFYING.key) {
+			return MODIFYING.name;
+		}
+		else if (key == CREATING.key) {
+			return CREATING.name;
+		}
+		throw new RuntimeException("Unsupport ContainerStatus Key");
+	}
 }

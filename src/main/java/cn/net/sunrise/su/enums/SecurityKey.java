@@ -11,6 +11,8 @@ public enum SecurityKey {
 	CONTAINER_MANAGER_FIELD("containermanagerfield"),
 	CONTAINER_NAME("containername"),
 	CONTAINER_ID("containerid"),
+	USER_ACCOUNT("useraccount"),
+	PRIVILEGE_NAME("privilegename"),
 	SECURITY_CONTAINER_LIST("securitycontainerlist"),
 	VIEW_USER("viewuser"),
 	QUERY_SUCCESS("querysuccess");

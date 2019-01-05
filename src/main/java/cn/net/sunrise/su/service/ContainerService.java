@@ -20,4 +20,6 @@ public interface ContainerService {
 	public void dropContainer(ContainerBean containerBean);
 	public boolean existsPrivilege(ContainerPrivilegeBean containerPrivilegeBean);
 	public void addPrivilege(ContainerPrivilegeBean containerPrivilegeBean);
+	public List<ContainerPrivilegeBean> selectPrivilegeById(ContainerPrivilegeBean containerPrivilegeBean);
+	public void deletePrivilegeById(ContainerPrivilegeBean containerPrivilegeBean);
 }

@@ -19,7 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>容器权限管理 - Cloud-Data 数据一体化管理平台</title>
+    <title>删除权限 - Cloud-Data 数据一体化管理平台</title>
     <link rel="icon" href="https://huanglm520.github.io/cloud-data.static.io/images/cloud.png" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/public.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/toolbar.css" />
@@ -37,61 +37,64 @@
 			width: 100%;
 			margin-bottom: 70px;
 		}
-		div.title {
+		div.hint {
 			width: 100%;
 			text-align: center;
 		}
-		span.title { 
+		span.hint {
 			font-family: "微软雅黑", "华文细黑";
-			font-size: 24px;
+			font-size: 20px;
 			font-weight: 600;
-			color: #777C78; 
+			color: #777977;
 		}
-		div.p_list {
-			width: 720px; 
+		div.data {
+			width: 550px;
 			margin: auto;
 			margin-top: 20px;
 		}
-		table.p_list {
-			width: 720px;
+		table.data {
 			border-collapse: collapse;  
-			border-spacing: 0;  
+			border-spacing: 0;
 		}
-		tr.p_list {
-			height: 35px;
-		}
-		table.p_list, td.p_list_1, td.p_list_2, td.p_list_3, td.p_list_4 { 
+		table.data, td.l_data, td.r_data {
 			border: 1px solid #767976;
 		}
-		td.p_list_1, td.p_list_2, td.p_list_3, td.p_list_4 {
+		tr.data {
+			height: 40px;
+		}
+		td.l_data, td.r_data {
 			font-family: "微软雅黑", "华文细黑";
 			font-size: 18px;
+			color: #777977;
 			font-weight: 600;
-			color: #717572;
 		}
-		td.p_list_1 {
+		td.l_data {
 			width: 100px;
 		}
-		td.p_list_2 {
-			width: 350px;
+		td.r_data {
+			width: 440px;
 		}
-		td.p_list_3 {
-			width: 100px;
-		}
-		td.p_list_4 {
-			width: 150px;
-		}
-		button.add {
+		button.submit {
 			width: 100%;
-			height: 45px;
+			height: 40px;
 			border: none;
 			outline: none;
-			background-color: #1296DB;
+			background-color: #FF0000;
 			font-family: "微软雅黑", "华文细黑";
 			font-size: 20px;
 			font-weight: 600;
 			color: #FFFFFF;
 			cursor: pointer;
+		}
+		div.error {
+			width: 100%;
+			margin-top: 20px;
+			text-align: center;
+		}
+		span.error {
+			font-family: "微软雅黑", "华文细黑";
+			font-size: 14px;
+			color: #FF0000;
 		}
 	</style>
 
@@ -141,28 +144,29 @@
 		</table>
 	</div>
 	
-	<div class="content" id="content">
-		<div class="title">
-			<span class="title">容器：{{ name }}&nbsp;上的权限列表</span>
+	<div class="content">
+		<div class="hint">
+			<span class="hint">请确认以下信息后点击&nbsp;删除权限&nbsp;按钮来删除该条目</span>
 		</div>
-		<div class="p_list">
-			<table class="p_list">
-				<tr class="p_list">
-					<td class="p_list_1">权限ID</td>
-					<td class="p_list_2">用户账户</td>
-					<td class="p_list_3">拥有权限</td>
-					<td class="p_list_4">操作</td> 
+		<div class="data">
+			<table class="data">
+				<tr class="data">
+					<td class="l_data">账号：</td>
+					<td class="r_data"><%=request.getAttribute(SecurityKey.USER_ACCOUNT.key) %></td>
+				</tr>
+				<tr class="data">
+					<td class="l_data">容器：</td>
+					<td class="r_data"><%=request.getAttribute(SecurityKey.CONTAINER_NAME.key) %></td>
+				</tr>
+				<tr class="data">
+					<td class="l_data">权限：</td>
+					<td class="r_data"><%=request.getAttribute(SecurityKey.PRIVILEGE_NAME.key) %></td>
 				</tr>
 			</table>
-			<table class="p_list">
-				<tr class="p_list" v-for="site in json">
-					<td class="p_list_1">{{ site.id }}</td>
-					<td class="p_list_2" ><span style="cursor:pointer;color:#1296DB" @click='window.open("<%=path %>/account/view?uid="+site.uid)'>{{ site.account }}</span></td>
-					<td class="p_list_3">{{ site.privileges }}</td>
-					<td class="p_list_4"><span style="cursor:pointer;color:#1296DB" @click='window.location.href="<%=path %>/container/manager/privilege/modify?pid="+site.id+"&cid="+site.cid'>修改</span>/<span style="cursor:pointer;color:#FF0000" @click='window.location.href="<%=path %>/container/manager/privilege/delete?pid="+site.id+"&cid="+site.cid'>删除</span></td> 
-				</tr>
-			</table>
-			<button class="add"  onmouseover="$(this).animate({'background-color':'#46B4EE'}, 200);" onmouseout="$(this).animate({'background-color':'#1296DB'}, 200);" @click='window.location.href="<%=path %>/container/manager/privilege/add?cid="+id'>+添加权限字段</button>
+			<button class="submit" id="submit" onmouseover="$(this).animate({'background-color':'#F45454'}, 200);" onmouseout="$(this).animate({'background-color':'#FF0000'}, 200);">×删除权限</button>
+		</div>
+		<div class="error">
+			<span class="error" id="error"></span>
 		</div>
 	</div>
 	
@@ -183,13 +187,49 @@
 	</div>
 	
 	<script type="text/javascript">
-		new Vue({
-			el: "#content",
-			data: {
-				id: <%=request.getAttribute(SecurityKey.CONTAINER_ID.key) %>,
-				name: "<%=request.getAttribute(SecurityKey.CONTAINER_NAME.key) %>",
-				json: <%=request.getAttribute(SecurityKey.CONTAINER_MANAGER_PRIVILEGE.key) %>
+		var param = window.location.search;
+		var pid = -1;
+		var cid = -1;
+		if (param.indexOf("?") != -1) {
+			var arr = param.substr(1).split("&");
+			for (var i=0; i<arr.length; i++) { 
+				var t = arr[i].split("=");
+				if (t[0] == "pid") {
+					pid = t[1];
+				} else if (t[0] == "cid") {
+					cid = t[1];
+				}
 			}
+		}
+	</script>
+	
+	<script type="text/javascript">
+		$("#submit").click(function() {
+			$("#error").empty();
+			
+			$.ajax({
+				url: "<%=path%>/container/manager/privilege/delete/", // Write request url
+				type: "POST",
+				timeout: 5000,
+				async: true,
+				data: {"pid":pid},
+				dataType: "json",
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					$("#error").text("连接到服务器时出现问题，请检查您的网络连接或者稍后重试");
+				},
+				success: function(data, textStatus) {
+					if (data.code == Code["OK"]) {
+						window.location.href = "<%=path %>/container/manager/privilege?cid=" + cid;
+					} else {
+						if (data.code == Code["NOT_LOGIN"]) {
+							// 身份过期
+							window.location.reload();
+						} else {
+							$("#error").text("删除失败，请稍后重试");
+						}
+					}
+				}
+			});
 		});
 	</script>
 	

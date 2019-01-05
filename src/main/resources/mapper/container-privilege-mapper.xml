@@ -31,7 +31,7 @@
 	<select id="selectPrivilegeByCid" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
 		resultType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
 		select tb_container_privilege.*, tb_user.account from tb_container_privilege, tb_user where
-		tb_container_privilege.cid=#{cid} and tb_container_privilege.uid=tb_user.id;
+		tb_container_privilege.cid=#{cid} and tb_container_privilege.uid=#{uid};
 	</select>
 	<select id="selectPrivilegeByAccount" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
 		resultType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">

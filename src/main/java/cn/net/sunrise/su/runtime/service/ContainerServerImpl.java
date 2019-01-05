@@ -88,7 +88,7 @@ public class ContainerServerImpl implements ContainerService {
 			ContainerPrivilegeBean containerPrivilegeBean = new ContainerPrivilegeBean();
 			containerPrivilegeBean.setUid(containerBean.getUid());
 			containerPrivilegeBean.setCid(c.getId());
-			c.setPrivilege(this.containerPrivilegeDao.selectPrivilegeByCid(containerPrivilegeBean).get(0).getPrivilege());
+			c.setPrivilege(this.containerPrivilegeDao.selectPrivilegeByCidUid(containerPrivilegeBean).get(0).getPrivilege());
 		}
 		return list;
 	}

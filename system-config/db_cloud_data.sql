@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 01/01/2019 02:12:35
+ Date: 05/01/2019 16:11:06
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `tb_container`  (
   `data` bigint(20) NOT NULL,
   `buildtime` bigint(20) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 36 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_container
@@ -53,6 +53,7 @@ CREATE TABLE `tb_container_privilege`  (
 -- Records of tb_container_privilege
 -- ----------------------------
 INSERT INTO `tb_container_privilege` VALUES (33, 11, 35, 1);
+INSERT INTO `tb_container_privilege` VALUES (34, 12, 35, 2);
 
 -- ----------------------------
 -- Table structure for tb_field
@@ -67,7 +68,7 @@ CREATE TABLE `tb_field`  (
   `key` int(11) NOT NULL,
   `defaultdata` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_field
@@ -85,7 +86,7 @@ CREATE TABLE `tb_record`  (
   `time` bigint(20) NOT NULL,
   `position` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 244 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 263 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_record
@@ -314,6 +315,25 @@ INSERT INTO `tb_record` VALUES (240, 11, 'MTExLjE5Ni4yNDYuMTYz', 1546274985823, 
 INSERT INTO `tb_record` VALUES (241, 12, 'MTExLjE5Ni4yNDYuMTYz', 1546275003903, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (242, 11, 'MTExLjE5Ni4yNDYuMTYz', 1546276394345, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (243, 12, 'MTExLjE5Ni4yNDYuMTYz', 1546276412458, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (244, 11, 'MTExLjE5Ni4yNDYuMTYz', 1546324367598, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (245, 11, 'MTExLjE5Ni4yNDYuMTYz', 1546324587436, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (246, 11, 'MTExLjE5Ni4yNDYuMTYz', 1546326672211, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (247, 11, 'MTExLjE5Ni4yNDYuMTYz', 1546335808875, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (248, 11, 'MTExLjE5Ni4yNDYuMTYz', 1546340030364, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (249, 11, 'MTExLjE5Ni4yNDYuMTYz', 1546342800944, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (250, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546628317980, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (251, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546663106131, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (252, 12, 'MTExLjE5Ni4yNDAuNTk=', 1546663787542, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (253, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546663795133, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (254, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546667412060, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (255, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546669922946, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (256, 12, 'MTExLjE5Ni4yNDAuNTk=', 1546671371972, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (257, 12, 'MTExLjE5Ni4yNDAuNTk=', 1546673620126, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (258, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546675184865, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (259, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546675385436, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (260, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546675402999, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (261, 12, 'MTExLjE5Ni4yNDAuNTk=', 1546675494601, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (262, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546675796931, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 
 -- ----------------------------
 -- Table structure for tb_user

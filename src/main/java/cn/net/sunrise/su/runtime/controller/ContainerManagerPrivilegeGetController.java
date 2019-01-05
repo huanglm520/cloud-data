@@ -12,6 +12,7 @@ import cn.net.sunrise.su.beans.container.ContainerBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.service.ContainerService;
+import cn.net.sunrise.su.tool.AppCheck;
 
 @Controller
 @RequestMapping(value="/container/manager/privilege", method=RequestMethod.GET)
@@ -26,7 +27,7 @@ public class ContainerManagerPrivilegeGetController extends BaseController {
 			return BaseController.LOGIN_OUT;
 		}
 		String cid = request.getParameter("cid");
-		if (cid==null || !cid.matches("^[0-9]{1,10}$")) {
+		if (cid==null || !AppCheck.checkId(cid)) {
 			return BaseController.NO_PRIVILEGE;
 		}
 		UserBean userBean = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);

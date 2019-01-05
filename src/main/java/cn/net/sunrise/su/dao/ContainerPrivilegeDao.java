@@ -16,4 +16,5 @@ public interface ContainerPrivilegeDao {
 	public List<ContainerPrivilegeBean> selectPrivilegeByCid(ContainerPrivilegeBean containerPrivilegeBean);
 	public List<ContainerPrivilegeBean> selectPrivilegeByAccount(ContainerPrivilegeBean containerPrivilegeBean);
 	public boolean existsPrivilege(ContainerPrivilegeBean containerPrivilegeBean);
+	public List<ContainerPrivilegeBean> selectPrivilegeByCidUid(ContainerPrivilegeBean containerPrivilegeBean);
 }

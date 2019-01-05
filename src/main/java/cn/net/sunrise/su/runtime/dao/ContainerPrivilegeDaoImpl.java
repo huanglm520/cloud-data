@@ -76,4 +76,10 @@ public class ContainerPrivilegeDaoImpl extends BaseDao implements ContainerPrivi
 		return super.selectOne("existsPrivilege", containerPrivilegeBean) != null;
 	}
 
+	@Override
+	public List<ContainerPrivilegeBean> selectPrivilegeByCidUid(ContainerPrivilegeBean containerPrivilegeBean) {
+		// TODO Auto-generated method stub
+		return super.select("selectPrivilegeByCidUid", containerPrivilegeBean);
+	}
+
 }

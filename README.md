@@ -5,3 +5,5 @@
 # This is a maven priject@version 3.5.3 (Apache Maven 3.5.3)
 # Other libs version see pom.xml
 # Powered by HuangLiming
+# The static source in the project please see:
+# https://github.com/huanglm520/cloud-data.static.io

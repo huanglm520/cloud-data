@@ -89,7 +89,7 @@ public class SecurityChangeMailPostController extends BaseController {
 			return ResultBody.result(PassportKey.ACCOUNT_NOT_ACCEPT);
 		}
 		// 生成副本对象
-		UserBean usb = new UserBean((UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key));
+		UserBean usb = ((UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key)).clone();
 		usb.setAccount(mailStr);
 		// 判断用户是否存在
 		PassportStatusBean psb = this.ps.doChangeMailStep1(usb);

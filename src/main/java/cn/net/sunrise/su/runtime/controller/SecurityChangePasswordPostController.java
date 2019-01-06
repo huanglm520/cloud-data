@@ -48,7 +48,7 @@ public class SecurityChangePasswordPostController extends BaseController {
 		// 获取session中的user
 		UserBean sessionUser = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);
 		// 复制user信息，生成验证对象
-		UserBean usb = new UserBean(sessionUser);
+		UserBean usb = sessionUser.clone();
 		// 验证旧密码
 		usb.setPassword(oldPassword);
 		usb.encodePassword();

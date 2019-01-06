@@ -41,7 +41,7 @@ public class AccountPostController extends BaseController {
 			return ResultBody.result(PassportKey.LAST_NAME_NOT_ACCEPT);
 		}
 		// 克隆session对象
-		UserBean usb = new UserBean((UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key));
+		UserBean usb = ((UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key)).clone();
 		// 设置更新数据
 		usb.setFirst_name(firstname);
 		usb.setLast_name(lastname);
@@ -65,7 +65,7 @@ public class AccountPostController extends BaseController {
 			return ResultBody.result(PassportKey.COMPANY_NOT_ACCEPT);
 		}
 		
-		UserBean usb = new UserBean((UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key));
+		UserBean usb = ((UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key)).clone();
 		usb.setCompany(company);
 		PassportStatusBean psb = this.ps.updateCompany(usb);
 		if (psb.getCode() == PassportKey.OK.code) {

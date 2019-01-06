@@ -17,19 +17,75 @@ public class UserBean implements Serializable {
 	private String company;
 	private transient String salt;
 	
-	public UserBean() {}
-	
-	public UserBean(UserBean usb) {
-		this.id = usb.getId();
-		this.account = usb.getAccount();
-		this.password = usb.getPassword();
-		this.regtime = usb.getRegtime();
-		this.first_name = usb.getFirst_name();
-		this.last_name = usb.getLast_name();
-		this.company = usb.getCompany();
-		this.salt = usb.getSalt();
+	public UserBean() {
+		
 	}
 	
+	@Override
+	public UserBean clone() {
+		UserBean bean = new UserBean();
+		bean.account = this.account;
+		bean.company = this.company;
+		bean.first_name = this.first_name;
+		bean.id = this.id;
+		bean.last_name = this.last_name;
+		bean.password = this.password;
+		bean.regtime = this.regtime;
+		bean.salt = this.salt;
+		return bean;
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((account == null) ? 0 : account.hashCode());
+		result = prime * result + ((company == null) ? 0 : company.hashCode());
+		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
+		result = prime * result + (int) (regtime ^ (regtime >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserBean other = (UserBean) obj;
+		if (account == null) {
+			if (other.account != null)
+				return false;
+		} else if (!account.equals(other.account))
+			return false;
+		if (company == null) {
+			if (other.company != null)
+				return false;
+		} else if (!company.equals(other.company))
+			return false;
+		if (first_name == null) {
+			if (other.first_name != null)
+				return false;
+		} else if (!first_name.equals(other.first_name))
+			return false;
+		if (id != other.id)
+			return false;
+		if (last_name == null) {
+			if (other.last_name != null)
+				return false;
+		} else if (!last_name.equals(other.last_name))
+			return false;
+		if (regtime != other.regtime)
+			return false;
+		return true;
+	}
+
 	public int getId() {
 		return id;
 	}

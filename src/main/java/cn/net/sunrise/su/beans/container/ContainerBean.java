@@ -32,20 +32,89 @@ public class ContainerBean implements Serializable {
 		this.privilege = -1;
 	}
 	
-	public ContainerBean(ContainerBean containerBean) {
-		this.id = containerBean.getId();
-		this.uid = containerBean.getUid();
-		this.name = containerBean.getName();
-		this.api = containerBean.getApi();
-		this.status = containerBean.getStatus();
-		this.state = containerBean.getState();
-		this.field = containerBean.getField();
-		this.data = containerBean.getData();
-		this.buildtime = containerBean.getBuildtime();
-		this.privilege = containerBean.getPrivilege();
-		this.privileges = containerBean.getPrivileges();
+	@Override
+	public ContainerBean clone() {
+		ContainerBean bean = new ContainerBean();
+		bean.api = this.api;
+		bean.buildtime = this.buildtime;
+		bean.data = this.data;
+		bean.field = this.field;
+		bean.id = this.id;
+		bean.name = this.name;
+		bean.privilege = this.privilege;
+		bean.privileges = this.privileges;
+		bean.state = this.state;
+		bean.status = this.status;
+		bean.uid = this.uid;
+		return bean;
 	}
 	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((api == null) ? 0 : api.hashCode());
+		result = prime * result + (int) (buildtime ^ (buildtime >>> 32));
+		result = prime * result + data;
+		result = prime * result + field;
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + privilege;
+		result = prime * result + ((privileges == null) ? 0 : privileges.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + status;
+		result = prime * result + uid;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ContainerBean other = (ContainerBean) obj;
+		if (api == null) {
+			if (other.api != null)
+				return false;
+		} else if (!api.equals(other.api))
+			return false;
+		if (buildtime != other.buildtime)
+			return false;
+		if (data != other.data)
+			return false;
+		if (field != other.field)
+			return false;
+		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (privilege != other.privilege)
+			return false;
+		if (privileges == null) {
+			if (other.privileges != null)
+				return false;
+		} else if (!privileges.equals(other.privileges))
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
+			return false;
+		if (status != other.status)
+			return false;
+		if (uid != other.uid)
+			return false;
+		return true;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -17,6 +17,59 @@ public class LoginRecordBean implements Serializable {
 	public LoginRecordBean() {
 		// Empty
 	}
+	
+	@Override
+	public LoginRecordBean clone() {
+		LoginRecordBean bean = new LoginRecordBean();
+		bean.address = this.address;
+		bean.id = this.id;
+		bean.position = this.position;
+		bean.time = this.time;
+		bean.uid = this.uid;
+		return bean;
+	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		result = prime * result + (int) (time ^ (time >>> 32));
+		result = prime * result + uid;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LoginRecordBean other = (LoginRecordBean) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (id != other.id)
+			return false;
+		if (position == null) {
+			if (other.position != null)
+				return false;
+		} else if (!position.equals(other.position))
+			return false;
+		if (time != other.time)
+			return false;
+		if (uid != other.uid)
+			return false;
+		return true;
+	}
 
 	public int getId() {
 		return id;

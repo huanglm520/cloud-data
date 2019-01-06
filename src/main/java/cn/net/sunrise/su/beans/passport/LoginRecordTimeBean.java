@@ -13,6 +13,53 @@ public class LoginRecordTimeBean implements Serializable {
 	public LoginRecordTimeBean() {
 		// Empty
 	}
+	
+	@Override
+	public LoginRecordTimeBean clone() {
+		LoginRecordTimeBean bean = new LoginRecordTimeBean();
+		bean.eTime = this.eTime;
+		bean.left = this.left;
+		bean.right = this.right;
+		bean.sTime = this.sTime;
+		bean.uid = this.uid;
+		return bean;
+	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (eTime ^ (eTime >>> 32));
+		result = prime * result + left;
+		result = prime * result + right;
+		result = prime * result + (int) (sTime ^ (sTime >>> 32));
+		result = prime * result + uid;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LoginRecordTimeBean other = (LoginRecordTimeBean) obj;
+		if (eTime != other.eTime)
+			return false;
+		if (left != other.left)
+			return false;
+		if (right != other.right)
+			return false;
+		if (sTime != other.sTime)
+			return false;
+		if (uid != other.uid)
+			return false;
+		return true;
+	}
 
 	public int getUid() {
 		return uid;

@@ -49,14 +49,68 @@ public class FieldBean implements Serializable {
 		this.defaultdata = NULL_DEFAULT;
 	}
 	
-	public FieldBean(FieldBean fieldBean) {
-		this.id = fieldBean.getId();
-		this.cid = fieldBean.getCid();
-		this.name = fieldBean.getName();
-		this.type = fieldBean.getType();
-		this.isnull = fieldBean.getIsnull();
-		this.key = fieldBean.getKey();
-		this.defaultdata = fieldBean.getDefaultdata();
+	@Override
+	public FieldBean clone() {
+		FieldBean bean = new FieldBean();
+		bean.cid = this.cid;
+		bean.defaultdata = this.defaultdata;
+		bean.id = this.id;
+		bean.isnull = this.isnull;
+		bean.key = this.key;
+		bean.name = this.name;
+		bean.type = this.type;
+		return bean;
+	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + cid;
+		result = prime * result + ((defaultdata == null) ? 0 : defaultdata.hashCode());
+		result = prime * result + id;
+		result = prime * result + isnull;
+		result = prime * result + key;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FieldBean other = (FieldBean) obj;
+		if (cid != other.cid)
+			return false;
+		if (defaultdata == null) {
+			if (other.defaultdata != null)
+				return false;
+		} else if (!defaultdata.equals(other.defaultdata))
+			return false;
+		if (id != other.id)
+			return false;
+		if (isnull != other.isnull)
+			return false;
+		if (key != other.key)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
 	}
 
 	public int getId() {

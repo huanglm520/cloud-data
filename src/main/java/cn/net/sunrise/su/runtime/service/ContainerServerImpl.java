@@ -53,7 +53,7 @@ public class ContainerServerImpl implements ContainerService {
 		containerPrivilegeBean.setPrivilege(ContainerPrivilegeKey.OWNER.key);
 		containerPrivilegeDao.insertPrivilegeByUid(containerPrivilegeBean);
 		// 写入容器初始字段
-		FieldBean fieldBean = new FieldBean(FieldBean.DEFAULT_ID);
+		FieldBean fieldBean = FieldBean.DEFAULT_ID.clone();
 		fieldBean.setCid(containerBean.getId());
 		fieldBean.encode();
 		fs.addField(fieldBean);

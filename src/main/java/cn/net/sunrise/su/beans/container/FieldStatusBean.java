@@ -17,6 +17,43 @@ public class FieldStatusBean implements Serializable {
 		this.setCode(fieldKey.code);
 		this.setMessage(fieldKey.message);
 	}
+	
+	@Override
+	public FieldStatusBean clone() {
+		FieldStatusBean bean = new FieldStatusBean();
+		bean.code = this.code;
+		bean.message = this.message;
+		return bean;
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + code;
+		result = prime * result + ((message == null) ? 0 : message.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FieldStatusBean other = (FieldStatusBean) obj;
+		if (code != other.code)
+			return false;
+		if (message == null) {
+			if (other.message != null)
+				return false;
+		} else if (!message.equals(other.message))
+			return false;
+		return true;
+	}
 	public int getCode() {
 		return code;
 	}

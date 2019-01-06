@@ -159,7 +159,7 @@
 					<td class="p_list_1">{{ site.id }}</td>
 					<td class="p_list_2" ><span style="cursor:pointer;color:#1296DB" @click='window.open("<%=path %>/account/view?uid="+site.uid)'>{{ site.account }}</span></td>
 					<td class="p_list_3">{{ site.privileges }}</td>
-					<td class="p_list_4"><span style="cursor:pointer;color:#1296DB" @click='window.location.href="<%=path %>/container/manager/privilege/modify?pid="+site.id+"&cid="+site.cid'>修改</span>/<span style="cursor:pointer;color:#FF0000" @click='window.location.href="<%=path %>/container/manager/privilege/delete?pid="+site.id+"&cid="+site.cid'>删除</span></td> 
+					<td class="p_list_4"><!-- <span style="cursor:pointer;color:#1296DB" @click='window.location.href="<%=path %>/container/manager/privilege/modify?pid="+site.id+"&cid="+site.cid'>修改</span>/ --><span style="cursor:pointer;color:#FF0000" @click='window.location.href="<%=path %>/container/manager/privilege/delete?pid="+site.id+"&cid="+site.cid'>删除</span></td> 
 				</tr>
 			</table>
 			<button class="add"  onmouseover="$(this).animate({'background-color':'#46B4EE'}, 200);" onmouseout="$(this).animate({'background-color':'#1296DB'}, 200);" @click='window.location.href="<%=path %>/container/manager/privilege/add?cid="+id'>+添加权限字段</button>

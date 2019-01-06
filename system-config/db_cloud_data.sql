@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 05/01/2019 23:03:56
+ Date: 06/01/2019 19:08:14
 */
 
 SET NAMES utf8mb4;
@@ -87,7 +87,7 @@ CREATE TABLE `tb_record`  (
   `time` bigint(20) NOT NULL,
   `position` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 276 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 280 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_record
@@ -348,6 +348,10 @@ INSERT INTO `tb_record` VALUES (272, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546683003106, 
 INSERT INTO `tb_record` VALUES (273, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546689138660, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (274, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546691729804, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (275, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546694705449, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (276, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546701168142, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (277, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546701981777, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (278, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546702823442, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (279, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546772744771, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 
 -- ----------------------------
 -- Table structure for tb_user

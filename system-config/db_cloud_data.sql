@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 06/01/2019 19:08:14
+ Date: 06/01/2019 23:31:40
 */
 
 SET NAMES utf8mb4;
@@ -87,7 +87,7 @@ CREATE TABLE `tb_record`  (
   `time` bigint(20) NOT NULL,
   `position` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 280 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 288 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_record
@@ -352,6 +352,14 @@ INSERT INTO `tb_record` VALUES (276, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546701168142, 
 INSERT INTO `tb_record` VALUES (277, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546701981777, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (278, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546702823442, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (279, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546772744771, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (280, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546788239282, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (281, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546788242750, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (282, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546788248694, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (283, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546788249469, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (284, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546788286916, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (285, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546788287600, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (286, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546788288271, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (287, 11, 'MTExLjE5Ni4yNDAuNTk=', 1546788532741, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 
 -- ----------------------------
 -- Table structure for tb_user

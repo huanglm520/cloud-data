@@ -10,19 +10,24 @@ import cn.net.sunrise.su.enums.FieldKey;
 import cn.net.sunrise.su.enums.PassportKey;
 
 public final class ResultBody {
+	
+	private static Gson gson;
+	static {
+		gson = new Gson();
+	}
 
 	public static final String result(Object obj) {
 		if (obj instanceof PassportKey) {
-			return new Gson().toJson(new PassportStatusBean((PassportKey)obj));
+			return gson.toJson(new PassportStatusBean((PassportKey)obj));
 		}
 		if (obj instanceof ContainerKey) {
-			return new Gson().toJson(new ContainerStatusBean((ContainerKey)obj));
+			return gson.toJson(new ContainerStatusBean((ContainerKey)obj));
 		}
 		if (obj instanceof FieldKey) {
-			return new Gson().toJson(new FieldStatusBean((FieldKey)obj));
+			return gson.toJson(new FieldStatusBean((FieldKey)obj));
 		}
 		if ((obj instanceof PassportStatusBean) || (obj instanceof ContainerStatusBean) || (obj instanceof FieldStatusBean)) {
-			return new Gson().toJson(obj);
+			return gson.toJson(obj);
 		}
 		throw new RuntimeException("Unknown OR Unsupport object type.");
 	}

@@ -25,6 +25,7 @@ public class UserBean implements Serializable {
 	public UserBean clone() {
 		UserBean bean = new UserBean();
 		bean.account = this.account;
+		bean.password = this.password;
 		bean.company = this.company;
 		bean.first_name = this.first_name;
 		bean.id = this.id;

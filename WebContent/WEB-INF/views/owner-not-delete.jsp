@@ -91,7 +91,7 @@
 	</div>
 	
 	<div class="content">
-		<span class="content">OWNER权限不允许删除或修改</span>
+		<span class="content">OWNER权限不允许删除</span>
 	</div>
 	
 	<div class="bottombar">

@@ -1,5 +1,7 @@
 package cn.net.sunrise.su.runtime.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import cn.net.sunrise.su.beans.container.FieldBean;
@@ -35,5 +37,11 @@ public class FieldQueryDaoImpl extends BaseDao implements FieldQueryDao {
 	public void deleteFieldByCid(FieldBean fieldBean) {
 		// TODO Auto-generated method stub
 		super.delete("deleteFieldByCid", fieldBean);
+	}
+
+	@Override
+	public List<FieldBean> selectFieldByCid(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		return super.select("selectFieldByCid", fieldBean);
 	}
 }

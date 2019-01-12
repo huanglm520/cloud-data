@@ -170,7 +170,7 @@ public class FieldBean implements Serializable {
 	}
 	
 	public String textTypeString(String type, int length) {
-		if (!type.matches("7|8|9")) {
+		if (!type.matches("7|8")) {
 			return type;
 		}
 		return type+"+"+length;

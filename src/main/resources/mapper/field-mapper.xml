@@ -12,6 +12,10 @@
 	<delete id="deleteFieldByCid" parameterType="cn.net.sunrise.su.beans.container.FieldBean">
 		delete from tb_field where cid=#{cid};
 	</delete>
+	<select id="selectFieldByCid" parameterType="cn.net.sunrise.su.beans.container.FieldBean"
+		resultType="cn.net.sunrise.su.beans.container.FieldBean">
+		select * from tb_field where cid=#{cid};
+	</select>
 	<select id="existsField" parameterType="cn.net.sunrise.su.beans.container.FieldBean"
 		resultType="java.lang.Object">
 		select 1 from tb_field where cid=#{cid} and name=#{name};

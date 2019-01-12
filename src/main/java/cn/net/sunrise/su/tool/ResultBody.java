@@ -14,7 +14,7 @@ import cn.net.sunrise.su.enums.PassportKey;
 
 public final class ResultBody {
 	
-	private static Gson gson;
+	public static final Gson gson;
 	private static Map<Object, Object> map;
 	static {
 		gson = new Gson();

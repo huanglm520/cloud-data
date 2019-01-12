@@ -1,5 +1,7 @@
 package cn.net.sunrise.su.runtime.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,18 @@ public class FieldServiceImpl implements FieldService {
 	public void deleteFieldByCid(FieldBean fieldBean) {
 		// TODO Auto-generated method stub
 		this.fieldQuerDao.deleteFieldByCid(fieldBean);
+	}
+
+	@Override
+	public boolean existsField(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		return this.fieldQuerDao.existsField(fieldBean);
+	}
+
+	@Override
+	public List<FieldBean> selectFieldByCid(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		return this.fieldQuerDao.selectFieldByCid(fieldBean);
 	}
 
 }

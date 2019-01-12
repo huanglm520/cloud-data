@@ -14,10 +14,14 @@ import com.google.gson.Gson;
 
 import cn.net.sunrise.su.beans.container.ContainerBean;
 import cn.net.sunrise.su.beans.container.ContainerPrivilegeBean;
+import cn.net.sunrise.su.beans.container.FieldBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.SecurityKey;
 import cn.net.sunrise.su.service.ContainerService;
+import cn.net.sunrise.su.service.FieldService;
+import cn.net.sunrise.su.tool.AppCheck;
+import cn.net.sunrise.su.tool.ResultBody;
 
 @Controller
 @RequestMapping(value="/container/manager", method=RequestMethod.GET)
@@ -25,6 +29,9 @@ public class ContainerManagerGetController extends BaseController {
 
 	@Autowired
 	private ContainerService cs;
+	
+	@Autowired
+	private FieldService fs;
 	
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String main_01(HttpSession session, HttpServletRequest request) {
@@ -74,6 +81,31 @@ public class ContainerManagerGetController extends BaseController {
 	
 	@RequestMapping(value="/field", method=RequestMethod.GET)
 	public String field_01(HttpSession session, HttpServletRequest request) {
+		if (!super.checkLogin(session)) {
+			return BaseController.LOGIN_OUT;
+		}
+		String cid = request.getParameter("cid");
+		if (cid==null || !AppCheck.checkId(cid)) {
+			return BaseController.NO_PRIVILEGE;
+		}
+		UserBean userBean = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);
+		ContainerBean containerBean = new ContainerBean();
+		containerBean.setUid(userBean.getId());
+		containerBean.setId(Integer.parseInt(cid));
+		if (!this.cs.hasPrivilege(containerBean)) {
+			return BaseController.NO_PRIVILEGE;
+		}
+		// 读取容器以及字段信息
+		containerBean = this.cs.selectContainerById(containerBean).get(0);
+		FieldBean fieldBean = new FieldBean();
+		fieldBean.setCid(containerBean.getId());
+		List<FieldBean> list = this.fs.selectFieldByCid(fieldBean);
+		// 反编码字段信息
+		for (FieldBean f: list) {
+			f.decode();
+		}
+		request.setAttribute(SecurityKey.CONTAINER_NAME.key, containerBean.getName());
+		request.setAttribute(SecurityKey.FIELD_LIST.key, ResultBody.gson.toJson(list));
 		return "container-manager-field";
 	}
 	
@@ -103,7 +135,7 @@ public class ContainerManagerGetController extends BaseController {
 		}
 		request.setAttribute(SecurityKey.CONTAINER_ID.key, containerBean.getId());
 		request.setAttribute(SecurityKey.CONTAINER_NAME.key, containerBean.getName());
-		request.setAttribute(SecurityKey.CONTAINER_MANAGER_PRIVILEGE.key, new Gson().toJson(list));
+		request.setAttribute(SecurityKey.CONTAINER_MANAGER_PRIVILEGE.key, ResultBody.gson.toJson(list));
 		return "container-manager-privilege";
 	}
 }

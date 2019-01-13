@@ -1,16 +1,15 @@
 package cn.net.sunrise.su.listener;
 
-/*
- * 这个破玩意写出来就从来没用过
- * 我也不知道当时为啥要写这个东西
- * @auther Huang Liming
- * 2018-12-18 note ver1
- */
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+
+import cn.net.sunrise.su.beans.api.ApiClockBean;
+import cn.net.sunrise.su.enums.AttributeKey;
+import cn.net.sunrise.su.runtime.task.PageDateTask;
 
 @WebListener
 public class ContextListenrer implements ServletContextListener {
@@ -23,6 +22,9 @@ public class ContextListenrer implements ServletContextListener {
 		// TODO Auto-generated method stub
 		ApplicationContext = sce.getServletContext();
 		System.out.println("全局对象已加载，现在可通过ContextListener.ApplicationContext获取全局application对象");
+		// 初始化系统时间
+		ApplicationContext.setAttribute(AttributeKey.PAGE_TIME.key, PageDateTask.simpleDateFormat.format(new Date()));
+		System.out.println("系统时间已经初始化:：" + ApiClockBean.apiClockBean.toString());
 	}
 
 	@Override

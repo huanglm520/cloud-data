@@ -23,7 +23,7 @@ public enum AttributeKey {
 	CHANGE_MAIL_STEP2("changemailstep2"),
 	CHANGE_MAIL_STEP3("changemailstep3"),
 	CHANGE_MAIL_VERCODE("changemailvercode"),
-	
+	PAGE_TIME("pagetime"),
 	ATTRIBUTE_OBJECT("attributeobject");
 	
 	public final String key;

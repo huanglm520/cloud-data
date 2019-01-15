@@ -24,7 +24,7 @@ public class ContextListenrer implements ServletContextListener {
 		System.out.println("全局对象已加载，现在可通过ContextListener.ApplicationContext获取全局application对象");
 		// 初始化系统时间
 		ApplicationContext.setAttribute(AttributeKey.PAGE_TIME.key, PageDateTask.simpleDateFormat.format(new Date()));
-		System.out.println("系统时间已经初始化:：" + ApiClockBean.apiClockBean.toString());
+		System.out.println("页面时间已经初始化");
 	}
 
 	@Override

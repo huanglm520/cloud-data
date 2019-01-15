@@ -11,8 +11,6 @@ import java.util.Date;
 public class ApiClockBean implements Serializable {
 	private static final long serialVersionUID = 7055948513878980145L;
 	
-	public static ApiClockBean apiClockBean;
-	
 	// 实体类成员变量
 	private int year;
 	private int month;
@@ -20,13 +18,8 @@ public class ApiClockBean implements Serializable {
 	private int hour;
 	private int minute;
 	private int second;
-
-	static {
-		apiClockBean = new ApiClockBean(new Date());
-	}
-	
 	// Date对象初始化
-	private ApiClockBean(Date date) {
+	public ApiClockBean(Date date) {
 		String[] vars = new SimpleDateFormat("yyyy MM dd HH mm ss").format(date).split(" ");
 		this.year = Integer.parseInt(vars[0]);
 		this.month = Integer.parseInt(vars[1]);

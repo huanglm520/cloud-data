@@ -1,5 +1,7 @@
 package cn.net.sunrise.su.runtime.controller;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +17,6 @@ public class ApiPostController {
 	@RequestMapping(value="/current-time/", method=RequestMethod.POST)
 	@ResponseBody
 	public String clock() {
-		return ResultBody.gson.toJson(ApiClockBean.apiClockBean);
+		return ResultBody.gson.toJson(new ApiClockBean(new Date()));
 	}
 }

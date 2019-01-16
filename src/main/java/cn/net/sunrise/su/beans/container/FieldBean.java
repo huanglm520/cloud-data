@@ -21,6 +21,7 @@ public class FieldBean implements Serializable {
 	
 	public static final int PRI = 0;
 	public static final int UNI = 1;
+	public static final int NO = 2;
 	
 	public static final String NULL_DEFAULT = "NULL";
 	

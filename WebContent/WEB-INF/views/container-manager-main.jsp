@@ -114,7 +114,6 @@
 			height: 40px;
 			border: none;
 			outline: none;
-			border-radius: 5px;
 			font-family: "微软雅黑", "华文细黑";
 			font-size: 13px;
 			color: #FFFFFF;
@@ -136,7 +135,6 @@
 			height: 40px;
 			border: none;
 			outline: none;
-			border-radius: 5px;
 			font-family: "微软雅黑", "华文细黑";
 			font-size: 15px;
 			color: #FFFFFF;
@@ -148,7 +146,6 @@
 			height: 40px;
 			border: none;
 			outline: none;
-			border-radius: 5px;
 			font-family: "微软雅黑", "华文细黑";
 			font-size: 15px;
 			color: #FFFFFF;

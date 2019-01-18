@@ -30,4 +30,6 @@ public interface ContainerQueryDao {
 	
 	public boolean hasPrivilege(ContainerBean containerBean);
 	public boolean isOwner(ContainerBean containerBean);
+	
+	public void addContainerField(ContainerNewBean containerNewBean);
 }

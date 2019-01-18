@@ -5,6 +5,7 @@ import java.util.List;
 import cn.net.sunrise.su.beans.container.ContainerBean;
 import cn.net.sunrise.su.beans.container.ContainerPrivilegeBean;
 import cn.net.sunrise.su.beans.container.ContainerStatisticsBean;
+import cn.net.sunrise.su.beans.container.FieldBean;
 
 public interface ContainerService {
 
@@ -21,4 +22,5 @@ public interface ContainerService {
 	public void addPrivilege(ContainerPrivilegeBean containerPrivilegeBean);
 	public List<ContainerPrivilegeBean> selectPrivilegeById(ContainerPrivilegeBean containerPrivilegeBean);
 	public void deletePrivilegeById(ContainerPrivilegeBean containerPrivilegeBean);
+	public void addContainerField(ContainerBean containerBean, FieldBean fieldBean);
 }

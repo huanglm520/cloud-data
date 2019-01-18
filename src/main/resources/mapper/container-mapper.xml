@@ -97,4 +97,7 @@
 	<update id="dropContainerSpace" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">
 		drop table `${tablename}`;
 	</update>
+	<update id="addContainerField" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">
+		alter table ${tablename};
+	</update>
 </mapper>

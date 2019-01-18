@@ -171,4 +171,74 @@ public class ContainerServerImpl implements ContainerService {
 		this.containerPrivilegeDao.deletePrivilegeById(containerPrivilegeBean);
 	}
 
+	@Override
+	public void addContainerField(ContainerBean containerBean, FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		// 解析字段
+		StringBuffer sb = new StringBuffer();
+		sb.append(containerBean.tableName()+" add column "+fieldBean.getName()+" ");
+		String[] types = fieldBean.getType().split("\\+");
+		switch (types[0]) {
+			case FieldBean.BIT: {
+				sb.append(" bit ");
+				break;
+			}
+			case FieldBean.INT: {
+				sb.append(" int ");
+				break;
+			}
+			case FieldBean.BIGINT: {
+				sb.append(" bigint ");
+				break;
+			}
+			case FieldBean.FLOAT: {
+				sb.append(" float ");
+				break;
+			}
+			case FieldBean.DOUBLE: {
+				sb.append(" double ");
+				break;
+			}
+			case FieldBean.DECIMAL: {
+				sb.append(" decimal ");
+				break;
+			}
+			case FieldBean.CHAR: {
+				sb.append(String.format(" char(%s) ", types[1]));
+				break;
+			}
+			case FieldBean.VARCHAR: {
+				sb.append(String.format(" varchar(%s) ", types[1]));
+				break;
+			}
+			case FieldBean.LONGTEXT: {
+				sb.append(" longtext ");
+				break;
+			}
+		}
+		
+		switch (fieldBean.getKey()) {
+			case 1: {
+				sb.append(" primary key ");
+				break;
+			}
+			case 2: {
+				sb.append(" unique key ");
+				break;
+			}
+		}
+		
+		if (fieldBean.getIsnull() == FieldBean.PROHIBIT_NULL) {
+			sb.append(" not null ");
+		}
+		
+		if (fieldBean.getDefaultdata()!=null && fieldBean.getDefaultdata().length()!=0) {
+			sb.append(String.format(" default '%s' ", fieldBean.getDefaultdata()));
+		}
+		
+		ContainerNewBean containerNewBean = new ContainerNewBean();
+		containerNewBean.setTablename(sb.append(";").toString());
+		this.containerQueryDao.addContainerField(containerNewBean);
+	}
+
 }

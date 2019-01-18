@@ -170,7 +170,7 @@ public class FieldBean implements Serializable {
 		this.defaultdata = defaultdata;
 	}
 	
-	public String textTypeString(String type, int length) {
+	public static String textTypeString(String type, String length) {
 		if (!type.matches("7|8")) {
 			return type;
 		}

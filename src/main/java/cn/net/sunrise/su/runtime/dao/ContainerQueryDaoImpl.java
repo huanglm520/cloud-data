@@ -134,4 +134,10 @@ public class ContainerQueryDaoImpl extends BaseDao implements ContainerQueryDao 
 		return super.selectOne("isOwner", containerBean) != null;
 	}
 
+	@Override
+	public void addContainerField(ContainerNewBean containerNewBean) {
+		// TODO Auto-generated method stub
+		super.update("addContainerField", containerNewBean);
+	}
+
 }

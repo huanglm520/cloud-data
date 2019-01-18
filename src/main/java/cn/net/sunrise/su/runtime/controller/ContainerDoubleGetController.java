@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,7 +28,7 @@ public class ContainerDoubleGetController extends BaseController {
 	@Autowired
 	private ContainerService cs;
 	
-	@RequestMapping(value="/add", method=RequestMethod.GET)
+	@GetMapping("/add")
 	public String add_02(HttpSession session) {
 		return super.pageName(session, "container-add");
 	}
@@ -82,12 +83,12 @@ public class ContainerDoubleGetController extends BaseController {
 		return page;
 	}
 	
-	@RequestMapping(value="/export", method=RequestMethod.GET)
+	@GetMapping("/export")
 	public String export_02(HttpSession session) {
 		return super.pageName(session, "container-export");
 	}
 	
-	@RequestMapping(value="/import", method=RequestMethod.GET)
+	@GetMapping("/import")
 	public String import_02(HttpSession session) {
 		return super.pageName(session, "container-import");
 	}

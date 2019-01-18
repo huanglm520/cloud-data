@@ -8,8 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.google.gson.Gson;
 
@@ -32,7 +31,7 @@ public class HomeGetController extends BaseController {
 	@Autowired
 	private ContainerService cs;
 
-	@RequestMapping(value="/home", method=RequestMethod.GET)
+	@GetMapping("/home")
 	public String home(HttpSession session, HttpServletRequest request) {
 		// 判断是否登录
 		if (!super.checkLogin(session)) {

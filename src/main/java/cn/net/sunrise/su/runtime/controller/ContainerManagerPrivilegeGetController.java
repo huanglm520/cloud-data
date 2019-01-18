@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,7 +27,7 @@ public class ContainerManagerPrivilegeGetController extends BaseController {
 	@Autowired
 	private ContainerService cs;
 
-	@RequestMapping(value="/add", method=RequestMethod.GET)
+	@GetMapping("/add")
 	public String add_01(HttpSession session, HttpServletRequest request) {
 		if (!super.checkLogin(session)) {
 			return BaseController.LOGIN_OUT;
@@ -45,7 +46,7 @@ public class ContainerManagerPrivilegeGetController extends BaseController {
 		return "container-manager-privilege-add";
 	}
 	
-	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	@GetMapping("/delete")
 	public String delete_01(HttpSession session, HttpServletRequest request) {
 		if (!super.checkLogin(session)) {
 			return BaseController.LOGIN_OUT;

@@ -7,8 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.google.gson.Gson;
 
@@ -25,7 +24,7 @@ public class SecurityGetController extends BaseController {
 	@Autowired
 	private PassportService ps;
 	
-	@RequestMapping(value="/security", method=RequestMethod.GET)
+	@GetMapping("/security")
 	public String security_01(HttpSession session, HttpServletRequest request) {
 		// 判断是否登录
 		if (session.getAttribute(AttributeKey.IS_LOGIN.key) == null ||

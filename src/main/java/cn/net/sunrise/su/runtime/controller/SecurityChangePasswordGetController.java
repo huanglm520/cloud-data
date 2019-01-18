@@ -3,6 +3,7 @@ package cn.net.sunrise.su.runtime.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,7 +22,7 @@ public class SecurityChangePasswordGetController extends BaseController {
 		return name;
 	}
 
-	@RequestMapping(value="/step1", method=RequestMethod.GET)
+	@GetMapping("/step1")
 	public String changeMail_01(HttpSession session) {
 		return this.pageName(session, "change-password-step1");
 	}

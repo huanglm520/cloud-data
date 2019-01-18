@@ -1,5 +1,8 @@
 package cn.net.sunrise.su.enums;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape=JsonFormat.Shape.OBJECT)
 public enum ContainerKey {
 
 	OK(PassportKey.OK.code, PassportKey.OK.message),

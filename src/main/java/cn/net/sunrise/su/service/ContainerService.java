@@ -5,11 +5,10 @@ import java.util.List;
 import cn.net.sunrise.su.beans.container.ContainerBean;
 import cn.net.sunrise.su.beans.container.ContainerPrivilegeBean;
 import cn.net.sunrise.su.beans.container.ContainerStatisticsBean;
-import cn.net.sunrise.su.beans.container.ContainerStatusBean;
 
 public interface ContainerService {
 
-	public ContainerStatusBean addContainer(ContainerBean containerBean);
+	public Object addContainer(ContainerBean containerBean);
 	public List<ContainerStatisticsBean> selectContainerStatistics(ContainerBean containerBean);
 	public List<ContainerBean> selectContainer(ContainerBean containerBean);
 	public List<ContainerBean> selectContainerById(ContainerBean containerBean);

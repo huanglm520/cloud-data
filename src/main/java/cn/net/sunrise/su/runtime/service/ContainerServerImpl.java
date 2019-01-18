@@ -1,6 +1,8 @@
 package cn.net.sunrise.su.runtime.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +11,6 @@ import cn.net.sunrise.su.beans.container.ContainerBean;
 import cn.net.sunrise.su.beans.container.ContainerNewBean;
 import cn.net.sunrise.su.beans.container.ContainerPrivilegeBean;
 import cn.net.sunrise.su.beans.container.ContainerStatisticsBean;
-import cn.net.sunrise.su.beans.container.ContainerStatusBean;
 import cn.net.sunrise.su.beans.container.FieldBean;
 import cn.net.sunrise.su.dao.ContainerPrivilegeDao;
 import cn.net.sunrise.su.dao.ContainerQueryDao;
@@ -18,6 +19,7 @@ import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 import cn.net.sunrise.su.enums.ContainerStatusKey;
 import cn.net.sunrise.su.service.ContainerService;
 import cn.net.sunrise.su.service.FieldService;
+import cn.net.sunrise.su.tool.ResultBody;
 
 @Service
 public class ContainerServerImpl implements ContainerService {
@@ -30,14 +32,14 @@ public class ContainerServerImpl implements ContainerService {
 	private FieldService fs;
 
 	@Override
-	public ContainerStatusBean addContainer(ContainerBean containerBean) {
+	public Object addContainer(ContainerBean containerBean) {
 		// TODO Auto-generated method stub
 		
 		if (containerQueryDao.existsContainer(containerBean)) {
-			return new ContainerStatusBean(ContainerKey.CONTAINER_NAME_ALREADY_EXISTS);
+			return ContainerKey.CONTAINER_NAME_ALREADY_EXISTS;
 		}
 		if (containerQueryDao.existsApi(containerBean)) {
-			return new ContainerStatusBean(ContainerKey.API_NAME_ALREADY_EXISTS);
+			return ContainerKey.API_NAME_ALREADY_EXISTS;
 		}
 		
 		// 写入容器数据
@@ -60,7 +62,12 @@ public class ContainerServerImpl implements ContainerService {
 		// 创建容器空间
 		containerQueryDao.createContainerSpace(new ContainerNewBean(containerBean.tableName()));
 		
-		return new ContainerStatusBean(ContainerKey.OK.code, ContainerKey.OK.message, containerBean.getId());
+		Map<String, Object> map = new HashMap<>();
+		map.put("code", ContainerKey.OK.code);
+		map.put("message", ContainerKey.OK.message);
+		map.put("cid", containerBean.getId());
+		
+		return ResultBody.gson.toJson(map);
 	}
 
 	@Override

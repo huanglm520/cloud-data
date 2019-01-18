@@ -7,8 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.SecurityKey;
@@ -20,12 +19,12 @@ public class AccountGetController extends BaseController {
 	@Autowired
 	private PassportService ps;
 	
-	@RequestMapping(value="/account", method=RequestMethod.GET)
+	@GetMapping("/account")
 	public String account_01(HttpSession session) {
 		return super.pageName(session, "account");
 	}
 	
-	@RequestMapping(value="/account/view", method=RequestMethod.GET)
+	@GetMapping("/account/view")
 	public String account_view(HttpSession session, HttpServletRequest request) {
 		if (!super.checkLogin(session)) {
 			return BaseController.LOGIN_OUT;

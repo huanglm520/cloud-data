@@ -3,32 +3,29 @@ package cn.net.sunrise.su.runtime.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import cn.net.sunrise.su.beans.passport.PassportStatusBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.PassportKey;
 import cn.net.sunrise.su.service.PassportService;
 import cn.net.sunrise.su.tool.AppCheck;
 import cn.net.sunrise.su.tool.Mail;
-import cn.net.sunrise.su.tool.ResultBody;
 import cn.net.sunrise.su.tool.VerCode;
 
-@Controller
+@RestController
 @RequestMapping(value="/passport/register", method=RequestMethod.POST)
 public class RegisterPostController extends BaseController {
 
 	@Autowired
 	private PassportService ps;
 
-	@RequestMapping(value="/step1/", method=RequestMethod.POST)
-	@ResponseBody
-	public String register_step1_01(@RequestParam("mail") String mail,
+	@PostMapping("/step1/")
+	public PassportKey register_step1_01(@RequestParam("mail") String mail,
 									@RequestParam("first_name") String first_name,
 									@RequestParam("last_name") String last_name,
 									@RequestParam("company") String company,
@@ -36,19 +33,19 @@ public class RegisterPostController extends BaseController {
 
 		// 检查数据
 		if (mail==null || mail.length()==0) {
-			return ResultBody.result(PassportKey.ACCOUNT_NOT_ACCEPT);
+			return PassportKey.ACCOUNT_NOT_ACCEPT;
 		}
 		
 		if (first_name==null || first_name.length()==0) {
-			return ResultBody.result(PassportKey.FIRST_NAME_NOT_ACCEPT);
+			return PassportKey.FIRST_NAME_NOT_ACCEPT;
 		}
 		
 		if (last_name==null || last_name.length()==0) {
-			return ResultBody.result(PassportKey.LAST_NAME_NOT_ACCEPT);
+			return PassportKey.LAST_NAME_NOT_ACCEPT;
 		}
 		
 		if (company==null || company.length()==0) {
-			return ResultBody.result(PassportKey.COMPANY_NOT_ACCEPT);
+			return PassportKey.COMPANY_NOT_ACCEPT;
 		}
 		
 		// 检查当前会话中是否存在User
@@ -64,25 +61,24 @@ public class RegisterPostController extends BaseController {
 		usb.setCompany(company);
 		
 		// 进入service检查
-		PassportStatusBean psb = this.ps.doRegisterStep1(usb);
+		PassportKey key = this.ps.doRegisterStep1(usb);
 		
-		if (psb == null) {
-			return ResultBody.result(PassportKey.SERVER_EXCEPTION);
+		if (key == null) {
+			return PassportKey.SERVER_EXCEPTION;
 		}
 		
-		if (psb.getCode() == PassportKey.OK.code) {
+		if (key == PassportKey.OK) {
 			// 检查通过则将user信息写入session临时保存
 			session.setAttribute(AttributeKey.REGISTER_ACCOUNT.key, usb);
 			// 同时添加完成记录
 			session.setAttribute(AttributeKey.REGISTER_STEP1.key, AttributeKey.ATTRIBUTE_OBJECT);
 		}
 		
-		return ResultBody.result(psb);
+		return key;
 	}
 
-	@RequestMapping(value="/step2/", method=RequestMethod.POST)
-	@ResponseBody
-	public String register_step2_01(@RequestParam("password") String password, HttpSession session) {
+	@PostMapping("/step2/")
+	public PassportKey register_step2_01(@RequestParam("password") String password, HttpSession session) {
 		// 获取session中的user
 		UserBean usb = (UserBean) session.getAttribute(AttributeKey.REGISTER_ACCOUNT.key);
 		if (usb == null) {
@@ -90,57 +86,55 @@ public class RegisterPostController extends BaseController {
 		}
 		
 		if (password==null || password.length()==0) {
-			ResultBody.result(PassportKey.PASSWORD_NOT_ACCEPT);
+			return PassportKey.PASSWORD_NOT_ACCEPT;
 		}
 		
 		usb.setPassword(password);
 		
-		PassportStatusBean psb = this.ps.doRegisterStep2(usb);
+		PassportKey key = this.ps.doRegisterStep2(usb);
 		
 		// 测试成功，回写session数据
-		if (psb.getCode() == PassportKey.OK.code) {
+		if (key == PassportKey.OK) {
 			session.setAttribute(AttributeKey.REGISTER_ACCOUNT.key, usb);
 			// 添加完成记录
 			session.setAttribute(AttributeKey.REGISTER_STEP2.key, AttributeKey.ATTRIBUTE_OBJECT);
 		}
 		
-		return ResultBody.result(psb);
+		return key;
 	}
 
-	@RequestMapping(value="/step3/", method=RequestMethod.POST)
-	@ResponseBody
-	public String register_step3_01(@RequestParam("vercode") String vercode, HttpSession session) {
+	@PostMapping("/step3/")
+	public PassportKey register_step3_01(@RequestParam("vercode") String vercode, HttpSession session) {
 		// 获取用户输入的验证码
 		String uCode = vercode;
 		if (uCode==null || uCode.length()==0) {
-			return ResultBody.result(PassportKey.VERCODE_EMPTY);
+			return PassportKey.VERCODE_EMPTY;
 		}
 		
 		if (!AppCheck.checkVercode(uCode)) {
-			return ResultBody.result(PassportKey.VERCODE_NOT_ACCEPT);
+			return PassportKey.VERCODE_NOT_ACCEPT;
 		}
 		
 		// 获取session中的验证码
 		String sCode = (String) session.getAttribute(AttributeKey.REGISTER_VERCODE.key);
 		if (sCode==null || sCode.length()==0 || (!sCode.equals(uCode))) {
-			return ResultBody.result(PassportKey.VERCODE_WRONG);
+			return PassportKey.VERCODE_WRONG;
 		}
 		
 		// 写入标记
 		session.setAttribute(AttributeKey.REGISTER_STEP3.key, AttributeKey.ATTRIBUTE_OBJECT);
 		
-		return ResultBody.result(PassportKey.OK);
+		return PassportKey.OK;
 	}
 	
-	@RequestMapping(value="/step4/", method=RequestMethod.POST)
-	@ResponseBody
-	public String register_step4_01(HttpSession session) {
+	@PostMapping("/step4/")
+	public PassportKey register_step4_01(HttpSession session) {
 		// 写入数据信息
 		if (session.getAttribute(AttributeKey.REGISTER_STEP1.key)!=null &&
 			session.getAttribute(AttributeKey.REGISTER_STEP2.key)!=null &&
 			session.getAttribute(AttributeKey.REGISTER_STEP3.key)!=null) {
-			PassportStatusBean psb = this.ps.doRegisterStep4((UserBean) session.getAttribute(AttributeKey.REGISTER_ACCOUNT.key));
-			if (psb.getCode() == PassportKey.OK.code) {
+			PassportKey key = this.ps.doRegisterStep4((UserBean) session.getAttribute(AttributeKey.REGISTER_ACCOUNT.key));
+			if (key == PassportKey.OK) {
 				// 如果操作成功，则此时数据已经写入数据库
 				// 清除session中的临时数据
 				session.removeAttribute(AttributeKey.REGISTER_VERCODE.key);
@@ -150,19 +144,18 @@ public class RegisterPostController extends BaseController {
 				session.removeAttribute(AttributeKey.REGISTER_STEP3.key);
 			}
 			
-			return ResultBody.result(psb);
+			return key;
 		} else {
 			// 信息不完整
-			return ResultBody.result(PassportKey.INCOMPLETE_INFORMATION);
+			return PassportKey.INCOMPLETE_INFORMATION;
 		}
 	}
 	
-	@RequestMapping(value="/vercode/", method=RequestMethod.POST)
-	@ResponseBody
-	public String register_vercode(HttpSession session) {
+	@PostMapping("/vercode/")
+	public PassportKey register_vercode(HttpSession session) {
 		// 判断是否拥有足够的信息
 		if (session.getAttribute(AttributeKey.REGISTER_STEP1.key) == null) {
-			return ResultBody.result(PassportKey.ACCOUNT_EMPTY);
+			return PassportKey.ACCOUNT_EMPTY;
 		}
 		////////////////////////////////////////////////
 		String code = VerCode.vercode();
@@ -172,9 +165,9 @@ public class RegisterPostController extends BaseController {
 		// 发送邮件
 		if (mail.send(usb.getAccount(), usb.getLast_name()+usb.getFirst_name(),
 				mail.SubjectMessage, mail.RegisterMessage + code)) {
-			return ResultBody.result(PassportKey.OK);
+			return PassportKey.OK;
 		} else {
-			return ResultBody.result(PassportKey.SERVER_EXCEPTION);
+			return PassportKey.SERVER_EXCEPTION;
 		}
 	}
 }

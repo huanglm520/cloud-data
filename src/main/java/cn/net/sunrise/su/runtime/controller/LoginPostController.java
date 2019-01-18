@@ -3,30 +3,27 @@ package cn.net.sunrise.su.runtime.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import cn.net.sunrise.su.beans.passport.LoginRecordBean;
-import cn.net.sunrise.su.beans.passport.PassportStatusBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.PassportKey;
 import cn.net.sunrise.su.service.PassportService;
-import cn.net.sunrise.su.tool.ResultBody;
 
-@Controller
+@RestController
 @RequestMapping(value="/passport/login", method=RequestMethod.POST)
 public class LoginPostController extends BaseController {
 	
 	@Autowired
 	private PassportService ps;
 
-	@RequestMapping(value="/", method=RequestMethod.POST)
-	@ResponseBody
-	public String login_01(@RequestParam("account") String account, 
+	@PostMapping("/")
+	public PassportKey login_01(@RequestParam("account") String account, 
 						   @RequestParam("password") String password,
 						   @RequestParam("address") String address,
 						   @RequestParam("position") String position,
@@ -36,11 +33,11 @@ public class LoginPostController extends BaseController {
 		usb.setPassword(password);
 		
 		if (usb.getAccount()==null || usb.getAccount().length()==0) {
-			return ResultBody.result(PassportKey.ACCOUNT_EMPTY);
+			return PassportKey.ACCOUNT_EMPTY;
 		}
 		
 		if (usb.getPassword()==null || usb.getPassword().length()==0) {
-			return ResultBody.result(PassportKey.PASSWORD_EMPTY);
+			return PassportKey.PASSWORD_EMPTY;
 		}
 		
 		usb.encode();
@@ -57,18 +54,18 @@ public class LoginPostController extends BaseController {
 		}
 		// 创建临时存储区
 		UserBean[] sessionUserArr = new UserBean[] {sessionUser};
-		PassportStatusBean lsb = this.ps.doLogin(usb, sessionUserArr);
+		PassportKey key = this.ps.doLogin(usb, sessionUserArr);
 		if (sessionUserArr[0] != null) {
 			// 已查询到数据
 			session.setAttribute(AttributeKey.SESSION_ACCOUNT.key, sessionUserArr[0]);
 		}
 		
-		if (lsb == null) {
-			return ResultBody.result(PassportKey.SERVER_EXCEPTION);
+		if (key == null) {
+			return PassportKey.SERVER_EXCEPTION;
 		}
 		
 		// 如果用户验证通过
-		if (lsb.getCode() == 0) {
+		if (key == PassportKey.OK) {
 
 			usb = sessionUserArr[0];
 			// 反编译用户信息
@@ -91,6 +88,6 @@ public class LoginPostController extends BaseController {
 			session.setAttribute(AttributeKey.IS_LOGIN.key, true);
 		}
 		
-		return ResultBody.result(lsb);
+		return key;
 	}
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,7 +27,7 @@ public class SecurityLoginRecordGetController extends BaseController {
 	@Autowired
 	private PassportService ps;
 
-	@RequestMapping(value="/login-record", method=RequestMethod.GET)
+	@GetMapping("/login-record")
 	public String record_01(HttpServletRequest request, HttpSession session) {
 		// 判断是否登录
 		if (!super.checkLogin(session)) {

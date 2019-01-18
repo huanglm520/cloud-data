@@ -19,6 +19,7 @@
   	<mysql.version>5.1.9</mysql.version>
   	<javax.mail.version>1.6.2</javax.mail.version>
   	<log4j2.version>2.7</log4j2.version>
+  	<jackson.version>2.9.3</jackson.version>
   	
   </properties>
   
@@ -123,6 +124,18 @@
   	  <artifactId>log4j-api</artifactId>
   	  <version>${log4j2.version}</version>
   	</dependency>
+  	
+  	<!-- 配置jackson -->
+  	<dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+    </dependency>
   	
   </dependencies>
   

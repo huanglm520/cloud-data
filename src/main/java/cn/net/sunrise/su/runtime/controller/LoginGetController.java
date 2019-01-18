@@ -3,6 +3,7 @@ package cn.net.sunrise.su.runtime.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,7 +19,7 @@ public class LoginGetController extends BaseController {
 		return name;
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	@GetMapping("/login")
 	public String login_01(HttpSession session) {
 		return this.pageName(session, "login");
 	}

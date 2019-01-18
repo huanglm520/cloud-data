@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,7 +34,7 @@ public class ContainerManagerGetController extends BaseController {
 	@Autowired
 	private FieldService fs;
 	
-	@RequestMapping(value="/main", method=RequestMethod.GET)
+	@GetMapping("/main")
 	public String main_01(HttpSession session, HttpServletRequest request) {
 		if (!super.checkLogin(session)) {
 			return BaseController.LOGIN_OUT;
@@ -57,7 +58,7 @@ public class ContainerManagerGetController extends BaseController {
 		return "container-manager-main";
 	}
 	
-	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	@GetMapping("/delete")
 	public String delete_01(HttpSession session, HttpServletRequest request) {
 		if (!super.checkLogin(session)) {
 			return BaseController.LOGIN_OUT;
@@ -79,7 +80,7 @@ public class ContainerManagerGetController extends BaseController {
 		return "container-manager-delete";
 	}
 	
-	@RequestMapping(value="/field", method=RequestMethod.GET)
+	@GetMapping("/field")
 	public String field_01(HttpSession session, HttpServletRequest request) {
 		if (!super.checkLogin(session)) {
 			return BaseController.LOGIN_OUT;
@@ -109,7 +110,7 @@ public class ContainerManagerGetController extends BaseController {
 		return "container-manager-field";
 	}
 	
-	@RequestMapping(value="/privilege", method=RequestMethod.GET)
+	@GetMapping("/privilege")
 	public String privilege_01(HttpSession session, HttpServletRequest request) {
 		if (!super.checkLogin(session)) {
 			return BaseController.LOGIN_OUT;

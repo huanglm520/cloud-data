@@ -20,4 +20,11 @@
 		resultType="java.lang.Object">
 		select 1 from tb_field where cid=#{cid} and name=#{name};
 	</select>
+	<select id="selectFieldById" parameterType="cn.net.sunrise.su.beans.container.FieldBean"
+		resultType="cn.net.sunrise.su.beans.container.FieldBean">
+		select * from tb_field where id=#{id};
+	</select>
+	<update id="updateField" parameterType="cn.net.sunrise.su.beans.container.FieldBean">
+		update tb_field set name=#{name}, type=#{type}, isnull=#{isnull}, `key`=#{key} where id=#{id};
+	</update>
 </mapper>

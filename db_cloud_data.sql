@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 19/01/2019 14:31:26
+ Date: 20/01/2019 01:44:48
 */
 
 SET NAMES utf8mb4;
@@ -79,7 +79,7 @@ INSERT INTO `tb_field` VALUES (6, 35, 'bmFtZQ==', '8+255', 1, 2, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (7, 35, 'YWdl', '3', 0, 1, 'MTk5Nw==');
 INSERT INTO `tb_field` VALUES (8, 35, 'c2Nob29s', '7+128', 0, 2, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (9, 35, 'ZXh0cmVh', '9', 1, 2, 'TlVMTA==');
-INSERT INTO `tb_field` VALUES (10, 35, 'aW50ZWdlcl9z', '6', 1, 2, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (10, 35, 'aW50ZWdlcl9z', '4', 0, 2, 'TlVMTA==');
 
 -- ----------------------------
 -- Table structure for tb_record
@@ -92,7 +92,7 @@ CREATE TABLE `tb_record`  (
   `time` bigint(20) NOT NULL,
   `position` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 308 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 314 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_record
@@ -385,6 +385,12 @@ INSERT INTO `tb_record` VALUES (304, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547823228179, 
 INSERT INTO `tb_record` VALUES (305, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547832620079, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (306, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547873759313, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (307, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547875070249, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (308, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547891600069, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (309, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547912793736, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (310, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547916091229, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (311, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547918297319, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (312, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547918413103, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (313, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547918908337, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 
 -- ----------------------------
 -- Table structure for tb_user
@@ -420,7 +426,7 @@ CREATE TABLE `zb_cyea8czkv+g9hwlqp1v6oa==`  (
   `age` bigint(20) NOT NULL DEFAULT 1997,
   `school` char(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `extrea` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `integer_s` decimal(10, 0) NULL DEFAULT NULL,
+  `integer_s` float NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `age`(`age`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;

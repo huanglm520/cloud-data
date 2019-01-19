@@ -9,6 +9,7 @@ public enum FieldKey {
 	FIELD_NAME_EMPTY(-2001, "field name empty"),
 	FIELD_NAME_NOT_ACCEPT(-2002, "field name not accept"),
 	FIELD_NAME_ALREADY_EXISTS(-2003, "field name already exists"),
+	FIELD_NOT_EXISTS(-2004, "field not exists"),
 	SERVER_EXCEPTION(PassportKey.SERVER_EXCEPTION.code, PassportKey.SERVER_EXCEPTION.message);
 	
 	public final int code;

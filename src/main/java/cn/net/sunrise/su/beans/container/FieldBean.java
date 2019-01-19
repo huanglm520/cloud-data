@@ -195,4 +195,12 @@ public class FieldBean implements Serializable {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "FieldBean [id=" + id + ", cid=" + cid + ", name=" + name + ", type=" + type + ", isnull=" + isnull
+				+ ", key=" + key + ", defaultdata=" + defaultdata + "]";
+	}
+	
+	
 }

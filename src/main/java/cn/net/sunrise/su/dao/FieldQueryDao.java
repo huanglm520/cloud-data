@@ -11,4 +11,6 @@ public interface FieldQueryDao {
 	public void deleteField(FieldBean fieldBean);
 	public void deleteFieldByCid(FieldBean fieldBean);
 	public List<FieldBean> selectFieldByCid(FieldBean fieldBean);
+	public List<FieldBean> selectFieldById(FieldBean fieldBean);
+	public void updateField(FieldBean fieldBean);
 }

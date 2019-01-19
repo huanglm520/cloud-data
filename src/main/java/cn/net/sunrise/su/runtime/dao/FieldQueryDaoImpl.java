@@ -44,4 +44,16 @@ public class FieldQueryDaoImpl extends BaseDao implements FieldQueryDao {
 		// TODO Auto-generated method stub
 		return super.select("selectFieldByCid", fieldBean);
 	}
+
+	@Override
+	public List<FieldBean> selectFieldById(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		return super.select("selectFieldById", fieldBean);
+	}
+
+	@Override
+	public void updateField(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		super.update("updateField", fieldBean);
+	}
 }

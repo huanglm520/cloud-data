@@ -164,7 +164,7 @@
 			<span class="hint">该操作会删除此容器的所有数据，且无法恢复，请三思而后行。<br>若要删除此容器，请在下方输入此容器名称：<span style="color: #FF0000"><%=request.getAttribute(SecurityKey.CONTAINER_NAME.key) %></span>，然后单击删除</span>
 		</div>
 		<div class="name">
-			<input class="name" id="name" type="text" placeholder="请再此输入容器名称" spellcheck="false" />
+			<input class="name" id="name" type="text" placeholder="请在此输入容器名称" spellcheck="false" />
 		</div>
 		<div class="submit">
 			<button class="submit" id="submit" onmouseover="$(this).animate({'background-color':'#F45454'}, 200);" onmouseout="$(this).animate({'background-color':'#FF0000'}, 200);">删除容器</button>

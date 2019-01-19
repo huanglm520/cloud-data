@@ -12,4 +12,6 @@ public interface FieldService {
 	public void deleteFieldByCid(FieldBean fieldBean);
 	public boolean existsField(FieldBean fieldBean);
 	public List<FieldBean> selectFieldByCid(FieldBean fieldBean);
+	public List<FieldBean> selectFieldById(FieldBean fieldBean);
+	public void updateFidle(FieldBean fieldBean);
 }

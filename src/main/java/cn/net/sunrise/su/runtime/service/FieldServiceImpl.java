@@ -50,4 +50,16 @@ public class FieldServiceImpl implements FieldService {
 		return this.fieldQuerDao.selectFieldByCid(fieldBean);
 	}
 
+	@Override
+	public List<FieldBean> selectFieldById(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		return this.fieldQuerDao.selectFieldById(fieldBean);
+	}
+
+	@Override
+	public void updateFidle(FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		this.fieldQuerDao.updateField(fieldBean);
+	}
+
 }

@@ -20,7 +20,7 @@
   
   <!-- 添加映射文件名前后缀 -->
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-  	<property name="prefix" value="/WEB-INF/views/"></property>
+  	<property name="prefix" value="/WEB-INF/classes/views/"></property>
   	<property name="suffix" value=".jsp"></property>
   </bean>
 

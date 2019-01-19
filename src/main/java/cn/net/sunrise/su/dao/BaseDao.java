@@ -29,22 +29,25 @@ public class BaseDao {
 		return list;
 	}
 	
-	protected void insert(String statement, Object object) {
+	protected int insert(String statement, Object object) {
 		SqlSession sqlSession = this.sqlSessionFactory.openSession();
-		sqlSession.insert(NAMESPACE+statement, object);
+		int r = sqlSession.insert(NAMESPACE+statement, object);
 		sqlSession.close();
+		return r;
 	}
 	
-	protected void update(String statement, Object object) {
+	protected int update(String statement, Object object) {
 		SqlSession sqlSession = this.sqlSessionFactory.openSession();
-		sqlSession.update(NAMESPACE+statement, object);
+		int r = sqlSession.update(NAMESPACE+statement, object);
 		sqlSession.close();
+		return r;
 	}
 	
-	protected void delete(String statement, Object object) {
+	protected int delete(String statement, Object object) {
 		SqlSession sqlSession = this.sqlSessionFactory.openSession();
-		sqlSession.delete(NAMESPACE+statement, object);
+		int r = sqlSession.delete(NAMESPACE+statement, object);
 		sqlSession.close();
+		return r;
 	}
 	
 	protected Object selectOne(String statement, Object object) {

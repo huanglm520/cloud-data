@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 12/01/2019 16:00:20
+ Date: 19/01/2019 14:31:26
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,7 @@ CREATE TABLE `tb_container`  (
 -- ----------------------------
 -- Records of tb_container
 -- ----------------------------
-INSERT INTO `tb_container` VALUES (35, 'test1', 'test1_cd', 4, 1, 0, 1545335950006);
+INSERT INTO `tb_container` VALUES (35, 'test1', 'test1_cd', 4, 6, 0, 1545335950006);
 
 -- ----------------------------
 -- Table structure for tb_container_privilege
@@ -47,7 +47,7 @@ CREATE TABLE `tb_container_privilege`  (
   `cid` int(11) NOT NULL,
   `privilege` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_container_privilege
@@ -69,12 +69,17 @@ CREATE TABLE `tb_field`  (
   `key` int(11) NOT NULL,
   `defaultdata` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_field
 -- ----------------------------
 INSERT INTO `tb_field` VALUES (3, 35, 'aWQ=', '2', 0, 0, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (6, 35, 'bmFtZQ==', '8+255', 1, 2, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (7, 35, 'YWdl', '3', 0, 1, 'MTk5Nw==');
+INSERT INTO `tb_field` VALUES (8, 35, 'c2Nob29s', '7+128', 0, 2, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (9, 35, 'ZXh0cmVh', '9', 1, 2, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (10, 35, 'aW50ZWdlcl9z', '6', 1, 2, 'TlVMTA==');
 
 -- ----------------------------
 -- Table structure for tb_record
@@ -87,7 +92,7 @@ CREATE TABLE `tb_record`  (
   `time` bigint(20) NOT NULL,
   `position` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 295 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 308 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_record
@@ -367,6 +372,19 @@ INSERT INTO `tb_record` VALUES (291, 11, 'MTExLjE5Ni4yNDQuMTE1', 1547275498207, 
 INSERT INTO `tb_record` VALUES (292, 11, 'MTExLjE5Ni4yNDQuMTE1', 1547275945698, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (293, 11, 'MTExLjE5Ni4yNDQuMTE1', 1547277236797, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (294, 11, 'MTExLjE5Ni4yNDQuMTE1', 1547278924777, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (295, 11, 'MTExLjE5Ni4yNDQuMTE1', 1547360336504, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (296, 11, 'MTExLjE5Ni4yNDQuMTE1', 1547361809106, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (297, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547561010054, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (298, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547561408858, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (299, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547646047212, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (300, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547814474670, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (301, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547818149923, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (302, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547818341228, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (303, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547820793203, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (304, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547823228179, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (305, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547832620079, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (306, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547873759313, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (307, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547875070249, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 
 -- ----------------------------
 -- Table structure for tb_user
@@ -398,7 +416,13 @@ INSERT INTO `tb_user` VALUES (13, 'MTgzNDM0NDcyMzhAMTYzLmNvbQ==', 'ojHY1lVsmPJyV
 DROP TABLE IF EXISTS `zb_cyea8czkv+g9hwlqp1v6oa==`;
 CREATE TABLE `zb_cyea8czkv+g9hwlqp1v6oa==`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`) USING BTREE
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `age` bigint(20) NOT NULL DEFAULT 1997,
+  `school` char(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `extrea` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `integer_s` decimal(10, 0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `age`(`age`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

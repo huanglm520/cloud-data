@@ -140,4 +140,10 @@ public class ContainerQueryDaoImpl extends BaseDao implements ContainerQueryDao 
 		super.update("addContainerField", containerNewBean);
 	}
 
+	@Override
+	public void plusOneField(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		super.update("plusOneField", containerBean);
+	}
+
 }

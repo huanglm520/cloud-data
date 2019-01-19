@@ -32,4 +32,5 @@ public interface ContainerQueryDao {
 	public boolean isOwner(ContainerBean containerBean);
 	
 	public void addContainerField(ContainerNewBean containerNewBean);
+	public void plusOneField(ContainerBean containerBean);
 }

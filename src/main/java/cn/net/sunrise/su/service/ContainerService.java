@@ -23,4 +23,5 @@ public interface ContainerService {
 	public List<ContainerPrivilegeBean> selectPrivilegeById(ContainerPrivilegeBean containerPrivilegeBean);
 	public void deletePrivilegeById(ContainerPrivilegeBean containerPrivilegeBean);
 	public void addContainerField(ContainerBean containerBean, FieldBean fieldBean);
+	public void plusOneField(ContainerBean containerBean);
 }

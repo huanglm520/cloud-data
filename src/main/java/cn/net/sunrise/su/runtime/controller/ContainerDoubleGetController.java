@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.google.gson.Gson;
-
 import cn.net.sunrise.su.beans.container.ContainerBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
@@ -20,6 +18,7 @@ import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 import cn.net.sunrise.su.enums.ContainerStatusKey;
 import cn.net.sunrise.su.enums.SecurityKey;
 import cn.net.sunrise.su.service.ContainerService;
+import cn.net.sunrise.su.tool.ResultBody;
 
 @Controller
 @RequestMapping(value="/container", method=RequestMethod.GET)
@@ -79,7 +78,7 @@ public class ContainerDoubleGetController extends BaseController {
 			containerBean2.state();
 			containerBean2.privileges();
 		}
-		request.setAttribute(SecurityKey.SECURITY_CONTAINER_LIST.key, new Gson().toJson(list));
+		request.setAttribute(SecurityKey.SECURITY_CONTAINER_LIST.key, ResultBody.gson.toJson(list));
 		return page;
 	}
 	

@@ -86,6 +86,11 @@
 			cursor: pointer;
 			border-radius: 5px;
 		}
+		span.error {
+			font-family: "微软雅黑", "华文细黑";
+			font-size: 12px;
+			color:#FF0000;
+		}
 	</style>
 
 </head>
@@ -176,7 +181,9 @@
 		<div class="data">
 			<span class="data">字段默认值：</span><input type="text" class="data" id="fielddefault" spellcheck="false" />
 		</div>
-		<div class="data" style="border: none; text-align: center; height: 20px"></div>
+		<div class="data" style="border: none; text-align: center; height: 20px">
+			<span id="error" class="error"></span>
+		</div>
 		<div class="data" style="border: none; text-align: center;">
 			<button class="submit" id="submit" onmouseover="$(this).animate({'background-color':'#46B4EE'}, 200);" onmouseout="$(this).animate({'background-color':'#1296DB'}, 200);">确认添加</button>
 		</div>
@@ -208,6 +215,84 @@
 			} else {
 				$("div#len").css({"display": "none"});
 			}
+		});
+	</script>
+	
+	<script type="text/javascript">
+		var param = window.location.search;
+		var cid = -1;
+		if (param.indexOf("?") != -1) {
+			var arr = param.substr(1).split("&");
+			for (var i=0; i<arr.length; i++) { 
+				var t = arr[i].split("=");
+				if (t[0] == "cid") {
+					cid = t[1];
+				}
+			}
+		}
+
+		function disable() {
+   			$("#submit").attr("disabled", "true");
+   			$("#submit").css({"background-color": "#8B8F93", "cursor": "not-allowed"});
+   			$("#submit").text("正在添加...");
+   		}
+   		function enable() {
+   			$("#submit").removeAttr("disabled");
+   			$("#submit").css({"background-color": "#0070D2", "cursor": "pointer"});
+   			$("#submit").text("确认添加");
+    	}
+   		
+	</script>
+	
+	<script type="text/javascript">
+		$("#submit").click(function() {
+			$("#error").empty();
+			
+			var fname = $("#fieldname").val();
+			if (!fieldNameCheck.test(fname)) {
+				$("#error").text("字段名只允许使用字母和下划线，且长度在16位以内");
+				return;
+			}
+			
+			disable();
+			
+			$.ajax({
+				url: "<%=path%>/container/manager/field/add/", // Write request url
+				type: "POST",
+				timeout: 5000,
+				async: true,
+				data: {
+					"fieldname": fname,
+					"fieldtype": $("#fieldtype").val(),
+					"fieldlen": $("#fieldlen").val(),
+					"allownull": $("#allownull").val(),
+					"fieldkey": $("#fieldkey").val(),
+					"defaultdata": $("#fielddefault").val(),
+					"cid": cid
+				},
+				dataType: "json",
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					$("#error").text("连接到服务器时出现问题，请检查您的网络连接或者稍后重试");
+					enable();
+				},
+				success: function(data, textStatus) {
+					if (data.code == Code["OK"]) {
+						window.location.href = "<%=path %>/container/manager/field?cid="+cid;
+					} else {
+						if (data.code == Code["NOT_LOGIN"]) {
+							// 身份过期
+							$("#error").text("身份已过期，请重新登录");
+						} else if (data.code == Code["FIELD_NAME_ALREADY_EXISTS"]) {
+							$("#error").text("该字段已存在，请更换其名称");
+						} else if (data.code == Code["FIELD_NAME_NOT_ACCEPT"] || data.code == Code["FIELD_NAME_EMPTY"]) {
+							$("#error").text("字段名只允许使用字母和下划线，且长度在16位以内");
+						} else if (data.code == Code["SERVER_ERROR"]) {
+							$("#error").text("服务器内部错误，请稍后重试");
+						}
+						enable();
+					}
+				}
+			});
 		});
 	</script>
 	

@@ -31,13 +31,13 @@ public class ContainerManagerFieldPostController extends BaseController {
 	@Autowired
 	private ContainerService containerService;
 	
-	@PostMapping("/add")
+	@PostMapping("/add/")
 	public Object add(@RequestParam("fieldname") String fname, 
 					  @RequestParam("fieldtype") String type,
 					  @RequestParam("fieldlen") String length,
 					  @RequestParam("allownull") String isnull,
 					  @RequestParam("fieldkey") String key,
-					  @RequestParam("defaultdata") String defaultdata,
+					  @RequestParam(value="defaultdata", defaultValue=FieldBean.NULL_DEFAULT) String defaultdata,
 					  @RequestParam("cid") String cid,
 					  HttpSession session) {
 		if (!super.checkLogin(session)) {
@@ -56,13 +56,13 @@ public class ContainerManagerFieldPostController extends BaseController {
 			return FieldKey.FIELD_NAME_NOT_ACCEPT;
 		}
 		
-		if (type==null || type.length()==0 ||
-				!"0".equals(isnull) || !"1".equals(isnull) ||
-				!"0".equals(key) || !"1".equals(key) || !"2".equals(key)) {
+		if (type==null || !type.matches("[1-9]")) {
 			return FieldKey.SERVER_EXCEPTION;
 		}
-		
-		if (!type.matches("[1-9]")) {
+		if (key==null || !key.matches("0|1|2")) {
+			return FieldKey.SERVER_EXCEPTION;
+		}
+		if (isnull==null || !isnull.matches("0|1")) {
 			return FieldKey.SERVER_EXCEPTION;
 		}
 		
@@ -76,11 +76,12 @@ public class ContainerManagerFieldPostController extends BaseController {
 		}
 		
 		FieldBean fieldBean = new FieldBean();
+		fieldBean.setName(fname);
 		fieldBean.setCid(Integer.parseInt(cid));
 		fieldBean.setIsnull(Integer.parseInt(isnull));
 		fieldBean.setKey(Integer.parseInt(key));
 		if (type.matches("7|8")) {
-			if (length!=null && length.length()!=0 && length.matches("[0-9]{1,6}") && Integer.parseInt(length)<=65536) {
+			if (length!=null && length.length()!=0 && length.matches("[0-9]{1,6}") && Integer.parseInt(length)<=255) {
 				// 如果长度合法则按照用户指定长度
 				fieldBean.setType(FieldBean.textTypeString(type, length));
 			} else {
@@ -92,14 +93,18 @@ public class ContainerManagerFieldPostController extends BaseController {
 		}
 		
 		fieldBean.setDefaultdata(defaultdata==null || defaultdata.length()==0 ? FieldBean.NULL_DEFAULT : defaultdata);
-		
+		fieldBean.encode();
+		if (this.fieldService.existsField(fieldBean)) {
+			return FieldKey.FIELD_NAME_ALREADY_EXISTS;
+		}
+		fieldBean.decode();
 		containerBean = this.containerService.selectContainer(containerBean).get(0);
 		
-		// 写入容器实体
+		// 写入容器记录和实体
 		this.containerService.addContainerField(containerBean, fieldBean);
-		
 		fieldBean.encode();
 		this.fieldService.addField(fieldBean);
+		this.containerService.plusOneField(containerBean);
 		
 		return FieldKey.OK;
 	}

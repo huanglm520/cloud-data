@@ -176,7 +176,7 @@ public class ContainerServerImpl implements ContainerService {
 		// TODO Auto-generated method stub
 		// 解析字段
 		StringBuffer sb = new StringBuffer();
-		sb.append(containerBean.tableName()+" add column "+fieldBean.getName()+" ");
+		sb.append("`"+containerBean.tableName()+"` add column "+fieldBean.getName()+" ");
 		String[] types = fieldBean.getType().split("\\+");
 		switch (types[0]) {
 			case FieldBean.BIT: {
@@ -218,11 +218,11 @@ public class ContainerServerImpl implements ContainerService {
 		}
 		
 		switch (fieldBean.getKey()) {
-			case 1: {
+			case 0: {
 				sb.append(" primary key ");
 				break;
 			}
-			case 2: {
+			case 1: {
 				sb.append(" unique key ");
 				break;
 			}
@@ -232,13 +232,19 @@ public class ContainerServerImpl implements ContainerService {
 			sb.append(" not null ");
 		}
 		
-		if (fieldBean.getDefaultdata()!=null && fieldBean.getDefaultdata().length()!=0) {
+		if (fieldBean.getDefaultdata()!=null && !fieldBean.getDefaultdata().equals(FieldBean.NULL_DEFAULT)) {
 			sb.append(String.format(" default '%s' ", fieldBean.getDefaultdata()));
 		}
 		
 		ContainerNewBean containerNewBean = new ContainerNewBean();
-		containerNewBean.setTablename(sb.append(";").toString());
+		containerNewBean.setTablename(sb.toString());
 		this.containerQueryDao.addContainerField(containerNewBean);
+	}
+
+	@Override
+	public void plusOneField(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		this.containerQueryDao.plusOneField(containerBean);
 	}
 
 }

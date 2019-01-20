@@ -203,4 +203,46 @@ public class ContainerManagerFieldPostController extends BaseController {
 		
 		return FieldKey.OK;
 	}
+	
+	@PostMapping("/delete/")
+	public Object delete(@RequestParam("name") String name, @RequestParam("fid") String fid, HttpSession session) {
+		if (!super.checkLogin(session)) {
+			return PassportKey.NOT_LOGIN;
+		}
+		if (fid==null || !AppCheck.checkId(fid)) {
+			return ContainerKey.NO_PRIVILEGE;
+		}
+		
+		FieldBean fieldBean = new FieldBean();
+		fieldBean.setId(Integer.parseInt(fid));
+		
+		List<FieldBean> list = this.fieldService.selectFieldById(fieldBean);
+		if (list==null || list.isEmpty()) {
+			return ContainerKey.NO_PRIVILEGE;
+		}
+		
+		UserBean userBean = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);
+		fieldBean = list.get(0);
+		ContainerBean containerBean = new ContainerBean();
+		containerBean.setId(fieldBean.getCid());
+		containerBean.setUid(userBean.getId());
+		if (!this.containerService.hasPrivilege(containerBean)) {
+			return ContainerKey.NO_PRIVILEGE;
+		}
+		
+		containerBean = this.containerService.selectContainerById(containerBean).get(0);
+		
+		fieldBean.decode();
+		if (!(containerBean.getName()+":"+fieldBean.getName()).equals(name)) {
+			return ContainerKey.NO_PRIVILEGE;
+		}
+		
+		// 清理字段记录值
+		
+		this.containerService.deleteContainerField(containerBean, fieldBean);
+		this.containerService.subOneField(containerBean);
+		this.fieldService.deleteField(fieldBean);
+		
+		return FieldKey.OK;
+ 	}
 }

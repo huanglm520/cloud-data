@@ -92,6 +92,9 @@
 	<update id="plusOneField" parameterType="cn.net.sunrise.su.beans.container.ContainerBean">
 		update tb_container set field=field+1 where id=#{id};
 	</update>
+	<update id="subOneField" parameterType="cn.net.sunrise.su.beans.container.ContainerBean">
+		update tb_container set field=field-1 where id=#{id};
+	</update>
 	
 	<!-- 容器空间配置 -->
 	<update id="createContainerSpace" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">
@@ -100,7 +103,7 @@
 	<update id="dropContainerSpace" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">
 		drop table `${tablename}`;
 	</update>
-	<update id="addContainerField" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">
+	<update id="containerField" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">
 		alter table ${tablename};
 	</update>
 </mapper>

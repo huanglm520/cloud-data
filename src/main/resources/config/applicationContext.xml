@@ -25,7 +25,7 @@
   </bean>
 
   <import resource="classpath:config/c3p0-config.xml"/>
-  <import resource="classpath:config/mybatis-config.xml"/>
+<!--   <import resource="classpath:config/mybatis-config.xml"/> -->
   <import resource="classpath:config/spring-mybatis.xml"/>
   
 </beans>

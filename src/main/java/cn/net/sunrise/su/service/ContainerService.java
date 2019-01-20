@@ -25,4 +25,6 @@ public interface ContainerService {
 	public void addContainerField(ContainerBean containerBean, FieldBean fieldBean);
 	public void plusOneField(ContainerBean containerBean);
 	public void updateContainerField(ContainerBean containerBean, FieldBean fieldBean);
+	public void deleteContainerField(ContainerBean containerBean, FieldBean fieldBean);
+	public void subOneField(ContainerBean containerBean);
 }

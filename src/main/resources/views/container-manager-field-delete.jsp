@@ -161,13 +161,13 @@
 			<span class="warning">警告：此操作具有高度危险性</span>
 		</div>
 		<div class="hint">
-			<span class="hint">该操作会删除与该字段关联的所有数据，且无法恢复，请三思而后行。<br>若要删除此字段，请在下方输入字符串：<span style="color: #FF0000"><%=request.getAttribute(SecurityKey.CONTAINER_NAME.key) %></span>，然后单击删除</span>
+			<span class="hint">该操作会删除与该字段关联的所有数据，且无法恢复，请三思而后行。<br>若要删除此字段，请在下方输入字符串：<span style="color: #FF0000"><%=request.getAttribute(SecurityKey.DROP_FIELD.key) %></span>，然后单击删除</span>
 		</div>
 		<div class="name">
 			<input class="name" id="name" type="text" placeholder="请在此输入字符串" spellcheck="false" />
 		</div>
 		<div class="submit">
-			<button class="submit" id="submit" onmouseover="$(this).animate({'background-color':'#F45454'}, 200);" onmouseout="$(this).animate({'background-color':'#FF0000'}, 200);">删除容器</button>
+			<button class="submit" id="submit" onmouseover="$(this).animate({'background-color':'#F45454'}, 200);" onmouseout="$(this).animate({'background-color':'#FF0000'}, 200);">删除字段</button>
 		</div>
 	</div>
 	
@@ -195,20 +195,23 @@
 		}
 		function enable() {
 			$("#submit").css({"background-color":"#FF0000", "cursor":"pointer"});
-			$("#submit").text("删除容器");
+			$("#submit").text("删除字段");
 			$("#submit").removeAttr("disabled");
 		}
 	</script>
 	
 	<script type="text/javascript">
 		var param = window.location.search;
-		var id = -1;
+		var cid = -1;
+		var fid = -1;
 		if (param.indexOf("?") != -1) {
 			var arr = param.substr(1).split("&");
 			for (var i=0; i<arr.length; i++) { 
 				var t = arr[i].split("=");
 				if (t[0] == "cid") {
-					id = t[1];
+					cid = t[1];
+				} else if (t[0] == "fid") {
+					fid = t[1];
 				}
 			}
 		}
@@ -218,10 +221,10 @@
 			disable();
 			
 			var name = $("#name").val();
-			if (name != "<%=request.getAttribute(SecurityKey.CONTAINER_NAME.key) %>") {
+			if (name != "<%=request.getAttribute(SecurityKey.DROP_FIELD.key) %>") {
 				$("#quarantine").css({"display": "block"});
 				$("#pop").empty();
-				$("#pop").append("容器名称不正确");
+				$("#pop").append("字符串不正确");
 				$("#pop").dialog({
 					height: 200,
 					width: 300,
@@ -245,11 +248,11 @@
 			}
 			
 			$.ajax({
-				url: "<%=path%>/container/manager/delete-container/",
+				url: "<%=path%>/container/manager/field/delete/",
 				type: "POST",
 				timeout: 5000,
 				async: true,
-				data: {"name":name, "id":id},
+				data: {"name":name, "fid":fid},
 				dataType: "json",
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					$("#quarantine").css({"display": "block"});
@@ -279,7 +282,7 @@
 					$("#quarantine").css({"display": "block"});
 					$("#pop").empty();
 					if (data.code == Code["OK"]) {
-						$("#pop").append("容器已删除");
+						$("#pop").append("字段已删除");
 					} else if (data.code == Code["NOT_LOGIN"]) {
 						$("#pop").append("身份已过期，请重新登录");
 					} else if (data.code == Code["NO_PRIVILEGE"]) {
@@ -299,7 +302,7 @@
 								$("#pop").empty();
 								$("#ui-id-1").empty();
 								if (data.code == Code["OK"]) {
-									window.location.href = "<%=path%>/container/manager";
+									window.location.href = "<%=path%>/container/manager/field?cid="+cid;
 								}
 								enable();
 							}

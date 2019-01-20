@@ -16,7 +16,9 @@ public class LogoutPostController extends BaseController {
 	@PostMapping("/logout/")
 	public PassportKey logout_01(HttpSession session) {
 		// 移除session状态
-		session.invalidate();
+		if (session != null) {
+			session.invalidate();
+		}
 		return PassportKey.OK;
 	}
 }

@@ -238,7 +238,7 @@ public class ContainerServerImpl implements ContainerService {
 		
 		ContainerNewBean containerNewBean = new ContainerNewBean();
 		containerNewBean.setTablename(sb.toString());
-		this.containerQueryDao.addContainerField(containerNewBean);
+		this.containerQueryDao.containerField(containerNewBean);
 	}
 
 	@Override
@@ -314,7 +314,21 @@ public class ContainerServerImpl implements ContainerService {
 		
 		ContainerNewBean containerNewBean = new ContainerNewBean();
 		containerNewBean.setTablename(sb.toString());
-		this.containerQueryDao.addContainerField(containerNewBean);
+		this.containerQueryDao.containerField(containerNewBean);
+	}
+
+	@Override
+	public void deleteContainerField(ContainerBean containerBean, FieldBean fieldBean) {
+		// TODO Auto-generated method stub
+		ContainerNewBean containerNewBean = new ContainerNewBean();
+		containerNewBean.setTablename("`"+containerBean.tableName()+"` drop column "+fieldBean.getName());
+		this.containerQueryDao.containerField(containerNewBean);
+	}
+
+	@Override
+	public void subOneField(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		this.containerQueryDao.subOneField(containerBean);
 	}
 
 }

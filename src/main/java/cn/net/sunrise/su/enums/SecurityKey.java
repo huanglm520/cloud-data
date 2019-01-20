@@ -12,6 +12,7 @@ public enum SecurityKey {
 	CONTAINER_NAME("containername"),
 	CONTAINER_ID("containerid"),
 	FIELD_LIST("fieldlist"),
+	DROP_FIELD("dropfield"),
 	USER_ACCOUNT("useraccount"),
 	PRIVILEGE_NAME("privilegename"),
 	SECURITY_CONTAINER_LIST("securitycontainerlist"),

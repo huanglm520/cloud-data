@@ -2,14 +2,14 @@ package cn.net.sunrise.su.runtime.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import cn.net.sunrise.su.enums.PassportKey;
 
-@Controller
+@RestController
 @RequestMapping(value="/passport", method=RequestMethod.POST)
 public class LogoutPostController extends BaseController {
 

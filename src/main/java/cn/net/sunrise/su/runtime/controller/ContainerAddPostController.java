@@ -2,6 +2,7 @@ package cn.net.sunrise.su.runtime.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,7 @@ public class ContainerAddPostController extends BaseController {
 			return PassportKey.NOT_LOGIN;
 		}
 		
-		if (containerName==null || containerName.length()==0) {
+		if (StringUtils.isBlank(containerName)) {
 			return ContainerKey.CONTAINER_NAME_EMPTY;
 		}
 		if (containerName.length() > 16) {
@@ -41,7 +42,7 @@ public class ContainerAddPostController extends BaseController {
 		if (!ContainerCheck.checkContainerName(containerName)) {
 			return ContainerKey.CONTAINER_NAME_NOT_ACCEPT;
 		}
-		if (apiName==null || apiName.length()==0) {
+		if (StringUtils.isBlank(apiName)) {
 			return ContainerKey.API_NAME_EMPTY;
 		}
 		if (apiName.length() > 32) {

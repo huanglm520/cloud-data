@@ -2,6 +2,7 @@ package cn.net.sunrise.su.runtime.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class SecurityChangeMailPostController extends BaseController {
 	private PassportService ps;
 	
 	@PostMapping("/change-mail/")
-	public PassportKey changeMain_01(HttpSession session) {
+	public PassportKey changeMail_01(HttpSession session) {
 		if (!super.checkLogin(session)) {
 			return PassportKey.NOT_LOGIN;
 		}
@@ -42,7 +43,7 @@ public class SecurityChangeMailPostController extends BaseController {
 			return PassportKey.NOT_LOGIN;
 		}
 		
-		if (vercode==null || vercode.length()==0) {
+		if (StringUtils.isBlank(vercode)) {
 			return PassportKey.VERCODE_EMPTY;
 		}
 		if (!AppCheck.checkVercode(vercode)) {
@@ -50,7 +51,7 @@ public class SecurityChangeMailPostController extends BaseController {
 		}
 		// 取得session中的user并校验数据
 		UserBean usb = (UserBean) session.getAttribute(AttributeKey.CHANGE_MAIL_NEW_MAIL.key);
-		if (usb==null || usb.getAccount()==null) {
+		if (usb==null || StringUtils.isBlank(usb.getAccount())) {
 			return PassportKey.ACCOUNT_EMPTY;
 		}
 		if (!usb.getAccount().equals(mail)) {
@@ -77,7 +78,7 @@ public class SecurityChangeMailPostController extends BaseController {
 		}
 		
 		// 判断数据合法性
-		if (mailStr==null || mailStr.length()==0) {
+		if (StringUtils.isBlank(mailStr)) {
 			return PassportKey.ACCOUNT_EMPTY;
 		}
 		if (!UserCheck.checkAccount(mailStr)) {

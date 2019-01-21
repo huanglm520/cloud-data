@@ -2,6 +2,7 @@ package cn.net.sunrise.su.runtime.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,11 +33,11 @@ public class LoginPostController extends BaseController {
 		usb.setAccount(account);
 		usb.setPassword(password);
 		
-		if (usb.getAccount()==null || usb.getAccount().length()==0) {
+		if (StringUtils.isBlank(usb.getAccount())) {
 			return PassportKey.ACCOUNT_EMPTY;
 		}
 		
-		if (usb.getPassword()==null || usb.getPassword().length()==0) {
+		if (StringUtils.isBlank(usb.getPassword())) {
 			return PassportKey.PASSWORD_EMPTY;
 		}
 		

@@ -2,6 +2,7 @@ package cn.net.sunrise.su.runtime.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,19 +33,19 @@ public class RegisterPostController extends BaseController {
 									HttpSession session) {
 
 		// 检查数据
-		if (mail==null || mail.length()==0) {
+		if (StringUtils.isBlank(mail)) {
 			return PassportKey.ACCOUNT_NOT_ACCEPT;
 		}
 		
-		if (first_name==null || first_name.length()==0) {
+		if (StringUtils.isBlank(first_name)) {
 			return PassportKey.FIRST_NAME_NOT_ACCEPT;
 		}
 		
-		if (last_name==null || last_name.length()==0) {
+		if (StringUtils.isBlank(last_name)) {
 			return PassportKey.LAST_NAME_NOT_ACCEPT;
 		}
 		
-		if (company==null || company.length()==0) {
+		if (StringUtils.isBlank(company)) {
 			return PassportKey.COMPANY_NOT_ACCEPT;
 		}
 		
@@ -85,7 +86,7 @@ public class RegisterPostController extends BaseController {
 			usb = new UserBean();
 		}
 		
-		if (password==null || password.length()==0) {
+		if (StringUtils.isBlank(password)) {
 			return PassportKey.PASSWORD_NOT_ACCEPT;
 		}
 		
@@ -107,7 +108,7 @@ public class RegisterPostController extends BaseController {
 	public PassportKey register_step3_01(@RequestParam("vercode") String vercode, HttpSession session) {
 		// 获取用户输入的验证码
 		String uCode = vercode;
-		if (uCode==null || uCode.length()==0) {
+		if (StringUtils.isBlank(vercode)) {
 			return PassportKey.VERCODE_EMPTY;
 		}
 		

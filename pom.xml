@@ -19,6 +19,7 @@
   	<mysql.version>5.1.9</mysql.version>
   	<javax.mail.version>1.6.2</javax.mail.version>
   	<log4j2.version>2.7</log4j2.version>
+  	<commons.lang3.version>3.8.1</commons.lang3.version>
   	<jackson.version>2.9.3</jackson.version>
   	
   </properties>
@@ -124,6 +125,12 @@
   	  <artifactId>log4j-api</artifactId>
   	  <version>${log4j2.version}</version>
   	</dependency>
+  	
+  	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	    <version>${commons.lang3.version}</version>
+	</dependency>
   	
   	<!-- 配置jackson -->
   	<dependency>

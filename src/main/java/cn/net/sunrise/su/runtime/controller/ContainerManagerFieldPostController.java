@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,11 +47,11 @@ public class ContainerManagerFieldPostController extends BaseController {
 			return PassportKey.NOT_LOGIN;
 		}
 		
-		if (cid==null || !AppCheck.checkId(cid)) {
+		if (StringUtils.isBlank(cid) || !AppCheck.checkId(cid)) {
 			return ContainerKey.NO_PRIVILEGE;
 		}
 		
-		if (fname==null || fname.length() == 0) {
+		if (StringUtils.isBlank(fname)) {
 			return FieldKey.FIELD_NAME_EMPTY;
 		}
 		
@@ -58,13 +59,13 @@ public class ContainerManagerFieldPostController extends BaseController {
 			return FieldKey.FIELD_NAME_NOT_ACCEPT;
 		}
 		
-		if (type==null || !type.matches("[1-9]")) {
+		if (StringUtils.isBlank(type) || !type.matches("[1-9]")) {
 			return FieldKey.SERVER_EXCEPTION;
 		}
-		if (key==null || !key.matches("0|1|2")) {
+		if (StringUtils.isBlank(key) || !key.matches("0|1|2")) {
 			return FieldKey.SERVER_EXCEPTION;
 		}
-		if (isnull==null || !isnull.matches("0|1")) {
+		if (StringUtils.isBlank(isnull) || !isnull.matches("0|1")) {
 			return FieldKey.SERVER_EXCEPTION;
 		}
 		
@@ -83,7 +84,7 @@ public class ContainerManagerFieldPostController extends BaseController {
 		fieldBean.setIsnull(Integer.parseInt(isnull));
 		fieldBean.setKey(Integer.parseInt(key));
 		if (type.matches("7|8")) {
-			if (length!=null && length.length()!=0 && length.matches("[0-9]{1,3}") && Integer.parseInt(length)<=255) {
+			if (StringUtils.isNotBlank(length) && length.matches("[0-9]{1,3}") && Integer.parseInt(length)<=255) {
 				// 如果长度合法则按照用户指定长度
 				fieldBean.setType(FieldBean.textTypeString(type, length));
 			} else {
@@ -94,7 +95,7 @@ public class ContainerManagerFieldPostController extends BaseController {
 			fieldBean.setType(type);
 		}
 		
-		fieldBean.setDefaultdata(defaultdata==null || defaultdata.length()==0 ? FieldBean.NULL_DEFAULT : defaultdata);
+		fieldBean.setDefaultdata(StringUtils.isBlank(defaultdata) ? FieldBean.NULL_DEFAULT : defaultdata);
 		fieldBean.encode();
 		if (this.fieldService.existsField(fieldBean)) {
 			return FieldKey.FIELD_NAME_ALREADY_EXISTS;
@@ -124,11 +125,11 @@ public class ContainerManagerFieldPostController extends BaseController {
 			return PassportKey.NOT_LOGIN;
 		}
 		
-		if (fid==null || !AppCheck.checkId(fid)) {
+		if (StringUtils.isBlank(fid) || !AppCheck.checkId(fid)) {
 			return ContainerKey.NO_PRIVILEGE;
 		}
 		
-		if (fname==null || fname.length() == 0) {
+		if (StringUtils.isBlank(fname) || fname.length() == 0) {
 			return FieldKey.FIELD_NAME_EMPTY;
 		}
 		
@@ -136,13 +137,13 @@ public class ContainerManagerFieldPostController extends BaseController {
 			return FieldKey.FIELD_NAME_NOT_ACCEPT;
 		}
 		
-		if (type==null || !type.matches("[1-9]")) {
+		if (StringUtils.isBlank(type) || !type.matches("[1-9]")) {
 			return FieldKey.SERVER_EXCEPTION;
 		}
-		if (key==null || !key.matches("0|1|2")) {
+		if (StringUtils.isBlank(key) || !key.matches("0|1|2")) {
 			return FieldKey.SERVER_EXCEPTION;
 		}
-		if (isnull==null || !isnull.matches("0|1")) {
+		if (StringUtils.isBlank(isnull) || !isnull.matches("0|1")) {
 			return FieldKey.SERVER_EXCEPTION;
 		}
 		
@@ -175,7 +176,7 @@ public class ContainerManagerFieldPostController extends BaseController {
 		fieldBean.setIsnull(Integer.parseInt(isnull));
 		fieldBean.setKey(Integer.parseInt(key));
 		if (type.matches("7|8")) {
-			if (length!=null && length.length()!=0 && length.matches("[0-9]{1,3}") && Integer.parseInt(length)<=255) {
+			if (StringUtils.isNotBlank(length) && length.matches("[0-9]{1,3}") && Integer.parseInt(length)<=255) {
 				// 如果长度合法则按照用户指定长度
 				fieldBean.setType(FieldBean.textTypeString(type, length));
 			} else {
@@ -186,7 +187,7 @@ public class ContainerManagerFieldPostController extends BaseController {
 			fieldBean.setType(type);
 		}
 		
-		fieldBean.setDefaultdata(defaultdata==null || defaultdata.length()==0 ? FieldBean.NULL_DEFAULT : defaultdata);
+		fieldBean.setDefaultdata(StringUtils.isBlank(defaultdata) ? FieldBean.NULL_DEFAULT : defaultdata);
 		
 		// 如果字段名修改了，需要判断是否冲突
 		if (isChange) {
@@ -209,7 +210,7 @@ public class ContainerManagerFieldPostController extends BaseController {
 		if (!super.checkLogin(session)) {
 			return PassportKey.NOT_LOGIN;
 		}
-		if (fid==null || !AppCheck.checkId(fid)) {
+		if (StringUtils.isBlank(fid) || !AppCheck.checkId(fid)) {
 			return ContainerKey.NO_PRIVILEGE;
 		}
 		

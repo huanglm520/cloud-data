@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +41,7 @@ public class ContainerManagerPrivilegePostController extends BaseController {
 		if (!super.checkLogin(session)) {
 			return PassportKey.NOT_LOGIN;
 		}
-		if (account==null || account.length()==0) {
+		if (StringUtils.isBlank(account)) {
 			return PassportKey.ACCOUNT_NOT_ACCEPT;
 		}
 		UserBean userBean = new UserBean();
@@ -66,10 +67,10 @@ public class ContainerManagerPrivilegePostController extends BaseController {
 		if (!super.checkLogin(session)) {
 			return PassportKey.NOT_LOGIN;
 		}
-		if (cid==null || !AppCheck.checkId(cid)) {
+		if (StringUtils.isBlank(cid) || !AppCheck.checkId(cid)) {
 			return ContainerKey.NO_PRIVILEGE;
 		}
-		if (uid==null || !AppCheck.checkId(uid)) {
+		if (StringUtils.isBlank(uid) || !AppCheck.checkId(uid)) {
 			return PassportKey.ACCOUNT_NOT_EXISTS;
 		}
 		int privilegeCode = -1;
@@ -109,7 +110,7 @@ public class ContainerManagerPrivilegePostController extends BaseController {
 		if (!super.checkLogin(session)) {
 			return PassportKey.NOT_LOGIN;
 		}
-		if (pid==null || !AppCheck.checkId(pid)) {
+		if (StringUtils.isBlank(pid) || !AppCheck.checkId(pid)) {
 			return ContainerKey.NO_PRIVILEGE;
 		}
 		ContainerPrivilegeBean containerPrivilegeBean = new ContainerPrivilegeBean();

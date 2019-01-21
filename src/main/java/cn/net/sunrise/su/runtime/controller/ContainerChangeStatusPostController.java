@@ -2,6 +2,7 @@ package cn.net.sunrise.su.runtime.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,10 +31,10 @@ public class ContainerChangeStatusPostController extends BaseController {
 		if (!super.checkLogin(session)) {
 			return PassportKey.NOT_LOGIN;
 		}
-		if (cid == null || !AppCheck.checkId(cid)) {
+		if (StringUtils.isBlank(cid) || !AppCheck.checkId(cid)) {
 			return ContainerKey.NO_PRIVILEGE;
 		}
-		if (status == null || !status.matches("modify|running|stop")) {
+		if (StringUtils.isBlank(status) || !status.matches("modify|running|stop")) {
 			return ContainerKey.ERROR_STATUS;
 		}
 		UserBean userBean = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);

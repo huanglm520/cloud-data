@@ -2,6 +2,7 @@ package cn.net.sunrise.su.runtime.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class SecurityChangePasswordPostController extends BaseController {
 	private PassportService ps;
 	
 	@PostMapping("/change-password/")
-	public PassportKey changeMain_01(HttpSession session) {
+	public PassportKey changePassword_01(HttpSession session) {
 		if (!super.checkLogin(session)) {
 			return PassportKey.NOT_LOGIN;
 		}
@@ -38,7 +39,7 @@ public class SecurityChangePasswordPostController extends BaseController {
 			return PassportKey.NOT_LOGIN;
 		}
 		
-		if (oldPassword==null || oldPassword.length()==0 || newPassword==null || newPassword.length()==0) {
+		if (StringUtils.isBlank(oldPassword) || StringUtils.isBlank(newPassword)) {
 			return PassportKey.PASSWORD_EMPTY;
 		}
 		// 获取session中的user

@@ -3,6 +3,7 @@ package cn.net.sunrise.su.runtime.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class ContainerManagerDeletePostController extends BaseController {
 			return PassportKey.NOT_LOGIN;
 		}
 		String cid = request.getParameter("id");
-		if (cid==null || !AppCheck.checkId(cid)) {
+		if (StringUtils.isBlank(cid) || !AppCheck.checkId(cid)) {
 			return ContainerKey.NO_PRIVILEGE;
 		}
 		UserBean userBean = (UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key);

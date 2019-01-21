@@ -2,6 +2,7 @@ package cn.net.sunrise.su.runtime.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,10 +32,10 @@ public class AccountPostController extends BaseController {
 		}
 		
 		// 校验数据
-		if (firstname == null || !UserCheck.checkFirst_Name(firstname)) {
+		if (StringUtils.isBlank(firstname) || !UserCheck.checkFirst_Name(firstname)) {
 			return PassportKey.FIRST_NAME_NOT_ACCEPT;
 		}
-		if (lastname == null || !UserCheck.checkLast_name(lastname)) {
+		if (StringUtils.isBlank(lastname) || !UserCheck.checkLast_name(lastname)) {
 			return PassportKey.LAST_NAME_NOT_ACCEPT;
 		}
 		// 克隆session对象
@@ -57,7 +58,7 @@ public class AccountPostController extends BaseController {
 			return PassportKey.NOT_LOGIN;
 		}
 		
-		if (company == null || !UserCheck.checkCompany(company)) {
+		if (StringUtils.isBlank(company) || !UserCheck.checkCompany(company)) {
 			return PassportKey.COMPANY_NOT_ACCEPT;
 		}
 		

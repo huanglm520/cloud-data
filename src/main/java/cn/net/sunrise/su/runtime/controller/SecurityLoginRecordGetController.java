@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.google.gson.Gson;
-
 import cn.net.sunrise.su.beans.passport.LoginRecordBean;
 import cn.net.sunrise.su.beans.passport.LoginRecordTimeBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.SecurityKey;
 import cn.net.sunrise.su.service.PassportService;
+import cn.net.sunrise.su.tool.ResultBody;
 
 @Controller
 @RequestMapping(value="/security", method=RequestMethod.GET)
@@ -66,15 +65,11 @@ public class SecurityLoginRecordGetController extends BaseController {
 			lrtb.setsTime(sTime);
 			lrtb.seteTime(eTime);
 			List <LoginRecordBean> list = ps.selectLoginRecord(lrtb);
-			LoginRecordBean[] beans = new LoginRecordBean[list.size()];
-			int len = 0;
 			for (LoginRecordBean l : list) {
-				beans[len] = l;
-				beans[len].decode();
-				beans[len].encryptIpAddress();
-				len++;
+				l.decode();
+				l.encryptIpAddress();
 			}
-			request.setAttribute(SecurityKey.SECURITY_LOGIN_RECORD.key, new Gson().toJson(beans));
+			request.setAttribute(SecurityKey.SECURITY_LOGIN_RECORD.key, ResultBody.gson.toJson(list));
 			request.setAttribute(SecurityKey.QUERY_SUCCESS.key, AttributeKey.ATTRIBUTE_OBJECT);
 		}
 		

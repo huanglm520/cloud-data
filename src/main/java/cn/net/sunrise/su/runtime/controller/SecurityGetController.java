@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.google.gson.Gson;
-
 import cn.net.sunrise.su.beans.passport.LoginRecordBean;
 import cn.net.sunrise.su.beans.passport.LoginRecordTimeBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.SecurityKey;
 import cn.net.sunrise.su.service.PassportService;
+import cn.net.sunrise.su.tool.ResultBody;
 
 @Controller
 public class SecurityGetController extends BaseController {
@@ -40,15 +39,11 @@ public class SecurityGetController extends BaseController {
 		lrtb.setLeft(0);
 		lrtb.setRight(10);
 		List <LoginRecordBean> list = ps.selectLoginRecordLimit(lrtb);
-		LoginRecordBean[] beans = new LoginRecordBean[list.size()];
-		int len = 0;
 		for (LoginRecordBean l : list) {
-			beans[len] = l;
-			beans[len].decode();
-			beans[len].encryptIpAddress();
-			len++;
+			l.decode();
+			l.encryptIpAddress();
 		}
-		request.setAttribute(SecurityKey.SECURITY_LOGIN_RECORD.key, new Gson().toJson(beans));
+		request.setAttribute(SecurityKey.SECURITY_LOGIN_RECORD.key, ResultBody.gson.toJson(list));
 		return "security";
 	}
 }

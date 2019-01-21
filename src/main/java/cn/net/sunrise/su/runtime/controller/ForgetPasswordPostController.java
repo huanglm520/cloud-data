@@ -2,6 +2,7 @@ package cn.net.sunrise.su.runtime.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class ForgetPasswordPostController extends BaseController {
 	
 	@PostMapping("/step1/")
 	public PassportKey forgetPassword_01(@RequestParam("mail") String mail, HttpSession session) {
-		if (mail==null || mail.length()==0) {
+		if (StringUtils.isBlank(mail)) {
 			return PassportKey.ACCOUNT_EMPTY;
 		}
 		
@@ -50,7 +51,7 @@ public class ForgetPasswordPostController extends BaseController {
 
 	@PostMapping("/step2/")
 	public PassportKey forgetPassword_03(@RequestParam("vercode") String vercode, HttpSession session) {
-		if (vercode==null || vercode.length()==0) {
+		if (StringUtils.isBlank(vercode)) {
 			return PassportKey.VERCODE_EMPTY;
 		}
 		
@@ -72,7 +73,7 @@ public class ForgetPasswordPostController extends BaseController {
 	@PostMapping("/step3/")
 	public PassportKey forgetPassword_05(@RequestParam("password") String password, HttpSession session) {
 		
-		if (password==null || password.length()==0) {
+		if (StringUtils.isBlank(password)) {
 			return PassportKey.PASSWORD_EMPTY;
 		}
 		

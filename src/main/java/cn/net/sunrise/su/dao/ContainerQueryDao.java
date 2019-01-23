@@ -34,4 +34,7 @@ public interface ContainerQueryDao {
 	public void containerField(ContainerNewBean containerNewBean);
 	public void plusOneField(ContainerBean containerBean);
 	public void subOneField(ContainerBean containerBean);
+	public void lockContainer(ContainerBean containerBean);
+	public void unlockContainer(ContainerBean containerBean);
+	public int isLocked(ContainerBean containerBean);
 }

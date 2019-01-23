@@ -27,4 +27,7 @@ public interface ContainerService {
 	public void updateContainerField(ContainerBean containerBean, FieldBean fieldBean);
 	public void deleteContainerField(ContainerBean containerBean, FieldBean fieldBean);
 	public void subOneField(ContainerBean containerBean);
+	public void lockContainer(ContainerBean containerBean);
+	public void unlockContainer(ContainerBean containerBean);
+	public boolean isLocked(ContainerBean containerBean);
 }

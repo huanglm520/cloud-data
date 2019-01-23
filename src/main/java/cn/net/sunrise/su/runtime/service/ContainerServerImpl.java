@@ -331,4 +331,22 @@ public class ContainerServerImpl implements ContainerService {
 		this.containerQueryDao.subOneField(containerBean);
 	}
 
+	@Override
+	public void lockContainer(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		this.containerQueryDao.lockContainer(containerBean);
+	}
+
+	@Override
+	public void unlockContainer(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		this.containerQueryDao.unlockContainer(containerBean);
+	}
+
+	@Override
+	public boolean isLocked(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		return this.containerQueryDao.isLocked(containerBean) == 1;
+	}
+
 }

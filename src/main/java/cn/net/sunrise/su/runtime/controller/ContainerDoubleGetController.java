@@ -82,13 +82,13 @@ public class ContainerDoubleGetController extends BaseController {
 		return page;
 	}
 	
-	@GetMapping("/export")
+	@GetMapping("/transmission")
 	public String export_02(HttpSession session) {
-		return super.pageName(session, "container-export");
+		return super.pageName(session, "container-trasnmission");
 	}
 	
-	@GetMapping("/import")
+	@GetMapping("/key")
 	public String import_02(HttpSession session) {
-		return super.pageName(session, "container-import");
+		return super.pageName(session, "container-key");
 	}
 }

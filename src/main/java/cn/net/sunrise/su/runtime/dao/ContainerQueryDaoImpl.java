@@ -152,4 +152,22 @@ public class ContainerQueryDaoImpl extends BaseDao implements ContainerQueryDao 
 		super.update("subOneField", containerBean);
 	}
 
+	@Override
+	public void lockContainer(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		super.update("lockContainer", containerBean);
+	}
+
+	@Override
+	public void unlockContainer(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		super.update("unlockContainer", containerBean);
+	}
+
+	@Override
+	public int isLocked(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		return (Integer)super.selectOne("isLocked", containerBean);
+	}
+
 }

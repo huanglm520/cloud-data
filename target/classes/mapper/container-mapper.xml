@@ -6,7 +6,7 @@
 	<!-- 容器数据库字段配置 -->
 	<insert id="insertContainer" useGeneratedKeys="true" keyProperty="id"
 		parameterType="cn.net.sunrise.su.beans.container.ContainerBean">
-		insert into tb_container values(null, #{name}, #{api}, #{status}, #{field}, #{data}, #{buildtime});
+		insert into tb_container values(null, #{name}, #{api}, #{status}, #{field}, #{data}, #{buildtime}, 0);
 	</insert>
 	<update id="updateContainer" parameterType="cn.net.sunrise.su.beans.container.ContainerBean">
 		update tb_container set id=#{id}, name=#{name}, api=#{api}, status=#{status},
@@ -95,6 +95,16 @@
 	<update id="subOneField" parameterType="cn.net.sunrise.su.beans.container.ContainerBean">
 		update tb_container set field=field-1 where id=#{id};
 	</update>
+	<update id="lockContainer" parameterType="cn.net.sunrise.su.beans.container.ContainerBean">
+		update tb_container set locked=1 where id=#{id};
+	</update>
+	<update id="unlockContainer" parameterType="cn.net.sunrise.su.beans.container.ContainerBean">
+		update tb_container set locked=0 where id=#{id};
+	</update>
+	<select id="isLocked" parameterType="cn.net.sunrise.su.beans.container.ContainerBean"
+		resultType="java.lang.Integer">
+		select locked from tb_container where id=#{id};
+	</select>
 	
 	<!-- 容器空间配置 -->
 	<update id="createContainerSpace" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">

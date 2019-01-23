@@ -20,16 +20,16 @@ public class ContextListenrer implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
 		ApplicationContext = sce.getServletContext();
-		System.out.println("全局对象已加载，现在可通过ContextListener.ApplicationContext获取全局application对象");
+		System.out.println("========全局对象已加载，现在可通过ContextListener.ApplicationContext获取全局application对象=======");
 		// 初始化系统时间
 		ApplicationContext.setAttribute(AttributeKey.PAGE_TIME.key, PageDateTask.simpleDateFormat.format(new Date()));
-		System.out.println("页面时间已经初始化");
+		System.out.println("=========页面时间已经初始化==========");
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
-		System.out.println("全局对象已被销毁");
+		System.out.println("==========全局对象已被销毁==========");
 	}
 
 }

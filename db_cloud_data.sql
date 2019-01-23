@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 20/01/2019 14:44:25
+ Date: 23/01/2019 19:02:08
 */
 
 SET NAMES utf8mb4;
@@ -36,7 +36,7 @@ CREATE TABLE `tb_container`  (
 -- Records of tb_container
 -- ----------------------------
 INSERT INTO `tb_container` VALUES (35, 'test1', 'test1_cd', 4, 6, 0, 1545335950006);
-INSERT INTO `tb_container` VALUES (36, 'test2', 'test2_cd', 3, 2, 0, 1547964104117);
+INSERT INTO `tb_container` VALUES (36, 'test2', 'test2_cd', 3, 5, 0, 1547964104117);
 
 -- ----------------------------
 -- Table structure for tb_container_privilege
@@ -59,6 +59,20 @@ INSERT INTO `tb_container_privilege` VALUES (37, 13, 35, 3);
 INSERT INTO `tb_container_privilege` VALUES (39, 11, 36, 1);
 
 -- ----------------------------
+-- Table structure for tb_exports
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_exports`;
+CREATE TABLE `tb_exports`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `uid` int(11) NOT NULL,
+  `cid` int(11) NOT NULL,
+  `time` bigint(20) NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for tb_field
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_field`;
@@ -71,7 +85,7 @@ CREATE TABLE `tb_field`  (
   `key` int(11) NOT NULL,
   `defaultdata` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_field
@@ -84,6 +98,36 @@ INSERT INTO `tb_field` VALUES (9, 35, 'ZXh0cmVh', '9', 1, 2, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (10, 35, 'aW50ZWdlcl9z', '4', 0, 2, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (12, 36, 'aWQ=', '2', 0, 0, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (13, 36, 'aGFoYQ==', '8+255', 1, 2, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (15, 36, 'cGxheQ==', '8+255', 1, 2, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (17, 36, 'YWRhc2Q=', '8+255', 1, 2, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (18, 36, 'Z2FzZmE=', '8+255', 1, 2, 'TlVMTA==');
+
+-- ----------------------------
+-- Table structure for tb_ieport_error
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_ieport_error`;
+CREATE TABLE `tb_ieport_error`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `cid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `time` bigint(20) NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for tb_imports
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_imports`;
+CREATE TABLE `tb_imports`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `uid` int(11) NOT NULL,
+  `cid` int(11) NOT NULL,
+  `time` bigint(20) NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `status` int(255) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for tb_record
@@ -96,7 +140,7 @@ CREATE TABLE `tb_record`  (
   `time` bigint(20) NOT NULL,
   `position` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 317 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 325 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_record
@@ -398,6 +442,14 @@ INSERT INTO `tb_record` VALUES (313, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547918908337, 
 INSERT INTO `tb_record` VALUES (314, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547962330829, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (315, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547966533563, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (316, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547966533563, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (317, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547967046312, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (318, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547967147342, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (319, 11, 'MTExLjE5Ni4yNDMuMTcx', 1547967349837, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (320, 11, 'MTIzLjEyNC4yMzguMTMy', 1548044903365, 'sbG+qcrQILGxvqnK0CCzr9H0x/g=');
+INSERT INTO `tb_record` VALUES (321, 11, 'MTIzLjEyNC4yMzguMTMy', 1548045530072, 'sbG+qcrQILGxvqnK0CCzr9H0x/g=');
+INSERT INTO `tb_record` VALUES (322, 11, 'MTIzLjEyNC4yMzguMTMy', 1548045554142, 'sbG+qcrQILGxvqnK0CCzr9H0x/g=');
+INSERT INTO `tb_record` VALUES (323, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548210151491, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (324, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548238114929, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 
 -- ----------------------------
 -- Table structure for tb_user
@@ -445,6 +497,9 @@ DROP TABLE IF EXISTS `zb_qhwa1j1cqjxncjz4cer1nw==`;
 CREATE TABLE `zb_qhwa1j1cqjxncjz4cer1nw==`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `haha` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `play` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `adasd` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `gasfa` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 

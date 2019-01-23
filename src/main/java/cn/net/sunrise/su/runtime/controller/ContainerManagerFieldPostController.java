@@ -17,6 +17,7 @@ import cn.net.sunrise.su.beans.container.FieldBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.ContainerKey;
+import cn.net.sunrise.su.enums.ContainerStatusKey;
 import cn.net.sunrise.su.enums.FieldKey;
 import cn.net.sunrise.su.enums.PassportKey;
 import cn.net.sunrise.su.service.ContainerService;
@@ -102,6 +103,12 @@ public class ContainerManagerFieldPostController extends BaseController {
 		}
 		fieldBean.decode();
 		containerBean = this.containerService.selectContainer(containerBean).get(0);
+		
+		// 如果容器正在运行则需要关闭该容器
+		if(containerBean.getStatus() == ContainerStatusKey.RUNNING.key) {
+			containerBean.setStatus(ContainerStatusKey.MODIFYING.key);
+		}
+		this.containerService.updateContainer(containerBean);
 		
 		// 写入容器记录和实体
 		this.containerService.addContainerField(containerBean, fieldBean);
@@ -197,6 +204,13 @@ public class ContainerManagerFieldPostController extends BaseController {
 			}
 			fieldBean.decode();
 		}
+		
+		// 如果容器正在运行则需要关闭该容器
+		if(containerBean.getStatus() == ContainerStatusKey.RUNNING.key) {
+			containerBean.setStatus(ContainerStatusKey.MODIFYING.key);
+		}
+		this.containerService.updateContainer(containerBean);
+
 		// 修改容器记录和实体
 		this.containerService.updateContainerField(containerBean, fieldBean);
 		fieldBean.encode();
@@ -238,6 +252,12 @@ public class ContainerManagerFieldPostController extends BaseController {
 			return ContainerKey.NO_PRIVILEGE;
 		}
 		
+		// 如果容器正在运行则需要关闭该容器
+		if(containerBean.getStatus() == ContainerStatusKey.RUNNING.key) {
+			containerBean.setStatus(ContainerStatusKey.MODIFYING.key);
+		}
+		this.containerService.updateContainer(containerBean);
+
 		// 清理字段记录值
 		
 		this.containerService.deleteContainerField(containerBean, fieldBean);

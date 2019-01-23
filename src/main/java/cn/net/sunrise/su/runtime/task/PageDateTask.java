@@ -3,6 +3,7 @@ package cn.net.sunrise.su.runtime.task;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.logging.log4j.LogManager;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -22,5 +23,6 @@ public class PageDateTask extends Thread {
 	@Override
 	public void run() {
 		ContextListenrer.ApplicationContext.setAttribute(AttributeKey.PAGE_TIME.key, simpleDateFormat.format(new Date()));
+		LogManager.getLogger().info("===========已刷新页面时间常量=========");
 	}
 }

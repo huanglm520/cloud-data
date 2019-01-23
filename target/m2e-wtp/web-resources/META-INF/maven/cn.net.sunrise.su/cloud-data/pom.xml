@@ -21,6 +21,10 @@
   	<log4j2.version>2.7</log4j2.version>
   	<commons.lang3.version>3.8.1</commons.lang3.version>
   	<jackson.version>2.9.3</jackson.version>
+  	<tomcat.version>2.2</tomcat.version>
+  	<tomcat.port>8080</tomcat.port>
+  	<jdk.version>1.8</jdk.version>
+  	<commons-io.version>2.5</commons-io.version>
   	
   </properties>
   
@@ -143,6 +147,11 @@
         <artifactId>jackson-databind</artifactId>
         <version>${jackson.version}</version>
     </dependency>
+    <dependency>
+    	<groupId>commons-io</groupId>
+    	<artifactId>commons-io</artifactId>
+    	<version>${commons-io.version}</version>
+    </dependency>
   	
   </dependencies>
   
@@ -167,8 +176,8 @@
   	    <artifactId>maven-compiler-plugin</artifactId>
   	    <version>3.5.1</version>
   	    <configuration>
-  	      <source>1.8</source>
-  	      <target>1.8</target>
+  	      <source>${jdk.version}</source>
+  	      <target>${jdk.version}</target>
   	    </configuration>
   	  </plugin>
   	  
@@ -181,7 +190,6 @@
   	      <webXml>WebContent/WEB-INF/web.xml</webXml>
   	    </configuration>
   	  </plugin>
-  	  
   	</plugins>
   	
   </build>

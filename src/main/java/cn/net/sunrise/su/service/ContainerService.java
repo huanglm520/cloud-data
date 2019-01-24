@@ -30,4 +30,5 @@ public interface ContainerService {
 	public void lockContainer(ContainerBean containerBean);
 	public void unlockContainer(ContainerBean containerBean);
 	public boolean isLocked(ContainerBean containerBean);
+	public boolean hasGuest(ContainerBean containerBean);
 }

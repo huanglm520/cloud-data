@@ -123,15 +123,15 @@ public class ContainerQueryDaoImpl extends BaseDao implements ContainerQueryDao 
 	}
 
 	@Override
-	public boolean hasPrivilege(ContainerBean containerBean) {
+	public Object hasPrivilege(ContainerBean containerBean) {
 		// TODO Auto-generated method stub
-		return super.selectOne("hasPrivilege", containerBean) != null;
+		return super.selectOne("hasPrivilege", containerBean);
 	}
 
 	@Override
-	public boolean isOwner(ContainerBean containerBean) {
+	public Object isOwner(ContainerBean containerBean) {
 		// TODO Auto-generated method stub
-		return super.selectOne("isOwner", containerBean) != null;
+		return super.selectOne("isOwner", containerBean);
 	}
 
 	@Override
@@ -168,6 +168,12 @@ public class ContainerQueryDaoImpl extends BaseDao implements ContainerQueryDao 
 	public int isLocked(ContainerBean containerBean) {
 		// TODO Auto-generated method stub
 		return (Integer)super.selectOne("isLocked", containerBean);
+	}
+
+	@Override
+	public Object hasGuest(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		return super.selectOne("hasGuest", containerBean);
 	}
 
 }

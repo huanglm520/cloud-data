@@ -113,7 +113,7 @@ public class ContainerServerImpl implements ContainerService {
 	@Override
 	public boolean hasPrivilege(ContainerBean containerBean) {
 		// TODO Auto-generated method stub
-		return this.containerQueryDao.hasPrivilege(containerBean);
+		return this.containerQueryDao.hasPrivilege(containerBean) != null;
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class ContainerServerImpl implements ContainerService {
 	@Override
 	public boolean isOwner(ContainerBean containerBean) {
 		// TODO Auto-generated method stub
-		return this.containerQueryDao.isOwner(containerBean);
+		return this.containerQueryDao.isOwner(containerBean) != null;
 	}
 
 	@Override
@@ -347,6 +347,12 @@ public class ContainerServerImpl implements ContainerService {
 	public boolean isLocked(ContainerBean containerBean) {
 		// TODO Auto-generated method stub
 		return this.containerQueryDao.isLocked(containerBean) == 1;
+	}
+
+	@Override
+	public boolean hasGuest(ContainerBean containerBean) {
+		// TODO Auto-generated method stub
+		return this.containerQueryDao.hasGuest(containerBean) != null;
 	}
 
 }

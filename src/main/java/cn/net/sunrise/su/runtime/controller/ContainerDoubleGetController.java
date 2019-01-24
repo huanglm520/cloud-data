@@ -82,13 +82,58 @@ public class ContainerDoubleGetController extends BaseController {
 		return page;
 	}
 	
-	@GetMapping("/transmission")
+	@GetMapping("/key")
 	public String export_02(HttpSession session) {
-		return super.pageName(session, "container-trasnmission");
+		return super.pageName(session, "container-key");
 	}
 	
-	@GetMapping("/key")
-	public String import_02(HttpSession session) {
-		return super.pageName(session, "container-key");
+	@GetMapping("/transmission")
+	public String import_02(HttpSession session, HttpServletRequest request) {
+		if (!super.checkLogin(session)) {
+			return BaseController.LOGIN_OUT;
+		}
+		
+		String page = "container-transmission";
+		
+		String status = request.getParameter("status");
+		String privilege = request.getParameter("privilege");
+		String keyword = request.getParameter("container_keyword");
+		ContainerBean containerBean = new ContainerBean();
+		containerBean.setUid(((UserBean) session.getAttribute(AttributeKey.SESSION_ACCOUNT.key)).getId());
+		if ("running".equals(status)) {
+			containerBean.setStatus(ContainerStatusKey.RUNNING.key);
+		} else if ("stoping".equals(status)) {
+			containerBean.setStatus(ContainerStatusKey.STOPING.key);
+		} else if ("modifying".equals(status)) {
+			containerBean.setStatus(ContainerStatusKey.MODIFYING.key);
+		} else if ("creating".equals(status)) {
+			containerBean.setStatus(ContainerStatusKey.CREATING.key);
+		} else if ("all".equals(status)) {
+			// Nothing to do
+		} else {
+			return page;
+		}
+		if ("owner".equals(privilege)) {
+			containerBean.setPrivilege(ContainerPrivilegeKey.OWNER.key);
+		} else if ("admin".equals(privilege)) {
+			containerBean.setPrivilege(ContainerPrivilegeKey.ADMIN.key);
+		} else if ("guest".equals(privilege)) {
+			containerBean.setPrivilege(ContainerPrivilegeKey.GUEST.key);
+		} else if ("all".equals(privilege)) {
+			// Nothing to do
+		} else {
+			return page;
+		}
+		
+		if (keyword != null) {
+			containerBean.setName(keyword);
+		}
+		List<ContainerBean> list = this.cs.selectContainer(containerBean);
+		for (ContainerBean containerBean2: list) {
+			containerBean2.state();
+			containerBean2.privileges();
+		}
+		request.setAttribute(SecurityKey.SECURITY_CONTAINER_LIST.key, ResultBody.gson.toJson(list));
+		return page;
 	}
 }

@@ -24,6 +24,7 @@ public class ContainerBean implements Serializable {
 	private long buildtime;
 	private int privilege;
 	private String privileges;
+	private int locked;
 	
 	public ContainerBean() {
 		this.id = -1;
@@ -46,6 +47,7 @@ public class ContainerBean implements Serializable {
 		bean.state = this.state;
 		bean.status = this.status;
 		bean.uid = this.uid;
+		bean.locked = this.locked;
 		return bean;
 	}
 	
@@ -204,5 +206,13 @@ public class ContainerBean implements Serializable {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public int getLocked() {
+		return locked;
+	}
+
+	public void setLocked(int locked) {
+		this.locked = locked;
 	}
 }

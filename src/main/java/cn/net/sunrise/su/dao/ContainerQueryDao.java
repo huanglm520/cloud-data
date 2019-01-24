@@ -28,8 +28,8 @@ public interface ContainerQueryDao {
 	public void createContainerSpace(ContainerNewBean containerNewBean);
 	public void dropContainerSpace(ContainerNewBean containerNewBean);
 	
-	public boolean hasPrivilege(ContainerBean containerBean);
-	public boolean isOwner(ContainerBean containerBean);
+	public Object hasPrivilege(ContainerBean containerBean);
+	public Object isOwner(ContainerBean containerBean);
 	
 	public void containerField(ContainerNewBean containerNewBean);
 	public void plusOneField(ContainerBean containerBean);
@@ -37,4 +37,5 @@ public interface ContainerQueryDao {
 	public void lockContainer(ContainerBean containerBean);
 	public void unlockContainer(ContainerBean containerBean);
 	public int isLocked(ContainerBean containerBean);
+	public Object hasGuest(ContainerBean containerBean);
 }

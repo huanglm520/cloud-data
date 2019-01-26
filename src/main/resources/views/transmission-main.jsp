@@ -120,7 +120,7 @@
 		}
 		
 		div.reset, div.query {
-			width: 80px;
+			width: 100px;
 		}
 		
 		div.reset {
@@ -132,7 +132,7 @@
 		}
 		
 		button.reset, button.query {
-			width: 80px;
+			width: 100px;
 			height: 50px;
 			border: none;
 			outline: none;
@@ -149,6 +149,18 @@
 		
 		button.query {
 			background-color: #1296DB;
+		}
+		
+		div.result {
+			width: 588px; 
+			min-height: 100px;
+			background-color: #FFFFFF;
+			margin: auto;
+			margin-bottom: 30px;
+			font-family: "Consolas";
+			font-size: 18px;
+			color: #737E7C;
+			padding: 5px;
 		}
 	</style>
 
@@ -219,9 +231,7 @@
 			</table>
 		</div>
 		
-		<div class="result">
-			<!-- 由jQuery动态填充 -->
-		</div>
+		<div class="result" id="result"></div>
 		
 		<div class="recordlink">
 			<span class="recordlink" id="cid">查看数据导入导出记录</span>
@@ -282,6 +292,65 @@
 	<script type="text/javascript">
 		$("#reset").click(function() {
 			editor.setValue("");
+		});
+	</script>
+	
+	<script type="text/javascript">
+		$("#query").click(function() {
+			
+			$("#result").empty();
+			$("#result").css({"color": "#737E7C"});
+			
+			var csql = editor.getValue();
+			if (csql==null || csql==undefined || csql=="") {
+				$("#result").css({"color": "#FF0000"});
+				$("#result").append("Error: C-SQL code is empty!<br/>You must enter the C-SQL code to query the container!");
+				return;
+			}
+			
+			$("#result").append("Querying, please wait...");
+			
+			$.ajax({
+				url: "<%=path%>/container/transmission/query/",
+				type: "POST",
+				data: {"csql": csql, "cid": json.id},
+				dataType: "json",
+				error: function(XMLHttpRequest, testStatus, errorThrown) {
+					$("#result").empty();
+					$("#result").css({"color": "#FF0000"});
+					$("#result").append("Error: Network Error!<br/>Can not connect to the server, please retry a letter!");
+				},
+				success: function(data, textStatus) {
+					if (data.code == 0) {
+						$("#result").empty();
+						$("#result").css({"color": "#28C43D"});
+						if (data.type == "select") {
+							if (data.line == 0) {
+								$("#result").append("Query OK!<br/>Empty set!");
+							} else {
+								$("#result").append("Query OK!<br/>"+data.line+" row(s) returned!");
+								// Open new tab to view the result table
+								sessionStorage.setItem("cols", data.cols);
+								sessionStorage.setItem("datas", data.table);
+							}
+						} else {
+							$("#result").append("Query OK!<br/>"+data.line+" row(s) affected!");
+						}
+					} else {
+						if (data.code == Code["NOT_LOGIN"]) {
+							window.location.reload();
+						} else if (data.code == Code["NO_PRIVILEGE"]) {
+							$("#result").empty();
+							$("#result").css({"color": "#FF0000"});
+							$("#result").append("Error: "+data.code+"<br/>"+"You don't have query privilege on this container!");
+						} else {
+							$("#result").empty();
+							$("#result").css({"color": "#FF0000"});
+							$("#result").append("Error: "+data.errorcode+"<br/>"+data.message);
+						}
+					}
+				}
+			});
 		});
 	</script>
 	

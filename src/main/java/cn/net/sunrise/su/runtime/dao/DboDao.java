@@ -15,26 +15,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
-public class DboDao extends JdbcTemplate {
+@Repository
+public class DboDao {
+	
+	private DataSource dataSource;
+	
+	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private static DataSource dataSource;
-	
-	private static final DboDao dboDao;
-	static {
-		dboDao = new DboDao();
+	public DboDao(DataSource dataSource) {
+		setDataSource(dataSource);
+		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	private DboDao() { super(dataSource); }
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 	
-	public static DboDao getInstance() {
-		return dboDao;
+	public DataSource getDataSource() {
+		return dataSource;
 	}
 	
 	public List<Map<String, Object>> querySql(String sql) throws SQLException {
 		try {
-			List<Map<String, Object>> list = super.query(sql, new RowMapper<Map<String, Object>>() {
+			List<Map<String, Object>> list = jdbcTemplate.query(sql, new RowMapper<Map<String, Object>>() {
 	
 				@Override
 				public Map<String, Object> mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -43,7 +49,7 @@ public class DboDao extends JdbcTemplate {
 					ResultSetMetaData data = rs.getMetaData();
 					List<String> colList = Collections.synchronizedList(new ArrayList<>());
 					int colNum = data.getColumnCount();
-					for (int i=0; i<colNum; i++) {
+					for (int i=1; i<=colNum; i++) {
 						colList.add(data.getColumnName(i));
 					}
 					for (String s: colList) {
@@ -61,7 +67,7 @@ public class DboDao extends JdbcTemplate {
 	
 	public int updateSql(String sql) throws SQLException {
 		try {
-			int cnt =  super.update(sql);
+			int cnt =  jdbcTemplate.update(sql);
 			return cnt;
 		} catch (DataAccessException exception) {
 			// TODO: handle exception

@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 23/01/2019 23:54:02
+ Date: 26/01/2019 15:58:56
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `tb_container`  (
 -- Records of tb_container
 -- ----------------------------
 INSERT INTO `tb_container` VALUES (35, 'test1', 'test1_cd', 4, 6, 0, 1545335950006, 0);
-INSERT INTO `tb_container` VALUES (36, 'test2', 'test2_cd', 3, 4, 0, 1547964104117, 0);
+INSERT INTO `tb_container` VALUES (36, 'test2', 'test2_cd', 3, 5, 2, 1547964104117, 0);
 
 -- ----------------------------
 -- Table structure for tb_container_privilege
@@ -72,7 +72,7 @@ CREATE TABLE `tb_field`  (
   `key` int(11) NOT NULL,
   `defaultdata` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_field
@@ -87,6 +87,21 @@ INSERT INTO `tb_field` VALUES (12, 36, 'aWQ=', '2', 0, 0, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (13, 36, 'aGFoYQ==', '8+255', 1, 2, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (15, 36, 'cGxheQ==', '8+255', 1, 2, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (17, 36, 'YWRhc2Q=', '8+255', 1, 2, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (19, 36, 'Z2FkYWY=', '9', 1, 2, 'TlVMTA==');
+
+-- ----------------------------
+-- Table structure for tb_key
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_key`;
+CREATE TABLE `tb_key`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `cid` int(11) NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `time` bigint(20) NOT NULL,
+  `enable` int(255) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for tb_record
@@ -99,7 +114,7 @@ CREATE TABLE `tb_record`  (
   `time` bigint(20) NOT NULL,
   `position` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 326 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 341 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_record
@@ -410,6 +425,35 @@ INSERT INTO `tb_record` VALUES (322, 11, 'MTIzLjEyNC4yMzguMTMy', 1548045554142, 
 INSERT INTO `tb_record` VALUES (323, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548210151491, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (324, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548238114929, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (325, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548256955551, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (326, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548259680163, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (327, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548297810475, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (328, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548307622089, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (329, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548311765530, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (330, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548313219588, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (331, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548315433184, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (332, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548316531547, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (333, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548332703505, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (334, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548334653988, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (337, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548478864233, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (338, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548485370106, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (339, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548485439464, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (340, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548485844473, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+
+-- ----------------------------
+-- Table structure for tb_transmission
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_transmission`;
+CREATE TABLE `tb_transmission`  (
+  `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `uid` int(11) NOT NULL,
+  `cid` int(11) NOT NULL,
+  `ieport` int(255) NOT NULL,
+  `time` bigint(20) NOT NULL,
+  `status` int(255) NOT NULL,
+  `filepath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `errorlog` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for tb_user
@@ -459,7 +503,14 @@ CREATE TABLE `zb_qhwa1j1cqjxncjz4cer1nw==`  (
   `haha` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `play` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `adasd` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `gadaf` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of zb_qhwa1j1cqjxncjz4cer1nw==
+-- ----------------------------
+INSERT INTO `zb_qhwa1j1cqjxncjz4cer1nw==` VALUES (2, 'asda', 'asdas', 'asdas', 'adasda');
+INSERT INTO `zb_qhwa1j1cqjxncjz4cer1nw==` VALUES (3, 'faff', 'agaa', 'gsdf', 'bcxbxc');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -355,4 +355,10 @@ public class ContainerServerImpl implements ContainerService {
 		return this.containerQueryDao.hasGuest(containerBean) != null;
 	}
 
+	@Override
+	public int containerDataCount(ContainerNewBean containerNewBean) {
+		// TODO Auto-generated method stub
+		return this.containerQueryDao.containerDataCount(containerNewBean);
+	}
+
 }

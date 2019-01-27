@@ -11,7 +11,7 @@
  Target Server Version : 50723
  File Encoding         : 65001
 
- Date: 26/01/2019 15:58:56
+ Date: 27/01/2019 16:57:07
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `tb_container`  (
 -- Records of tb_container
 -- ----------------------------
 INSERT INTO `tb_container` VALUES (35, 'test1', 'test1_cd', 4, 6, 0, 1545335950006, 0);
-INSERT INTO `tb_container` VALUES (36, 'test2', 'test2_cd', 3, 5, 2, 1547964104117, 0);
+INSERT INTO `tb_container` VALUES (36, 'test2', 'test2_cd', 3, 3, 6, 1547964104117, 0);
 
 -- ----------------------------
 -- Table structure for tb_container_privilege
@@ -72,7 +72,7 @@ CREATE TABLE `tb_field`  (
   `key` int(11) NOT NULL,
   `defaultdata` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_field
@@ -84,10 +84,8 @@ INSERT INTO `tb_field` VALUES (8, 35, 'c2Nob29s', '7+128', 0, 2, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (9, 35, 'ZXh0cmVh', '9', 1, 2, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (10, 35, 'aW50ZWdlcl9z', '4', 0, 2, 'TlVMTA==');
 INSERT INTO `tb_field` VALUES (12, 36, 'aWQ=', '2', 0, 0, 'TlVMTA==');
-INSERT INTO `tb_field` VALUES (13, 36, 'aGFoYQ==', '8+255', 1, 2, 'TlVMTA==');
-INSERT INTO `tb_field` VALUES (15, 36, 'cGxheQ==', '8+255', 1, 2, 'TlVMTA==');
-INSERT INTO `tb_field` VALUES (17, 36, 'YWRhc2Q=', '8+255', 1, 2, 'TlVMTA==');
-INSERT INTO `tb_field` VALUES (19, 36, 'Z2FkYWY=', '9', 1, 2, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (20, 36, 'bmFtZQ==', '8+255', 1, 2, 'TlVMTA==');
+INSERT INTO `tb_field` VALUES (21, 36, 'dGV4dA==', '8+255', 1, 2, 'TlVMTA==');
 
 -- ----------------------------
 -- Table structure for tb_key
@@ -114,7 +112,7 @@ CREATE TABLE `tb_record`  (
   `time` bigint(20) NOT NULL,
   `position` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 341 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 343 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_record
@@ -438,6 +436,8 @@ INSERT INTO `tb_record` VALUES (337, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548478864233, 
 INSERT INTO `tb_record` VALUES (338, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548485370106, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (339, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548485439464, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 INSERT INTO `tb_record` VALUES (340, 11, 'MTExLjE5Ni4yNDIuMjQz', 1548485844473, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (341, 11, 'MTExLjE5Ni4yNDQuMTA2', 1548570988528, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
+INSERT INTO `tb_record` VALUES (342, 11, 'MTExLjE5Ni4yNDQuMTA2', 1548578047377, 'sbG+qcrQILGxvqnK0CCy/ca9x/g=');
 
 -- ----------------------------
 -- Table structure for tb_transmission
@@ -500,17 +500,19 @@ CREATE TABLE `zb_cyea8czkv+g9hwlqp1v6oa==`  (
 DROP TABLE IF EXISTS `zb_qhwa1j1cqjxncjz4cer1nw==`;
 CREATE TABLE `zb_qhwa1j1cqjxncjz4cer1nw==`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `haha` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `play` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `adasd` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `gadaf` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `text` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of zb_qhwa1j1cqjxncjz4cer1nw==
 -- ----------------------------
-INSERT INTO `zb_qhwa1j1cqjxncjz4cer1nw==` VALUES (2, 'asda', 'asdas', 'asdas', 'adasda');
-INSERT INTO `zb_qhwa1j1cqjxncjz4cer1nw==` VALUES (3, 'faff', 'agaa', 'gsdf', 'bcxbxc');
+INSERT INTO `zb_qhwa1j1cqjxncjz4cer1nw==` VALUES (2, '马化腾', '我也是普通家庭，就是房子大了一点');
+INSERT INTO `zb_qhwa1j1cqjxncjz4cer1nw==` VALUES (3, '马云', '我对钱没有兴趣');
+INSERT INTO `zb_qhwa1j1cqjxncjz4cer1nw==` VALUES (4, '刘强东', '我这个人脸盲，我也不知道她漂不漂亮');
+INSERT INTO `zb_qhwa1j1cqjxncjz4cer1nw==` VALUES (5, '王健林', '我一无所有');
+INSERT INTO `zb_qhwa1j1cqjxncjz4cer1nw==` VALUES (6, '撒贝宁', '北大也还可以');
+INSERT INTO `zb_qhwa1j1cqjxncjz4cer1nw==` VALUES (8, '王思聪', '我16岁才知道家里有钱');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -3,6 +3,7 @@ package cn.net.sunrise.su.service;
 import java.util.List;
 
 import cn.net.sunrise.su.beans.container.ContainerBean;
+import cn.net.sunrise.su.beans.container.ContainerNewBean;
 import cn.net.sunrise.su.beans.container.ContainerPrivilegeBean;
 import cn.net.sunrise.su.beans.container.ContainerStatisticsBean;
 import cn.net.sunrise.su.beans.container.FieldBean;
@@ -31,4 +32,5 @@ public interface ContainerService {
 	public void unlockContainer(ContainerBean containerBean);
 	public boolean isLocked(ContainerBean containerBean);
 	public boolean hasGuest(ContainerBean containerBean);
+	public int containerDataCount(ContainerNewBean containerNewBean);
 }

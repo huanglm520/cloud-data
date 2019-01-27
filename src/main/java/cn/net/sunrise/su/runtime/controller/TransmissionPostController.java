@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.net.sunrise.su.beans.container.ContainerBean;
+import cn.net.sunrise.su.beans.container.ContainerNewBean;
 import cn.net.sunrise.su.beans.passport.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.ContainerKey;
@@ -44,6 +45,13 @@ public class TransmissionPostController extends BaseController {
 			return ContainerKey.NO_PRIVILEGE;
 		}
 		containerBean = this.containerService.selectContainerById(containerBean).get(0);
-		return containerQueryService.queryByCSQL(csql, containerBean);
+		Object object = containerQueryService.queryByCSQL(csql, containerBean);
+		// 修改数据量
+		ContainerNewBean containerNewBean = new ContainerNewBean();
+		containerNewBean.setTablename(containerBean.tableName());
+		int count = this.containerService.containerDataCount(containerNewBean);
+		containerBean.setData(count);
+		this.containerService.updateContainer(containerBean);
+		return object;
 	}
 }

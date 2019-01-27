@@ -38,4 +38,5 @@ public interface ContainerQueryDao {
 	public void unlockContainer(ContainerBean containerBean);
 	public int isLocked(ContainerBean containerBean);
 	public Object hasGuest(ContainerBean containerBean);
+	public int containerDataCount(ContainerNewBean containerNewBean);
 }

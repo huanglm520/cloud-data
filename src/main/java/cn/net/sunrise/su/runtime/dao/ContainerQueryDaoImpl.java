@@ -176,4 +176,10 @@ public class ContainerQueryDaoImpl extends BaseDao implements ContainerQueryDao 
 		return super.selectOne("hasGuest", containerBean);
 	}
 
+	@Override
+	public int containerDataCount(ContainerNewBean containerNewBean) {
+		// TODO Auto-generated method stub
+		return (Integer) super.select("containerDataCount", containerNewBean).get(0);
+	}
+
 }

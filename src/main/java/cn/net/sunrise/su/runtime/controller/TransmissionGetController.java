@@ -48,4 +48,9 @@ public class TransmissionGetController extends BaseController {
 		request.setAttribute(SecurityKey.SECURITY_CONTAINER_LIST.key, ResultBody.gson.toJson(list.get(0)));
 		return "transmission-main";
 	}
+	
+	@GetMapping("/csql/query/result/view")
+	public String view_01(HttpSession session) {
+		return "transmission-view";
+	}
 }

@@ -121,4 +121,8 @@
 	<update id="containerField" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean">
 		alter table ${tablename};
 	</update>
+	<select id="containerDataCount" parameterType="cn.net.sunrise.su.beans.container.ContainerNewBean"
+		resultType="java.lang.Integer">
+		select count(1) from `${tablename}`;
+	</select>
 </mapper>

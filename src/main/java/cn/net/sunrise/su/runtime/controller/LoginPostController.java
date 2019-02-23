@@ -79,9 +79,9 @@ public class LoginPostController extends BaseController {
 			LoginRecordBean lrb = new LoginRecordBean();
 			lrb.setId(0);
 			lrb.setUid(usb.getId());
-			lrb.setAddress(address==null || address.length()==0 ? "unknown" : address);
+			lrb.setAddress(StringUtils.isBlank(address) ? "unknown" : address);
 			lrb.setTime(System.currentTimeMillis());
-			lrb.setPosition(position==null || position.length()==0 ? "unknown" : position);
+			lrb.setPosition(StringUtils.isBlank(position) ? "unknown" : position);
 			lrb.encode();
 			ps.insertLoginRecord(lrb);
 			

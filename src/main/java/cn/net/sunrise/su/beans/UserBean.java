@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-public class UserBean implements Serializable {
+public class UserBean extends BaseBean implements Serializable {
 	private static final long serialVersionUID = -3624888688567846222L;
 	private int id;
 	private String account;
@@ -152,41 +152,23 @@ public class UserBean implements Serializable {
 	}
 	
 	public void encodeAccount() {
-		try {
-			this.account = this.account==null ? null : Base64.getEncoder().encodeToString(this.account.getBytes("GBK"));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		account = BaseBean.base64EncodeString(account);
 	}
 	
 	public void decodeAccount() {
-		try {
-			this.account = this.account==null ? null : new String(Base64.getDecoder().decode(this.account), "GBK");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		account = BaseBean.base64DecodeString(account);
 	}
 
 	public void encode() {
-		try {
-			this.first_name = this.first_name==null ? null : Base64.getEncoder().encodeToString(this.first_name.getBytes("GBK"));
-			this.last_name = this.last_name==null ? null : Base64.getEncoder().encodeToString(this.last_name.getBytes("GBK"));
-			this.company = this.company==null ? null : Base64.getEncoder().encodeToString(this.company.getBytes("GBK"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+		first_name = BaseBean.base64EncodeString(first_name);
+		last_name = BaseBean.base64EncodeString(last_name);
+		company = BaseBean.base64EncodeString(company);
 	}
 	
 	public void decode() {
-		try {
-			this.first_name = this.first_name==null ? null : new String(Base64.getDecoder().decode(this.first_name), "GBK");
-			this.last_name = this.last_name==null ? null : new String(Base64.getDecoder().decode(this.last_name), "GBK");
-			this.company = this.company==null ? null : new String(Base64.getDecoder().decode(this.company), "GBK");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+		first_name = BaseBean.base64DecodeString(first_name);
+		last_name = BaseBean.base64DecodeString(last_name);
+		company = BaseBean.base64DecodeString(company);
 	}
 	
 	public void encodePassword() {

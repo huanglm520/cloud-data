@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import cn.net.sunrise.su.enums.ContainerStatusKey;
 
-public class ContainerStatisticsBean implements Serializable {
+public class ContainerStatisticsBean extends BaseBean implements Serializable {
 	
 	private static final long serialVersionUID = 7350061263158691205L;
 	

@@ -1,12 +1,10 @@
 package cn.net.sunrise.su.beans;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
 
 import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 
-public class ContainerPrivilegeBean implements Serializable {
+public class ContainerPrivilegeBean extends BaseBean implements Serializable {
 
 	private static final long serialVersionUID = 1499101471082582896L;
 	
@@ -131,21 +129,11 @@ public class ContainerPrivilegeBean implements Serializable {
 	}
 	
 	public void encodeAccount() {
-		try {
-			this.account = this.account==null ? null : Base64.getEncoder().encodeToString(this.account.getBytes("GBK"));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		account = BaseBean.base64EncodeString(account);
 	}
 	
 	public void decodeAccount() {
-		try {
-			this.account = this.account==null ? null : new String(Base64.getDecoder().decode(this.account), "GBK");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		account = BaseBean.base64DecodeString(account);
 	}
 	
 	public void privileges() {

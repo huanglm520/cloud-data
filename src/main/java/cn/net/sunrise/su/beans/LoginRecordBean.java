@@ -1,12 +1,10 @@
 package cn.net.sunrise.su.beans;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
 
 import cn.net.sunrise.su.tool.IpTool;
 
-public class LoginRecordBean implements Serializable {
+public class LoginRecordBean extends BaseBean implements Serializable {
 	private static final long serialVersionUID = 7505514924544960068L;
 	private int id;
 	private int uid;
@@ -116,23 +114,13 @@ public class LoginRecordBean implements Serializable {
 	}
 	
 	public void encode() {
-		try {
-			this.address = this.address==null ? null : Base64.getEncoder().encodeToString(this.address.getBytes("GBK"));
-			this.position = this.position==null ? null : Base64.getEncoder().encodeToString(this.position.getBytes("GBK"));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		address = BaseBean.base64EncodeString(address);
+		position = BaseBean.base64EncodeString(position);
 	}
 	
 	public void decode() {
-		try {
-			this.address = this.address==null ? null : new String(Base64.getDecoder().decode(this.address), "GBK");
-			this.position = this.position==null ? null : new String(Base64.getDecoder().decode(this.position),"GBK");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		address = BaseBean.base64DecodeString(address);
+		position = BaseBean.base64DecodeString(position);
 	}
 	
 }

@@ -9,7 +9,7 @@ import java.util.Base64;
 import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 import cn.net.sunrise.su.enums.ContainerStatusKey;
 
-public class ContainerBean implements Serializable {
+public class ContainerBean extends BaseBean implements Serializable {
 
 	private static final long serialVersionUID = -7711511423288898873L;
 	

@@ -2,7 +2,7 @@ package cn.net.sunrise.su.beans;
 
 import java.io.Serializable;
 
-public class ContainerNewBean implements Serializable {
+public class ContainerNewBean extends BaseBean implements Serializable {
 
 	private static final long serialVersionUID = -6640052201196273723L;
 	

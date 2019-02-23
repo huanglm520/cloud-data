@@ -1,10 +1,8 @@
 package cn.net.sunrise.su.beans;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
 
-public class LoginRecordStatisticsBean implements Serializable {
+public class LoginRecordStatisticsBean extends BaseBean implements Serializable {
 	private static final long serialVersionUID = 1090214364073320991L;
 	private long value;
 	private String name;
@@ -64,11 +62,6 @@ public class LoginRecordStatisticsBean implements Serializable {
 		this.name = position;
 	}
 	public void decode() {
-		try {
-			this.name = this.name==null ? null : new String(Base64.getDecoder().decode(this.name), "GBK");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		name = BaseBean.base64DecodeString(name);
 	}
 }

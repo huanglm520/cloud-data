@@ -2,7 +2,7 @@ package cn.net.sunrise.su.beans;
 
 import java.io.Serializable;
 
-public class LoginRecordTimeBean implements Serializable {
+public class LoginRecordTimeBean extends BaseBean implements Serializable {
 	private static final long serialVersionUID = 1626381556118936173L;
 	private int uid;
 	private long sTime;

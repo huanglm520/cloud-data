@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import cn.net.sunrise.su.beans.container.ContainerBean;
-import cn.net.sunrise.su.beans.container.ContainerNewBean;
-import cn.net.sunrise.su.beans.container.ContainerStatisticsBean;
+import cn.net.sunrise.su.beans.ContainerBean;
+import cn.net.sunrise.su.beans.ContainerNewBean;
+import cn.net.sunrise.su.beans.ContainerStatisticsBean;
 import cn.net.sunrise.su.dao.BaseDao;
 import cn.net.sunrise.su.dao.ContainerQueryDao;
 

@@ -1,4 +1,4 @@
-<%@page import="cn.net.sunrise.su.beans.passport.UserBean"%>
+<%@page import="cn.net.sunrise.su.beans.UserBean"%>
 <%@page import="cn.net.sunrise.su.enums.AttributeKey"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>

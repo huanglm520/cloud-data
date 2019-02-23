@@ -1,6 +1,6 @@
 <%@page import="java.util.Base64"%>
 <%@page import="cn.net.sunrise.su.enums.AttributeKey"%>
-<%@page import="cn.net.sunrise.su.beans.passport.UserBean"%>
+<%@page import="cn.net.sunrise.su.beans.UserBean"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page pageEncoding="UTF-8" language="java" %>

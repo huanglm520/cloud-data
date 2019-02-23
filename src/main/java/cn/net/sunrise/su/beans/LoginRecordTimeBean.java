@@ -1,4 +1,4 @@
-package cn.net.sunrise.su.beans.passport;
+package cn.net.sunrise.su.beans;
 
 import java.io.Serializable;
 

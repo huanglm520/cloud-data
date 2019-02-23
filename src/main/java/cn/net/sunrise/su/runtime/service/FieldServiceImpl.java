@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.net.sunrise.su.beans.container.FieldBean;
+import cn.net.sunrise.su.beans.FieldBean;
 import cn.net.sunrise.su.dao.FieldQueryDao;
 import cn.net.sunrise.su.enums.FieldKey;
 import cn.net.sunrise.su.service.FieldService;

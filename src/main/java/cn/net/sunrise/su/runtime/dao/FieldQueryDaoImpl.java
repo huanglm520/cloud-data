@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import cn.net.sunrise.su.beans.container.FieldBean;
+import cn.net.sunrise.su.beans.FieldBean;
 import cn.net.sunrise.su.dao.BaseDao;
 import cn.net.sunrise.su.dao.FieldQueryDao;
 

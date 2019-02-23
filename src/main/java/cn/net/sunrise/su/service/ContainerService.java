@@ -2,11 +2,11 @@ package cn.net.sunrise.su.service;
 
 import java.util.List;
 
-import cn.net.sunrise.su.beans.container.ContainerBean;
-import cn.net.sunrise.su.beans.container.ContainerNewBean;
-import cn.net.sunrise.su.beans.container.ContainerPrivilegeBean;
-import cn.net.sunrise.su.beans.container.ContainerStatisticsBean;
-import cn.net.sunrise.su.beans.container.FieldBean;
+import cn.net.sunrise.su.beans.ContainerBean;
+import cn.net.sunrise.su.beans.ContainerNewBean;
+import cn.net.sunrise.su.beans.ContainerPrivilegeBean;
+import cn.net.sunrise.su.beans.ContainerStatisticsBean;
+import cn.net.sunrise.su.beans.FieldBean;
 
 public interface ContainerService {
 

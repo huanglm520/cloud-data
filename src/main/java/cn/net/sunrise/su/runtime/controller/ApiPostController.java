@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.net.sunrise.su.beans.api.ApiClockBean;
+import cn.net.sunrise.su.beans.ApiClockBean;
 import cn.net.sunrise.su.tool.ResultBody;
 
 @RestController

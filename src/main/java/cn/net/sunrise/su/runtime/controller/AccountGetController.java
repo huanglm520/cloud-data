@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import cn.net.sunrise.su.beans.passport.UserBean;
+import cn.net.sunrise.su.beans.UserBean;
 import cn.net.sunrise.su.enums.SecurityKey;
 import cn.net.sunrise.su.service.PassportService;
 

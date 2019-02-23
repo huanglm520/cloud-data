@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import cn.net.sunrise.su.beans.passport.LoginRecordBean;
-import cn.net.sunrise.su.beans.passport.LoginRecordStatisticsBean;
-import cn.net.sunrise.su.beans.passport.LoginRecordTimeBean;
+import cn.net.sunrise.su.beans.LoginRecordBean;
+import cn.net.sunrise.su.beans.LoginRecordStatisticsBean;
+import cn.net.sunrise.su.beans.LoginRecordTimeBean;
 import cn.net.sunrise.su.dao.BaseDao;
 import cn.net.sunrise.su.dao.LoginRecordDao;
 

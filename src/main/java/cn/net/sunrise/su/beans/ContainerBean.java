@@ -1,4 +1,4 @@
-package cn.net.sunrise.su.beans.container;
+package cn.net.sunrise.su.beans;
 
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;

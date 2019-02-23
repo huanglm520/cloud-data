@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cn.net.sunrise.su.beans.container.ContainerBean;
-import cn.net.sunrise.su.beans.passport.UserBean;
+import cn.net.sunrise.su.beans.ContainerBean;
+import cn.net.sunrise.su.beans.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 import cn.net.sunrise.su.enums.ContainerStatusKey;
@@ -82,10 +82,10 @@ public class ContainerDoubleGetController extends BaseController {
 		return page;
 	}
 	 
-//	@GetMapping("/key")
-//	public String export_02(HttpSession session) {
-//		return super.pageName(session, "container-key");
-//	}
+	@GetMapping("/statistics")
+	public String export_02(HttpSession session) {
+		return super.pageName(session, "container-statistics");
+	}
 	
 	@GetMapping("/transmission")
 	public String import_02(HttpSession session, HttpServletRequest request) {

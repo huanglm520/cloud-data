@@ -2,10 +2,10 @@ package cn.net.sunrise.su.service;
 
 import java.util.List;
 
-import cn.net.sunrise.su.beans.passport.LoginRecordBean;
-import cn.net.sunrise.su.beans.passport.LoginRecordStatisticsBean;
-import cn.net.sunrise.su.beans.passport.LoginRecordTimeBean;
-import cn.net.sunrise.su.beans.passport.UserBean;
+import cn.net.sunrise.su.beans.LoginRecordBean;
+import cn.net.sunrise.su.beans.LoginRecordStatisticsBean;
+import cn.net.sunrise.su.beans.LoginRecordTimeBean;
+import cn.net.sunrise.su.beans.UserBean;
 import cn.net.sunrise.su.enums.PassportKey;
 
 public interface PassportService {

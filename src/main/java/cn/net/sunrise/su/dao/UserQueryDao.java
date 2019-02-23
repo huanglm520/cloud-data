@@ -2,7 +2,7 @@ package cn.net.sunrise.su.dao;
 
 import java.util.List;
 
-import cn.net.sunrise.su.beans.passport.UserBean;
+import cn.net.sunrise.su.beans.UserBean;
 
 public interface UserQueryDao {
 	

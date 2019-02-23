@@ -2,7 +2,7 @@ package cn.net.sunrise.su.service;
 
 import java.util.List;
 
-import cn.net.sunrise.su.beans.container.FieldBean;
+import cn.net.sunrise.su.beans.FieldBean;
 import cn.net.sunrise.su.enums.FieldKey;
 
 public interface FieldService {

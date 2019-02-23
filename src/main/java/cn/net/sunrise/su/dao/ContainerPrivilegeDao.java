@@ -2,7 +2,7 @@ package cn.net.sunrise.su.dao;
 
 import java.util.List;
 
-import cn.net.sunrise.su.beans.container.ContainerPrivilegeBean;
+import cn.net.sunrise.su.beans.ContainerPrivilegeBean;
 
 public interface ContainerPrivilegeDao {
 

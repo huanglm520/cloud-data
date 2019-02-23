@@ -2,9 +2,9 @@ package cn.net.sunrise.su.dao;
 
 import java.util.List;
 
-import cn.net.sunrise.su.beans.container.ContainerBean;
-import cn.net.sunrise.su.beans.container.ContainerNewBean;
-import cn.net.sunrise.su.beans.container.ContainerStatisticsBean;
+import cn.net.sunrise.su.beans.ContainerBean;
+import cn.net.sunrise.su.beans.ContainerNewBean;
+import cn.net.sunrise.su.beans.ContainerStatisticsBean;
 
 public interface ContainerQueryDao {
 

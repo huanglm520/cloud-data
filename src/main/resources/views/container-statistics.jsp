@@ -1,4 +1,3 @@
-<%@page import="cn.net.sunrise.su.enums.SecurityKey"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="cn.net.sunrise.su.enums.AttributeKey"%>
@@ -19,7 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>容器权限管理 - Cloud-Data 数据一体化管理平台</title>
+    <title>数据统计 - Cloud-Data 数据一体化管理平台</title>
     <link rel="icon" href="https://huanglm520.github.io/cloud-data.static.io/images/cloud.png" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/public.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/toolbar.css" />
@@ -34,64 +33,6 @@
 
 	<style type="text/css">
 		div.content {
-			width: 100%;
-			margin-bottom: 70px;
-		}
-		div.title {
-			width: 100%;
-			text-align: center;
-		}
-		span.title { 
-			font-family: "微软雅黑", "华文细黑";
-			font-size: 24px;
-			font-weight: 600;
-			color: #777C78; 
-		}
-		div.p_list {
-			width: 720px; 
-			margin: auto;
-			margin-top: 20px;
-		}
-		table.p_list {
-			width: 720px;
-			border-collapse: collapse;  
-			border-spacing: 0;  
-		}
-		tr.p_list {
-			height: 35px;
-		}
-		table.p_list, td.p_list_1, td.p_list_2, td.p_list_3, td.p_list_4 { 
-			border: 1px solid #767976;
-		}
-		td.p_list_1, td.p_list_2, td.p_list_3, td.p_list_4 {
-			font-family: "微软雅黑", "华文细黑";
-			font-size: 18px;
-			font-weight: 600;
-			color: #717572;
-		}
-		td.p_list_1 {
-			width: 100px;
-		}
-		td.p_list_2 {
-			width: 350px;
-		}
-		td.p_list_3 {
-			width: 100px;
-		}
-		td.p_list_4 {
-			width: 150px;
-		}
-		button.add {
-			width: 100%;
-			height: 45px;
-			border: none;
-			outline: none;
-			background-color: #1296DB;
-			font-family: "微软雅黑", "华文细黑";
-			font-size: 20px;
-			font-weight: 600;
-			color: #FFFFFF;
-			cursor: pointer;
 		}
 	</style>
 
@@ -141,29 +82,7 @@
 		</table>
 	</div>
 	
-	<div class="content" id="content">
-		<div class="title">
-			<span class="title">容器：{{ name }}&nbsp;上的权限列表</span>
-		</div>
-		<div class="p_list">
-			<table class="p_list">
-				<tr class="p_list">
-					<td class="p_list_1">权限ID</td>
-					<td class="p_list_2">用户账户</td>
-					<td class="p_list_3">拥有权限</td>
-					<td class="p_list_4">操作</td> 
-				</tr>
-			</table>
-			<table class="p_list">
-				<tr class="p_list" v-for="site in json">
-					<td class="p_list_1">{{ site.id }}</td>
-					<td class="p_list_2" ><span style="cursor:pointer;color:#1296DB" @click='window.open("<%=path %>/account/view?uid="+site.uid)'>{{ site.account }}</span></td>
-					<td class="p_list_3">{{ site.privileges }}</td>
-					<td class="p_list_4"><!-- <span style="cursor:pointer;color:#1296DB" @click='window.location.href="<%=path %>/container/manager/privilege/modify?pid="+site.id+"&cid="+site.cid'>修改</span>/ --><span style="cursor:pointer;color:#FF0000" @click='window.location.href="<%=path %>/container/manager/privilege/delete?pid="+site.id+"&cid="+site.cid'>删除</span></td> 
-				</tr>
-			</table>
-			<button class="add"  onmouseover="$(this).animate({'background-color':'#46B4EE'}, 200);" onmouseout="$(this).animate({'background-color':'#1296DB'}, 200);" @click='window.location.href="<%=path %>/container/manager/privilege/add?cid="+id'>+添加权限字段</button>
-		</div>
+	<div class="content">
 	</div>
 	
 	<div class="bottombar">
@@ -181,17 +100,6 @@
 	    	</table>
 	    </div>
 	</div>
-	
-	<script type="text/javascript">
-		new Vue({
-			el: "#content",
-			data: {
-				id: <%=request.getAttribute(SecurityKey.CONTAINER_ID.key) %>,
-				name: "<%=request.getAttribute(SecurityKey.CONTAINER_NAME.key) %>",
-				json: <%=request.getAttribute(SecurityKey.CONTAINER_MANAGER_PRIVILEGE.key) %>
-			}
-		});
-	</script>
 	
 </body>
 </html>

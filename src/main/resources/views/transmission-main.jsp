@@ -333,7 +333,7 @@
 								sessionStorage.setItem("cols", data.cols);
 								sessionStorage.setItem("datas", data.table);
 								window.open("<%=path%>/container/transmission/csql/query/result/view?cid="+json.id+"&datetime="+new Date()+"&csql="+editor.getValue());
-								sessionStorage.clear();
+								sessionStorage.clear(); 
 							}
 						} else {
 							$("#result").append("Query OK!<br/>"+data.line+" row(s) affected!");

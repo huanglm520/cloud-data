@@ -55,6 +55,7 @@ public class DboDao {
 					for (String s: colList) {
 						map.put(s, rs.getObject(s));
 					}
+					map.put("cols", colList);
 					return map;
 				}
 				

@@ -18,7 +18,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%=usb.getLast_name()+usb.getFirst_name() %>的个人中心 - Cloud-Data 数据一体化管理平台</title>
+    <title>[Title] - Cloud-Data 数据一体化管理平台</title>
     <link rel="icon" href="https://huanglm520.github.io/cloud-data.static.io/images/cloud.png" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/public.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/toolbar.css" />

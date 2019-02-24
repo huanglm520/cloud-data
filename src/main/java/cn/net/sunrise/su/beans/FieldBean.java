@@ -2,7 +2,7 @@ package cn.net.sunrise.su.beans;
 
 import java.io.Serializable;
 
-public class FieldBean extends BaseBean implements Serializable {
+public class FieldBean extends BaseBean implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 415289649423849263L;
 	

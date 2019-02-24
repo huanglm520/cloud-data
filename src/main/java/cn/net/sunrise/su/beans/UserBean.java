@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-public class UserBean extends BaseBean implements Serializable {
+public class UserBean extends BaseBean implements Serializable, Cloneable {
 	private static final long serialVersionUID = -3624888688567846222L;
 	private int id;
 	private String account;

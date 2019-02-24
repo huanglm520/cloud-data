@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 
-public class ContainerPrivilegeBean extends BaseBean implements Serializable {
+public class ContainerPrivilegeBean extends BaseBean implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 1499101471082582896L;
 	

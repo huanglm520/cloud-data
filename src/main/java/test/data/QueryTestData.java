@@ -17,7 +17,7 @@ public class QueryTestData {
 		Date date = new Date();
 		date.setTime(date.getTime()-24*60*60*1000*20L);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Integer[] cid = {35,36};
+		Integer[] cid = {35,36,37,38,39,40,41,42,43,44};
 		Integer[] uid = {11,12,13};
 		String[] operator = {"query", "update"};
 		Class.forName("com.mysql.jdbc.Driver");

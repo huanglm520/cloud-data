@@ -11,5 +11,6 @@
 		<mapper resource="mapper/container-mapper.xml" />
 		<mapper resource="mapper/container-privilege-mapper.xml" />
 		<mapper resource="mapper/field-mapper.xml" />
+		<mapper resource="mapper/container-query-mapper.xml" />
 	</mappers>
 </configuration>

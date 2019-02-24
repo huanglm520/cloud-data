@@ -1,8 +1,13 @@
 package cn.net.sunrise.su.runtime.service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +15,13 @@ import org.springframework.stereotype.Service;
 import cn.net.sunrise.su.beans.ContainerBean;
 import cn.net.sunrise.su.beans.ContainerNewBean;
 import cn.net.sunrise.su.beans.ContainerPrivilegeBean;
+import cn.net.sunrise.su.beans.ContainerQueryBean;
+import cn.net.sunrise.su.beans.ContainerQueryTimeBean;
 import cn.net.sunrise.su.beans.ContainerStatisticsBean;
 import cn.net.sunrise.su.beans.FieldBean;
 import cn.net.sunrise.su.dao.ContainerPrivilegeDao;
 import cn.net.sunrise.su.dao.ContainerQueryDao;
+import cn.net.sunrise.su.dao.ContainerStatisticsDao;
 import cn.net.sunrise.su.enums.ContainerKey;
 import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 import cn.net.sunrise.su.enums.ContainerStatusKey;
@@ -30,6 +38,8 @@ public class ContainerServerImpl implements ContainerService {
 	private ContainerPrivilegeDao containerPrivilegeDao;
 	@Autowired
 	private FieldService fieldService;
+	@Autowired
+	private ContainerStatisticsDao containerStatisticsDao;
 
 	@Override
 	public Object addContainer(ContainerBean containerBean) {
@@ -359,6 +369,79 @@ public class ContainerServerImpl implements ContainerService {
 	public int containerDataCount(ContainerNewBean containerNewBean) {
 		// TODO Auto-generated method stub
 		return this.containerQueryDao.containerDataCount(containerNewBean);
+	}
+
+	@Override
+	public void insertQueryRecord(ContainerQueryBean containerQueryBean) {
+		// TODO Auto-generated method stub
+		containerQueryBean.encode();
+		this.containerStatisticsDao.insertQueryRecord(containerQueryBean);
+	}
+
+	@Override
+	public Object selectQueryRecord(ContainerQueryTimeBean containerQueryTimeBean) {
+		// TODO Auto-generated method stub
+		List<ContainerQueryBean> list = this.containerStatisticsDao.selectQueryRecord(containerQueryTimeBean);
+		Set<String> legend = new HashSet<>();
+		List<String> xAxis = new ArrayList<>();
+		Map<String, Map<String, Integer>> map = new HashMap<>();
+		// 利用HashMap做容器名称缓存
+		Map<Integer, String> cnameCache = new HashMap<>();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date(containerQueryTimeBean.getLeftTime());
+		
+		// 写入日期序列
+		while (date.getTime() <= containerQueryTimeBean.getRightTime()) {
+			xAxis.add(sdf.format(date));
+			date.setTime(date.getTime()+24*60*60*1000L);
+		}
+		
+		for (ContainerQueryBean bean : list) {
+			bean.decode();
+			// 获取容器名称
+			String cname = cnameCache.get(bean.getCid());
+			if (cname == null) {
+				// 如果不存在去数据库中查询
+				ContainerBean containerBean = new ContainerBean();
+				containerBean.setId(bean.getCid());
+				containerBean = this.containerQueryDao.selectContainerById(containerBean).get(0);
+				cname = containerBean.getName();
+				cnameCache.put(bean.getCid(), cname);
+			}
+			legend.add(cname);
+			
+			Map<String, Integer> m = map.get(cname);
+			if (m == null) {
+				m = new HashMap<>();
+				map.put(cname, m);
+			}
+			String tFormat = sdf.format(bean.getQuerytime());
+			Integer cnt = m.get(tFormat);
+			if (cnt == null) {
+				cnt = 0;
+			}
+			cnt ++ ;
+			m.put(tFormat, cnt);
+		}
+		List<Map<String, Object>> series = new ArrayList<>();
+		for (String key: legend) {
+			Map<String, Object> tm = new HashMap<>();
+			tm.put("name", key);
+			tm.put("type", "line");
+			List<Integer> dataList = new ArrayList<>();
+			for (String string : xAxis) {
+				Integer integer = map.get(key).get(string);
+				dataList.add(integer==null ? 0 : integer);
+			}
+			tm.put("data", dataList);
+			series.add(tm);
+		}
+		Map<String, Object> result = new HashMap<>();
+		result.put("legend", legend);
+		result.put("xAxis", xAxis);
+		result.put("series", series);
+		return result;
 	}
 
 }

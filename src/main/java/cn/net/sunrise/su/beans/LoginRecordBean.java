@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import cn.net.sunrise.su.tool.IpTool;
 
-public class LoginRecordBean extends BaseBean implements Serializable {
+public class LoginRecordBean extends BaseBean implements Serializable, Cloneable {
 	private static final long serialVersionUID = 7505514924544960068L;
 	private int id;
 	private int uid;

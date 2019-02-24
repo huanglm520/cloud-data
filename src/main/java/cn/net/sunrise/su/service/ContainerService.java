@@ -5,6 +5,8 @@ import java.util.List;
 import cn.net.sunrise.su.beans.ContainerBean;
 import cn.net.sunrise.su.beans.ContainerNewBean;
 import cn.net.sunrise.su.beans.ContainerPrivilegeBean;
+import cn.net.sunrise.su.beans.ContainerQueryBean;
+import cn.net.sunrise.su.beans.ContainerQueryTimeBean;
 import cn.net.sunrise.su.beans.ContainerStatisticsBean;
 import cn.net.sunrise.su.beans.FieldBean;
 
@@ -33,4 +35,6 @@ public interface ContainerService {
 	public boolean isLocked(ContainerBean containerBean);
 	public boolean hasGuest(ContainerBean containerBean);
 	public int containerDataCount(ContainerNewBean containerNewBean);
+	public void insertQueryRecord(ContainerQueryBean containerQueryBean);
+	public Object selectQueryRecord(ContainerQueryTimeBean containerQueryTimeBean);
 }

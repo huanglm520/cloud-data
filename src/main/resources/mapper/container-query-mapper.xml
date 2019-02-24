@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.net.sunrise.su.config.mapper.container-query-mapper.xml">
+
+	<insert id="insertQueryRecord" parameterType="cn.net.sunrise.su.beans.ContainerQueryBean">
+		insert into tb_query values(null, #{cid}, #{uid}, #{ip}, #{querytime}, #{querytype});
+	</insert>
+	
+	<select id="selectQueryRecord" parameterType="cn.net.sunrise.su.beans.ContainerQueryTimeBean"
+		resultType="cn.net.sunrise.su.beans.ContainerQueryBean">
+		select tb_query.cid, tb_query.querytime from tb_query,tb_container_privilege
+		where tb_query.cid=tb_container_privilege.cid and tb_container_privilege.uid=#{uid}
+		and (tb_container_privilege.privilege=1 or tb_container_privilege.privilege=2)
+		and tb_query.querytime&gt;=#{leftTime} and tb_query.querytime&lt;=#{rightTime};
+	</select>
+
+</mapper>

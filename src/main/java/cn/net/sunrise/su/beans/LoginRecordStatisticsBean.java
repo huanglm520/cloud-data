@@ -2,7 +2,7 @@ package cn.net.sunrise.su.beans;
 
 import java.io.Serializable;
 
-public class LoginRecordStatisticsBean extends BaseBean implements Serializable {
+public class LoginRecordStatisticsBean extends BaseBean implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1090214364073320991L;
 	private long value;
 	private String name;

@@ -25,6 +25,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script type="text/javascript" src="https://www.echartsjs.com/gallery/vendors/echarts/echarts.min.js"></script>
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/timer.js"></script>
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/public.js"></script>
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/toolbar.js"></script>
@@ -33,6 +34,31 @@
 
 	<style type="text/css">
 		div.content {
+			width: 100%;
+			margin-bottom: 70px;
+		}
+		div.t1 {
+			width: 100%;
+			font-family: "微软雅黑", "华文细黑";
+			font-size: 28px;
+			font-weight: 300;
+			color: #6A6E6A;
+			text-align: center;
+		}
+		div.c1 {
+			width: 70%;
+			height: 500px; 
+			margin: auto;
+			margin-top: 15px;
+		}
+		div.pending {
+			float: left;
+			margin-top: 200px;
+			width: 100%;
+			text-align: center;
+			font-family: "微软雅黑", "华文细黑";
+			font-size: 24px;
+			color: #6A6E6A;
 		}
 	</style>
 
@@ -83,6 +109,10 @@
 	</div>
 	
 	<div class="content">
+		<div class="t1">近15日各容器访问情况统计图</div>
+		<div id="c1" class="c1">
+			<div id="pending" class="pending"></div>
+		</div>
 	</div>
 	
 	<div class="bottombar">
@@ -100,6 +130,83 @@
 	    	</table>
 	    </div>
 	</div>
+	
+	<script type="text/javascript">
+	
+		// 设置定时器，体现数据加载动态效果
+		var pRound = 0;
+		var interval = setInterval(function () {
+			var s = "数据加载中";
+			for (var i=0; i<=pRound; i++) {
+				s += "·";
+			}
+			$("#pending").empty().append(s);
+			pRound ++ ;
+			pRound %= 6;
+		}, 100);
+		
+		
+		$.ajax({
+			url: "<%=path%>/container/statistics/query/",
+			type: "POST",
+			dataType: "json",
+			error: function() {
+				// error process
+				$("#pending").empty().append("数据加载失败！<br>请刷新页面重试！").css({"color": "#D94A1E"});
+			},
+			success: function(data) {
+				
+				// 清除计时器
+				if (interval) {
+					clearInterval(interval);
+					interval = null;
+				}
+				
+				var chart1 = echarts.init(document.getElementById("c1"));
+				var option1 = {
+				    title: {
+				        text: '' 
+				    },
+				    tooltip: {
+				        trigger: 'axis'
+				    },
+				    legend: {
+				        data: null
+				    },
+				    grid: {
+				        left: '3%',
+				        right: '4%',
+				        bottom: '3%',
+				        containLabel: true
+				    },
+				    toolbox: {
+				        feature: {
+				            saveAsImage: {}
+				        }
+				    },
+				    xAxis: {
+				        type: 'category',
+				        boundaryGap: false,
+				        data: null
+				    },
+				    yAxis: {
+				        type: 'value'
+				    },
+				    series: null
+				};
+				
+				option1.legend.data = data.legend;
+				option1.xAxis.data = data.xAxis;
+				option1.series = data.series;
+				chart1.setOption(option1);
+				$(window).resize(function () {
+					chart1.resize();
+				});
+			}
+		});
+		
+	
+	</script>
 	
 </body>
 </html>

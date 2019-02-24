@@ -33,9 +33,10 @@ public class ContainerStatisticsPostController extends BaseController {
 		ContainerQueryTimeBean containerQueryTimeBean = new ContainerQueryTimeBean();
 		containerQueryTimeBean.setUid(userBean.getId());
 		Date date = new Date();
+		date.setTime(date.getTime()-24*60*60*1000*14L);
 		String sDate = new SimpleDateFormat("yyyy-MM-dd").format(date)+" 00:00:00";
 		long sTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sDate).getTime();
-		long eTime = sTime + 24*60*60*1000*15L + 23*59*59*1000L + 999L;
+		long eTime = sTime + 24*60*60*1000*14L + 23*59*59*1000L + 999L;
 		containerQueryTimeBean.setLeftTime(sTime);
 		containerQueryTimeBean.setRightTime(eTime);
 		Object object = this.containerService.selectQueryRecord(containerQueryTimeBean);

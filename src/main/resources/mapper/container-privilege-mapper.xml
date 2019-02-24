@@ -4,47 +4,47 @@
 
 <mapper namespace="cn.net.sunrise.su.config.mapper.container-privilege-mapper.xml">
 	<!-- 容器数据库权限字段配置 -->
-	<insert id="insertPrivilegeByAccount" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+	<insert id="insertPrivilegeByAccount" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean">
 		insert into tb_container_privilege values(null, (select id from tb_user where account=#{account}),
 		#{cid}, #{privilege});
 	</insert>
-	<insert id="insertPrivilegeByUid" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+	<insert id="insertPrivilegeByUid" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean">
 		insert into tb_container_privilege values(null, #{uid}, #{cid}, #{privilege});
 	</insert>
-	<update id="updatePrivilege" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+	<update id="updatePrivilege" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean">
 		update tb_container_privilege set id=#{id}, uid=#{uid}, cid=#{cid}, privilege=#{privilege} where id=#{id};
 	</update>
-	<delete id="deletePrivilegeById" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+	<delete id="deletePrivilegeById" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean">
 		delete from tb_container_privilege where id=#{id};
 	</delete>
-	<delete id="deletePrivilegeByCid" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+	<delete id="deletePrivilegeByCid" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean">
 		delete from tb_container_privilege where cid=#{cid};
 	</delete>
-	<delete id="deletePrivilegeByUid" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+	<delete id="deletePrivilegeByUid" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean">
 		delete from tb_container_privilege where cid=#{cid} and uid=#{uid};
 	</delete>
-	<select id="selectPrivilegeById" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
-		resultType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+	<select id="selectPrivilegeById" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean"
+		resultType="cn.net.sunrise.su.beans.ContainerPrivilegeBean">
 		select tb_container_privilege.*, tb_user.account from tb_container_privilege, tb_user where
 		tb_container_privilege.id=#{id} and tb_container_privilege.uid=tb_user.id;
 	</select>
-	<select id="selectPrivilegeByCid" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
-		resultType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+	<select id="selectPrivilegeByCid" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean"
+		resultType="cn.net.sunrise.su.beans.ContainerPrivilegeBean">
 		select tb_container_privilege.*, tb_user.account from tb_container_privilege, tb_user where
 		tb_container_privilege.cid=#{cid} and tb_container_privilege.uid=tb_user.id;
 	</select>
-	<select id="selectPrivilegeByCidUid" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
-		resultType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+	<select id="selectPrivilegeByCidUid" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean"
+		resultType="cn.net.sunrise.su.beans.ContainerPrivilegeBean">
 		select tb_container_privilege.*, tb_user.account from tb_container_privilege, tb_user where
 		tb_container_privilege.cid=#{cid} and tb_container_privilege.uid=#{uid};
 	</select>
-	<select id="selectPrivilegeByAccount" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
-		resultType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean">
+	<select id="selectPrivilegeByAccount" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean"
+		resultType="cn.net.sunrise.su.beans.ContainerPrivilegeBean">
 		select tb_container_privilege.*, tb_user.account from tb_container_privilege, tb_user where
 		tb_container_privilege.uid=(select id from tb_user where account=#{account})
 		and tb_container_privilege.uid=tb_user.id;
 	</select>
-	<select id="existsPrivilege" parameterType="cn.net.sunrise.su.beans.container.ContainerPrivilegeBean"
+	<select id="existsPrivilege" parameterType="cn.net.sunrise.su.beans.ContainerPrivilegeBean"
 		resultType="java.lang.Object">
 		select 1 from tb_container_privilege where uid=#{uid} and cid=#{cid} and privilege=#{privilege};
 	</select>

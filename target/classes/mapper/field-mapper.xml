@@ -3,28 +3,28 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.net.sunrise.su.config.mapper.field-mapper.xml">
-	<insert id="insertField" parameterType="cn.net.sunrise.su.beans.container.FieldBean">
+	<insert id="insertField" parameterType="cn.net.sunrise.su.beans.FieldBean">
 		insert into tb_field values(null, #{cid}, #{name}, #{type}, #{isnull}, #{key}, #{defaultdata});
 	</insert>
-	<delete id="deleteField" parameterType="cn.net.sunrise.su.beans.container.FieldBean">
+	<delete id="deleteField" parameterType="cn.net.sunrise.su.beans.FieldBean">
 		delete from tb_field where id=#{id};
 	</delete>
-	<delete id="deleteFieldByCid" parameterType="cn.net.sunrise.su.beans.container.FieldBean">
+	<delete id="deleteFieldByCid" parameterType="cn.net.sunrise.su.beans.FieldBean">
 		delete from tb_field where cid=#{cid};
 	</delete>
-	<select id="selectFieldByCid" parameterType="cn.net.sunrise.su.beans.container.FieldBean"
-		resultType="cn.net.sunrise.su.beans.container.FieldBean">
+	<select id="selectFieldByCid" parameterType="cn.net.sunrise.su.beans.FieldBean"
+		resultType="cn.net.sunrise.su.beans.FieldBean">
 		select * from tb_field where cid=#{cid};
 	</select>
-	<select id="existsField" parameterType="cn.net.sunrise.su.beans.container.FieldBean"
+	<select id="existsField" parameterType="cn.net.sunrise.su.beans.FieldBean"
 		resultType="java.lang.Object">
 		select 1 from tb_field where cid=#{cid} and name=#{name};
 	</select>
-	<select id="selectFieldById" parameterType="cn.net.sunrise.su.beans.container.FieldBean"
-		resultType="cn.net.sunrise.su.beans.container.FieldBean">
+	<select id="selectFieldById" parameterType="cn.net.sunrise.su.beans.FieldBean"
+		resultType="cn.net.sunrise.su.beans.FieldBean">
 		select * from tb_field where id=#{id};
 	</select>
-	<update id="updateField" parameterType="cn.net.sunrise.su.beans.container.FieldBean">
+	<update id="updateField" parameterType="cn.net.sunrise.su.beans.FieldBean">
 		update tb_field set name=#{name}, type=#{type}, isnull=#{isnull}, `key`=#{key} where id=#{id};
 	</update>
 </mapper>

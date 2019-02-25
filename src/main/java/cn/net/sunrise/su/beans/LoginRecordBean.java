@@ -18,13 +18,7 @@ public class LoginRecordBean extends BaseBean implements Serializable, Cloneable
 	
 	@Override
 	public LoginRecordBean clone() {
-		LoginRecordBean bean = new LoginRecordBean();
-		bean.address = this.address;
-		bean.id = this.id;
-		bean.position = this.position;
-		bean.time = this.time;
-		bean.uid = this.uid;
-		return bean;
+		return (LoginRecordBean) super.clone();
 	}
 	
 	
@@ -114,13 +108,13 @@ public class LoginRecordBean extends BaseBean implements Serializable, Cloneable
 	}
 	
 	public void encode() {
-		address = BaseBean.base64EncodeString(address);
-		position = BaseBean.base64EncodeString(position);
+		address = super.base64EncodeString(address);
+		position = super.base64EncodeString(position);
 	}
 	
 	public void decode() {
-		address = BaseBean.base64DecodeString(address);
-		position = BaseBean.base64DecodeString(position);
+		address = super.base64DecodeString(address);
+		position = super.base64DecodeString(position);
 	}
 	
 }

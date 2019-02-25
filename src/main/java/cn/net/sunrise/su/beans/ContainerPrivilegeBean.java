@@ -22,15 +22,7 @@ public class ContainerPrivilegeBean extends BaseBean implements Serializable, Cl
 	
 	@Override
 	public ContainerPrivilegeBean clone() {
-		ContainerPrivilegeBean bean = new ContainerPrivilegeBean();
-		bean.account = this.account;
-		bean.cid = this.cid;
-		bean.id = this.id;
-		bean.name = this.name;
-		bean.privilege = this.privilege;
-		bean.privileges = this.privileges;
-		bean.uid = this.uid;
-		return bean;
+		return (ContainerPrivilegeBean) super.clone();
 	}
 	
 	
@@ -129,11 +121,11 @@ public class ContainerPrivilegeBean extends BaseBean implements Serializable, Cl
 	}
 	
 	public void encodeAccount() {
-		account = BaseBean.base64EncodeString(account);
+		account = super.base64EncodeString(account);
 	}
 	
 	public void decodeAccount() {
-		account = BaseBean.base64DecodeString(account);
+		account = super.base64DecodeString(account);
 	}
 	
 	public void privileges() {

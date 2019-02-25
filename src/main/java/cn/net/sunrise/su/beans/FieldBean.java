@@ -50,15 +50,7 @@ public class FieldBean extends BaseBean implements Serializable, Cloneable {
 	
 	@Override
 	public FieldBean clone() {
-		FieldBean bean = new FieldBean();
-		bean.cid = this.cid;
-		bean.defaultdata = this.defaultdata;
-		bean.id = this.id;
-		bean.isnull = this.isnull;
-		bean.key = this.key;
-		bean.name = this.name;
-		bean.type = this.type;
-		return bean;
+		return (FieldBean) super.clone();
 	}
 	
 	
@@ -176,12 +168,12 @@ public class FieldBean extends BaseBean implements Serializable, Cloneable {
 	}
 	
 	public void encode() {
-		name = BaseBean.base64EncodeString(name);
-		defaultdata = BaseBean.base64EncodeString(defaultdata);
+		name = super.base64EncodeString(name);
+		defaultdata = super.base64EncodeString(defaultdata);
 	}
 	public void decode() {
-		name = BaseBean.base64DecodeString(name);
-		defaultdata = base64DecodeString(defaultdata);
+		name = super.base64DecodeString(name);
+		defaultdata = super.base64DecodeString(defaultdata);
 	}
 
 	@Override

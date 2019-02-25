@@ -23,17 +23,7 @@ public class UserBean extends BaseBean implements Serializable, Cloneable {
 	
 	@Override
 	public UserBean clone() {
-		UserBean bean = new UserBean();
-		bean.account = this.account;
-		bean.password = this.password;
-		bean.company = this.company;
-		bean.first_name = this.first_name;
-		bean.id = this.id;
-		bean.last_name = this.last_name;
-		bean.password = this.password;
-		bean.regtime = this.regtime;
-		bean.salt = this.salt;
-		return bean;
+		return (UserBean) super.clone();
 	}
 	
 	
@@ -152,23 +142,23 @@ public class UserBean extends BaseBean implements Serializable, Cloneable {
 	}
 	
 	public void encodeAccount() {
-		account = BaseBean.base64EncodeString(account);
+		account = super.base64EncodeString(account);
 	}
 	
 	public void decodeAccount() {
-		account = BaseBean.base64DecodeString(account);
+		account = super.base64DecodeString(account);
 	}
 
 	public void encode() {
-		first_name = BaseBean.base64EncodeString(first_name);
-		last_name = BaseBean.base64EncodeString(last_name);
-		company = BaseBean.base64EncodeString(company);
+		first_name = super.base64EncodeString(first_name);
+		last_name = super.base64EncodeString(last_name);
+		company = super.base64EncodeString(company);
 	}
 	
 	public void decode() {
-		first_name = BaseBean.base64DecodeString(first_name);
-		last_name = BaseBean.base64DecodeString(last_name);
-		company = BaseBean.base64DecodeString(company);
+		first_name = super.base64DecodeString(first_name);
+		last_name = super.base64DecodeString(last_name);
+		company = super.base64DecodeString(company);
 	}
 	
 	public void encodePassword() {

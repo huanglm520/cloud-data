@@ -18,9 +18,7 @@ public class ContainerNewBean extends BaseBean implements Serializable, Cloneabl
 
 	@Override
 	public ContainerNewBean clone() {
-		ContainerNewBean bean = new ContainerNewBean();
-		bean.tablename = this.tablename;
-		return bean;
+		return (ContainerNewBean) super.clone();
 	}
 	
 	

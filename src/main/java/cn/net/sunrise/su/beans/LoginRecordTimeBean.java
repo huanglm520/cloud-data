@@ -16,13 +16,7 @@ public class LoginRecordTimeBean extends BaseBean implements Serializable, Clone
 	
 	@Override
 	public LoginRecordTimeBean clone() {
-		LoginRecordTimeBean bean = new LoginRecordTimeBean();
-		bean.eTime = this.eTime;
-		bean.left = this.left;
-		bean.right = this.right;
-		bean.sTime = this.sTime;
-		bean.uid = this.uid;
-		return bean;
+		return (LoginRecordTimeBean) super.clone();
 	}
 	
 	

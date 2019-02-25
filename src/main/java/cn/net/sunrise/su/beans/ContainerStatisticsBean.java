@@ -18,11 +18,7 @@ public class ContainerStatisticsBean extends BaseBean implements Serializable, C
 	
 	@Override
 	public ContainerStatisticsBean clone() {
-		ContainerStatisticsBean bean = new ContainerStatisticsBean();
-		bean.name = this.name;
-		bean.status = this.status;
-		bean.value = this.value;
-		return bean;
+		return (ContainerStatisticsBean) super.clone();
 	}
 	
 	

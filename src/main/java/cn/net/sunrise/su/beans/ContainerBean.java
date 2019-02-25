@@ -35,20 +35,7 @@ public class ContainerBean extends BaseBean implements Serializable, Cloneable {
 	
 	@Override
 	public ContainerBean clone() {
-		ContainerBean bean = new ContainerBean();
-		bean.api = this.api;
-		bean.buildtime = this.buildtime;
-		bean.data = this.data;
-		bean.field = this.field;
-		bean.id = this.id;
-		bean.name = this.name;
-		bean.privilege = this.privilege;
-		bean.privileges = this.privileges;
-		bean.state = this.state;
-		bean.status = this.status;
-		bean.uid = this.uid;
-		bean.locked = this.locked;
-		return bean;
+		return (ContainerBean) super.clone();
 	}
 	
 	

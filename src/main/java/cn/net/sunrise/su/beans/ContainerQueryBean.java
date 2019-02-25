@@ -26,15 +26,7 @@ public class ContainerQueryBean extends BaseBean implements Serializable, Clonea
 	
 	@Override
 	public ContainerQueryBean clone() {
-		ContainerQueryBean bean = new ContainerQueryBean();
-		bean.id = id;
-		bean.cid = cid;
-		bean.uid = uid;
-		bean.ip = ip;
-		bean.querytime = querytime;
-		bean.time = time;
-		bean.querytype = querytype;
-		return bean;
+		return (ContainerQueryBean) super.clone();
 	}
 
 	@Override
@@ -140,10 +132,10 @@ public class ContainerQueryBean extends BaseBean implements Serializable, Clonea
 	}
 	
 	public void encode() {
-		ip = BaseBean.base64EncodeString(ip);
+		ip = super.base64EncodeString(ip);
 	}
 	public void decode() {
-		ip = BaseBean.base64DecodeString(ip);
+		ip = super.base64DecodeString(ip);
 		if (ip != null) {
 			ip = IpTool.IpAnonymous(ip);
 		}

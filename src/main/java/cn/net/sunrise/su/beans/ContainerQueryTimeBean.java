@@ -16,11 +16,7 @@ public class ContainerQueryTimeBean extends BaseBean implements Serializable, Cl
 
 	@Override
 	public ContainerQueryTimeBean clone() {
-		ContainerQueryTimeBean bean = new ContainerQueryTimeBean();
-		bean.uid = uid;
-		bean.leftTime = leftTime;
-		bean.rightTime = rightTime;
-		return bean;
+		return (ContainerQueryTimeBean) super.clone();
 	}
 	
 	

@@ -13,10 +13,7 @@ public class LoginRecordStatisticsBean extends BaseBean implements Serializable,
 	
 	@Override
 	public LoginRecordStatisticsBean clone() {
-		LoginRecordStatisticsBean bean = new LoginRecordStatisticsBean();
-		bean.name = this.name;
-		bean.value = this.value;
-		return bean;
+		return (LoginRecordStatisticsBean) super.clone();
 	}
 	
 	
@@ -62,6 +59,6 @@ public class LoginRecordStatisticsBean extends BaseBean implements Serializable,
 		this.name = position;
 	}
 	public void decode() {
-		name = BaseBean.base64DecodeString(name);
+		name = super.base64DecodeString(name);
 	}
 }

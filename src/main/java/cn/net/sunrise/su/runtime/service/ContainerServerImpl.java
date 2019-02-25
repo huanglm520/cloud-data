@@ -16,12 +16,13 @@ import cn.net.sunrise.su.beans.ContainerBean;
 import cn.net.sunrise.su.beans.ContainerNewBean;
 import cn.net.sunrise.su.beans.ContainerPrivilegeBean;
 import cn.net.sunrise.su.beans.ContainerQueryBean;
+import cn.net.sunrise.su.beans.ContainerQueryResultBean;
 import cn.net.sunrise.su.beans.ContainerQueryTimeBean;
 import cn.net.sunrise.su.beans.ContainerStatisticsBean;
 import cn.net.sunrise.su.beans.FieldBean;
 import cn.net.sunrise.su.dao.ContainerPrivilegeDao;
 import cn.net.sunrise.su.dao.ContainerQueryDao;
-import cn.net.sunrise.su.dao.ContainerStatisticsDao;
+import cn.net.sunrise.su.dao.ContainerQueryStatisticsDao;
 import cn.net.sunrise.su.enums.ContainerKey;
 import cn.net.sunrise.su.enums.ContainerPrivilegeKey;
 import cn.net.sunrise.su.enums.ContainerStatusKey;
@@ -39,7 +40,7 @@ public class ContainerServerImpl implements ContainerService {
 	@Autowired
 	private FieldService fieldService;
 	@Autowired
-	private ContainerStatisticsDao containerStatisticsDao;
+	private ContainerQueryStatisticsDao containerStatisticsDao;
 
 	@Override
 	public Object addContainer(ContainerBean containerBean) {
@@ -378,13 +379,17 @@ public class ContainerServerImpl implements ContainerService {
 		this.containerStatisticsDao.insertQueryRecord(containerQueryBean);
 	}
 
+	/**
+	 * 此方法直接封装前端所需的JSON结构
+	 * 应用HashMap实现
+	 */
 	@Override
 	public Object selectQueryRecord(ContainerQueryTimeBean containerQueryTimeBean) {
 		// TODO Auto-generated method stub
-		List<ContainerQueryBean> list = this.containerStatisticsDao.selectQueryRecord(containerQueryTimeBean);
+		List<ContainerQueryResultBean> list = this.containerStatisticsDao.selectQueryRecord(containerQueryTimeBean);
 		Set<String> legend = new HashSet<>();
 		List<String> xAxis = new ArrayList<>();
-		Map<String, Map<String, Integer>> map = new HashMap<>();
+		Map<String, Map<String, Long>> map = new HashMap<>();
 		// 利用HashMap做容器名称缓存
 		Map<Integer, String> cnameCache = new HashMap<>();
 		
@@ -397,8 +402,7 @@ public class ContainerServerImpl implements ContainerService {
 			date.setTime(date.getTime()+24*60*60*1000L);
 		}
 		
-		for (ContainerQueryBean bean : list) {
-			bean.decode();
+		for (ContainerQueryResultBean bean : list) {
 			// 获取容器名称
 			String cname = cnameCache.get(bean.getCid());
 			if (cname == null) {
@@ -411,17 +415,17 @@ public class ContainerServerImpl implements ContainerService {
 			}
 			legend.add(cname);
 			
-			Map<String, Integer> m = map.get(cname);
+			Map<String, Long> m = map.get(cname);
 			if (m == null) {
 				m = new HashMap<>();
 				map.put(cname, m);
 			}
-			String tFormat = sdf.format(bean.getQuerytime());
-			Integer cnt = m.get(tFormat);
+			String tFormat = bean.getDate();
+			Long cnt = m.get(tFormat);
 			if (cnt == null) {
-				cnt = 0;
+				cnt = 0L;
 			}
-			cnt ++ ;
+			cnt += bean.getTotal() ;
 			m.put(tFormat, cnt);
 		}
 		List<Map<String, Object>> series = new ArrayList<>();
@@ -429,10 +433,10 @@ public class ContainerServerImpl implements ContainerService {
 			Map<String, Object> tm = new HashMap<>();
 			tm.put("name", key);
 			tm.put("type", "line");
-			List<Integer> dataList = new ArrayList<>();
+			List<Long> dataList = new ArrayList<>();
 			for (String string : xAxis) {
-				Integer integer = map.get(key).get(string);
-				dataList.add(integer==null ? 0 : integer);
+				Long long1 = map.get(key).get(string);
+				dataList.add(long1==null ? 0 : long1);
 			}
 			tm.put("data", dataList);
 			series.add(tm);

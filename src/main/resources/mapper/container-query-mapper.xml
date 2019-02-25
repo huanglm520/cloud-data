@@ -9,11 +9,13 @@
 	</insert>
 	
 	<select id="selectQueryRecord" parameterType="cn.net.sunrise.su.beans.ContainerQueryTimeBean"
-		resultType="cn.net.sunrise.su.beans.ContainerQueryBean">
-		select tb_query.cid, tb_query.querytime from tb_query,tb_container_privilege
-		where tb_query.cid=tb_container_privilege.cid and tb_container_privilege.uid=#{uid}
+		resultType="cn.net.sunrise.su.beans.ContainerQueryResultBean">
+		select count(1) as total, date_format(FROM_UNIXTIME(querytime/1000), '%Y-%m-%d') as date, tb_query.cid
+		from tb_query,tb_container_privilege
+		where tb_query.cid=tb_container_privilege.cid and tb_container_privilege.uid=11
 		and (tb_container_privilege.privilege=1 or tb_container_privilege.privilege=2)
-		and tb_query.querytime&gt;=#{leftTime} and tb_query.querytime&lt;=#{rightTime};
+		and tb_query.querytime&gt;=#{leftTime} and tb_query.querytime&lt;=#{rightTime}
+		group by date, cid;
 	</select>
 
 </mapper>

@@ -5,14 +5,15 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import cn.net.sunrise.su.beans.ContainerQueryBean;
+import cn.net.sunrise.su.beans.ContainerQueryResultBean;
 import cn.net.sunrise.su.beans.ContainerQueryTimeBean;
 import cn.net.sunrise.su.dao.BaseDao;
-import cn.net.sunrise.su.dao.ContainerStatisticsDao;
+import cn.net.sunrise.su.dao.ContainerQueryStatisticsDao;
 
 @Repository
-public class ContainerStatisticsDaoImpl extends BaseDao implements ContainerStatisticsDao {
+public class ContainerQueryStatisticsDaoImpl extends BaseDao implements ContainerQueryStatisticsDao {
 	
-	public ContainerStatisticsDaoImpl() {
+	public ContainerQueryStatisticsDaoImpl() {
 		// TODO Auto-generated constructor stub
 		super("cn.net.sunrise.su.config.mapper.container-query-mapper.xml.");
 	}
@@ -24,7 +25,7 @@ public class ContainerStatisticsDaoImpl extends BaseDao implements ContainerStat
 	}
 
 	@Override
-	public List<ContainerQueryBean> selectQueryRecord(ContainerQueryTimeBean containerQueryTimeBean) {
+	public List<ContainerQueryResultBean> selectQueryRecord(ContainerQueryTimeBean containerQueryTimeBean) {
 		// TODO Auto-generated method stub
 		return super.select("selectQueryRecord", containerQueryTimeBean);
 	}

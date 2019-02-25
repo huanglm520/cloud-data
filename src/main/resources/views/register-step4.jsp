@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/passport.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/register.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/jquery-ui-mine.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/jquery-ui.min.js"></script>
@@ -260,10 +261,11 @@
     							}
     						},
     						open: function(event, ui) {
+    							$("button.ui-button").css({"font-size": "13px"});
     							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
     						}
     					});
-    					$("#pop").append("账号注册已完成，单机确定按钮跳转到登录页面");
+    					$("#pop").append("账号注册已完成，单击确定按钮跳转到登录页面");
     				} else {
     					if (data.code == Code["SERVER_ERROR"]) {
     						$(".error").text("服务端发生未知错误，请稍后重试");

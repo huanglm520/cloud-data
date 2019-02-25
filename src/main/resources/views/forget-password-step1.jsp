@@ -48,9 +48,13 @@
 		</div>
 	</div>
     <div class="passport">
-    	
+    	<style type="text/css">
+    		div.p_line {
+    			width: 140px;
+    		}
+    	</style>
     	<!-- 绘制进度条 -->
-    	<div class="progress" style="margin-left: 160px">
+    	<div class="progress">
     		<a href="<%=path%>/passport/forget-password/step1"><div class="p_number used">
     			<div class="p_number_inner">
     				<span class="p_number">1</span>

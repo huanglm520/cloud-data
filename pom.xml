@@ -15,12 +15,12 @@
   	<gosn.version>2.3.1</gosn.version>
   	<mybatis.version>3.4.6</mybatis.version>
   	<mybatis-spring.version>1.3.2</mybatis-spring.version>
-  	<c3p0.version>0.9.5.2</c3p0.version>
+  	<c3p0.version>0.9.5.3</c3p0.version>
   	<mysql.version>5.1.9</mysql.version>
   	<javax.mail.version>1.6.2</javax.mail.version>
   	<log4j2.version>2.7</log4j2.version>
   	<commons.lang3.version>3.8.1</commons.lang3.version>
-  	<jackson.version>2.9.3</jackson.version>
+  	<jackson.version>2.9.8</jackson.version>
   	<tomcat.version>2.2</tomcat.version>
   	<tomcat.port>8080</tomcat.port>
   	<jdk.version>1.8</jdk.version>

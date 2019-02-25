@@ -233,9 +233,9 @@
 		
 		<div class="result" id="result"></div>
 		
-		<div class="recordlink">
+		<!-- <div class="recordlink">
 			<span class="recordlink" id="cid">查看数据导入导出记录</span>
-		</div>
+		</div> -->
 	</div>
 	
 	<div class="bottombar">
@@ -249,9 +249,9 @@
 		var json = <%=request.getAttribute(SecurityKey.SECURITY_CONTAINER_LIST.key) %>
 		$(document).ready(function() {
 			$("#cname").text(json.name);
-			$("#cid").click(function() {
-				window.open("<%=path %>/container/transmission/record?cid="+json.id);
-			});
+			//$("#cid").click(function() {
+			//	window.open("<%=path %>/container/transmission/record?cid="+json.id);
+			//});
 		});
 	</script>
 	
@@ -323,6 +323,7 @@
 								// Open new tab to view the result table
 								sessionStorage.setItem("cols", data.cols);
 								sessionStorage.setItem("datas", data.table);
+								sessionStorage.setItem("name", $("#cname").text());
 								window.open("<%=path%>/container/transmission/csql/query/result/view?cid="+json.id+"&datetime="+new Date()+"&csql="+editor.getValue());
 								sessionStorage.clear(); 
 							}

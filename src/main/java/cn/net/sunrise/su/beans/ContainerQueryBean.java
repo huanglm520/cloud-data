@@ -26,7 +26,9 @@ public class ContainerQueryBean extends BaseBean implements Serializable, Clonea
 	
 	@Override
 	public ContainerQueryBean clone() {
-		return (ContainerQueryBean) super.clone();
+		ContainerQueryBean bean = (ContainerQueryBean) super.clone();
+		bean.querytime = this.querytime;
+		return bean;
 	}
 
 	@Override

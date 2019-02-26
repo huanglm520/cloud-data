@@ -23,7 +23,10 @@ public class UserBean extends BaseBean implements Serializable, Cloneable {
 	
 	@Override
 	public UserBean clone() {
-		return (UserBean) super.clone();
+		UserBean bean = (UserBean) super.clone();
+		bean.password = new String(this.password);
+		bean.salt = new String(this.salt);
+		return bean;
 	}
 	
 	

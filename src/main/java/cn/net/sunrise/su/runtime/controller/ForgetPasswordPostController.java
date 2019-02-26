@@ -93,6 +93,11 @@ public class ForgetPasswordPostController extends BaseController {
 		usb.setPassword(password);
 		PassportKey key = this.ps.doForgetPasswordStep3(usb);
 		
+		session.removeAttribute(AttributeKey.FORGET_ACCOUNT.key);
+		session.removeAttribute(AttributeKey.FORGET_PASSWORD_STEP1.key);
+		session.removeAttribute(AttributeKey.FORGET_PASSWORD_STEP2.key);
+		session.removeAttribute(AttributeKey.FORGET_VERCODE.key);
+		
 		return key;
 	}
 	

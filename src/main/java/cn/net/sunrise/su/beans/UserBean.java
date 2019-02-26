@@ -176,4 +176,12 @@ public class UserBean extends BaseBean implements Serializable, Cloneable {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "UserBean [id=" + id + ", account=" + account + ", password=" + password + ", regtime=" + regtime
+				+ ", first_name=" + first_name + ", last_name=" + last_name + ", company=" + company + ", salt=" + salt
+				+ "]";
+	}
+	
 }

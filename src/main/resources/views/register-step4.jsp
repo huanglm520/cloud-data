@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>注册用户(第4/4步) - Cloud-Data 数据一体化管理平台</title>
+    <title>注册用户(第4/4步) - Cloud-Data 数据一体化服务平台</title>
     <link rel="icon" href="https://huanglm520.github.io/cloud-data.static.io/images/cloud.png" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/public.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/toolbar.css" />
@@ -82,7 +82,7 @@
 				<img class="topbarimg" src="https://huanglm520.github.io/cloud-data.static.io/images/cloud.svg">
 			</div>
 			<div class="topbarspan">
-				<span class="topbarspan">Cloud-Data&nbsp;数据一体化管理平台</span>
+				<span class="topbarspan">Cloud-Data&nbsp;数据一体化服务平台</span>
 			</div>
 			<div class="timer">
 				<span class="timer" id="timer">正在获取服务器时间</span>

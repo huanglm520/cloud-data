@@ -19,11 +19,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>安全中心 - Cloud-Data 数据一体化管理平台</title>
+    <title>安全中心 - Cloud-Data 数据一体化服务平台</title>
     <link rel="icon" href="https://huanglm520.github.io/cloud-data.static.io/images/cloud.png" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/public.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/toolbar.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/jquery-ui-mine.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/jquery-ui.min.js"></script>
@@ -129,7 +130,7 @@
 				<img class="topbarimg" src="https://huanglm520.github.io/cloud-data.static.io/images/cloud.svg">
 			</div>
 			<div class="topbarspan">
-				<span class="topbarspan">Cloud-Data&nbsp;数据一体化管理平台</span>
+				<span class="topbarspan">Cloud-Data&nbsp;数据一体化服务平台</span>
 			</div>
 			<div class="timer">
 				<span class="timer" id="timer">正在获取服务器时间</span>
@@ -269,6 +270,11 @@
 							}
 						},
 						open: function(event, ui) {
+							$("div.ui-dialog-content").css({
+								"text-align":"center",
+								"padding-top":"25px" 
+							});
+							$("button.ui-button").css({"font-size":"13px"});
 							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
 							$("#ui-id-1").text("错误");
 						}
@@ -292,6 +298,11 @@
     							}
     						},
     						open: function(event, ui) {
+    							$("div.ui-dialog-content").css({
+    								"text-align":"center",
+    								"padding-top":"25px" 
+    							});
+    							$("button.ui-button").css({"font-size":"13px"});
     							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
     							$("#ui-id-1").text("更改账号邮箱");
     						}
@@ -314,6 +325,11 @@
     							}
     						},
     						open: function(event, ui) {
+    							$("div.ui-dialog-content").css({
+    								"text-align":"center",
+    								"padding-top":"25px" 
+    							});
+    							$("button.ui-button").css({"font-size":"13px"});
     							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
     							$("#ui-id-1").text("错误");
     						}
@@ -357,6 +373,11 @@
 							}
 						},
 						open: function(event, ui) {
+							$("div.ui-dialog-content").css({
+								"text-align":"center",
+								"padding-top":"25px" 
+							});
+							$("button.ui-button").css({"font-size":"13px"});
 							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
 							$("#ui-id-1").text("错误");
 						}
@@ -380,6 +401,11 @@
     							}
     						},
     						open: function(event, ui) {
+    							$("div.ui-dialog-content").css({
+    								"text-align":"center",
+    								"padding-top":"25px" 
+    							});
+    							$("button.ui-button").css({"font-size":"13px"});
     							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
     							$("#ui-id-1").text("更改账号密码");
     						}
@@ -402,6 +428,11 @@
     							}
     						},
     						open: function(event, ui) {
+    							$("div.ui-dialog-content").css({
+    								"text-align":"center",
+    								"padding-top":"25px" 
+    							});
+    							$("button.ui-button").css({"font-size":"13px"}); 
     							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
     							$("#ui-id-1").text("错误");
     						}

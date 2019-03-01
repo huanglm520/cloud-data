@@ -111,17 +111,43 @@
 			font-size: 16px;
 		}
 		
-		div#startTime, div#endTime {
+		div.timeOuter {
+			position: absolute;
+			z-index: 3;
+			width: 360px;
+			height: 339px;
 			left: 50%;
 			margin-left: -180px;
 			top: 50%;
 			margin-top: -200px;
+			display: none;
+		}
+		div#startTime, div#endTime {
 			position: absolute;
 			z-index: 3;
 			background-color: #FFFFFF;
 			display: none;
 		}
-		
+		img.timeClose {
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			z-index: 5;
+			margin-left: 335px;
+			margin-top: 10px;
+			cursor: pointer;
+			display: none;
+		}
+		div.timeTitle {
+			position: absolute;
+			z-index: 4;
+			width: 100%;
+			text-align: center;
+			font-family: "微软雅黑", "华文细黑";
+			font-size: 14px;
+			font-weight: 300;
+			padding-top: 10px;
+		}
 		div.quarantine {
 			width: 100%;
 			height: 100%;
@@ -135,8 +161,12 @@
 </head>
 <body>
 	<!-- 引入日历插件 -->
-	<div id='startTime' class="boxshaw schedule-box"></div>
-	<div id='endTime' class="boxshaw schedule-box"></div>
+	<div class="timeOuter">
+		<div id='startTime' class="boxshaw schedule-box"></div>
+		<div id='endTime' class="boxshaw schedule-box"></div>
+		<div class="timeTitle"></div>
+		<img class="timeClose" title="隐藏日历" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTUxNDQ3NDE1MDg5IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjIwNzQiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTgzLjE2OCA1MjMuNzc2TDk1OC40NjQgMTQ4LjQ4YzE4Ljk0NC0xOC45NDQgMTguOTQ0LTUwLjE3NiAwLTY5LjEybC0yLjA0OC0yLjA0OGMtMTguOTQ0LTE4Ljk0NC01MC4xNzYtMTguOTQ0LTY5LjEyIDBMNTEyIDQ1My4xMiAxMzYuNzA0IDc3LjMxMmMtMTguOTQ0LTE4Ljk0NC01MC4xNzYtMTguOTQ0LTY5LjEyIDBsLTIuMDQ4IDIuMDQ4Yy0xOS40NTYgMTguOTQ0LTE5LjQ1NiA1MC4xNzYgMCA2OS4xMmwzNzUuMjk2IDM3NS4yOTZMNjUuNTM2IDg5OS4wNzJjLTE4Ljk0NCAxOC45NDQtMTguOTQ0IDUwLjE3NiAwIDY5LjEybDIuMDQ4IDIuMDQ4YzE4Ljk0NCAxOC45NDQgNTAuMTc2IDE4Ljk0NCA2OS4xMiAwTDUxMiA1OTQuOTQ0IDg4Ny4yOTYgOTcwLjI0YzE4Ljk0NCAxOC45NDQgNTAuMTc2IDE4Ljk0NCA2OS4xMiAwbDIuMDQ4LTIuMDQ4YzE4Ljk0NC0xOC45NDQgMTguOTQ0LTUwLjE3NiAwLTY5LjEyTDU4My4xNjggNTIzLjc3NnoiIHAtaWQ9IjIwNzUiIGZpbGw9IiM3MDcwNzAiPjwvcGF0aD48L3N2Zz4=" />
+	</div>
 	
 	<!-- 添加屏幕隔离层 -->
 	<div class="quarantine" id="quarantine"></div>
@@ -231,22 +261,24 @@
 	    
 	</div>
 	
+	
 	<% if (success) { %>
 	<%     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); %>
 	<script type="text/javascript">
-		$(document).ready(function () {
+		//$(document).ready(function () {
 			var s = "<%=sdf.format(new Date((Long)request.getAttribute(SecurityKey.LOGIN_RECORD_START_TIME.key)))%>";
 			var e = "<%=sdf.format(new Date((Long)request.getAttribute(SecurityKey.LOGIN_RECORD_END_TIME.key)))%>";
 			$("#startButton").text(s);
 			$("#endButton").text(e);
 			$("#loginRecordTitle").text("以下是"+s+"--"+e+"的登录记录");
-		});
+		//});
 	</script>
 	<% } %>
 	
 	<script type="text/javascript">
 		var startTime = new Schedule({
 			el: '#startTime',
+			<% if (success) {%>date: s,<%}%>
 			clickCb: function (y,m,d) {
 				if (m < 10) { m = '0'+m; }
 				if (d < 10) { d = '0'+d; }
@@ -255,6 +287,9 @@
 				$("#startTime").css("display", "none");
 				// 隐藏隔离层
 				$("#quarantine").css("display", "none");
+				// 隐藏附加插件
+				$(".timeClose").css("display", "none");
+				$(".timeOuter").css("display", "none");
 				// 修改标记
 				startTimeFlag = true;
 			}
@@ -262,6 +297,7 @@
 		
 		var endTime = new Schedule({
 			el: "#endTime",
+			<% if (success) {%>date: e,<%}%>
 			clickCb: function (y,m,d) {
 				if (m < 10) { m = '0'+m; }
 				if (d < 10) { d = '0'+d; }
@@ -270,6 +306,9 @@
 				$("#endTime").css("display", "none");
 				// 隐藏隔离层
 				$("#quarantine").css("display", "none");
+				// 隐藏附加插件
+				$(".timeClose").css("display", "none");
+				$(".timeOuter").css("display", "none");
 				// 修改标记
 				endTimeFlag = true;
 			}
@@ -279,17 +318,30 @@
 	<script type="text/javascript">
 		// 绑定日期选择事件
 		$("#startButton").click(function() {
+			// 显示附加插件
+			$(".timeOuter").css("display", "block");
+			$(".timeClose").css("display", "block");
+			$(".timeTitle").empty().append("选择起始日期");
 			// 放置隔离层
 			$("#quarantine").css("display", "block");
 			// 放置日历插件
 			$("#startTime").css("display", "block");
+			
 		});
 		
 		$("#endButton").click(function() {
+			// 显示附加插件
+			$(".timeOuter").css("display", "block");
+			$(".timeClose").css("display", "block");
+			$(".timeTitle").empty().append("选择结束日期");
 			// 放置隔离层
 			$("#quarantine").css("display", "block");
 			// 放置日历插件
 			$("#endTime").css("display", "block");
+		});
+		
+		$(".timeClose").click(function () {
+			$("#startTime,#endTime,#quarantine,.timeClose,.timeOuter").css("display", "none");
 		});
 	</script>
 	

@@ -23,7 +23,6 @@
     <link rel="icon" href="https://huanglm520.github.io/cloud-data.static.io/images/cloud.png" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/public.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/toolbar.css" />
-    <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/color.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
@@ -125,8 +124,9 @@
 		}
 		td.cprivilege, td.cstatus {
 			font-family: "微软雅黑", "华文细黑";
-			font-size: 17px;
-			font-weight: 600;
+			font-size: 14px;
+			font-weight: 400;
+			color: #6B6C6D;
 		}
 
 	</style>
@@ -218,13 +218,13 @@
 	<div class="content" id="content">
 		<div class="db" v-for="site in json">
 			<div class="image">
-				<img class="image" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTUxNTA4NDQwMDQ3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjIzMzgiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNzUzLjA2NyAyMjEuODY3Yy0yLjEzNCAwLTguNTM0LTIuMTM0LTEwLjY2Ny0yLjEzNEM2NjUuNiAxNDkuMzMzIDU2NS4zMzMgMTI4IDUyNC44IDEyOGMtNDAuNTMzIDIuMTMzLTk4LjEzMyAyNS42LTEyMS42IDY0LTMyIDguNTMzLTc2LjggMTcuMDY3LTk2IDQ2LjkzMy0xNy4wNjcgMjcuNzM0IDQyLjY2NyA0NC44IDYxLjg2NyA1MS4yIDguNTMzIDIuMTM0IDQ5LjA2NiAxMi44IDEwMC4yNjYgMzQuMTM0bDIuMTM0IDIuMTMzdjIuMTMzYy0yLjEzNCA4LjUzNC0yLjEzNCAyMS4zMzQgNC4yNjYgNDkuMDY3IDE5LjIgNTUuNDY3IDQ5LjA2NyA5My44NjcgNjYuMTM0IDg5LjYgMTIuOC00LjI2NyAxMC42NjYtNjguMjY3IDE3LjA2Ni04OS42IDAgMCAyLjEzNC0yLjEzMyA0LjI2Ny0yLjEzM2g0LjI2N2M3Ni44IDQ5LjA2NiAxMzYuNTMzIDEyNS44NjYgMTU3Ljg2NiAyMjEuODY2Qzc1MC45MzMgNzA0IDcyMy4yIDgxMi44IDY2My40NjcgODk2YzEwLjY2Ni0yLjEzMyAxNy4wNjYtNi40IDMyLTE3LjA2NyAyMy40NjYtMTcuMDY2IDQ0LjgtNDAuNTMzIDYxLjg2Ni02NEM4ODEuMDY3IDY0MCA4OTMuODY3IDQ3My42IDgyNy43MzMgMzMwLjY2N2MwLTIuMTM0LTIuMTMzLTIuMTM0LTIuMTMzLTQuMjY3LTIuMTMzLTE5LjIgNzQuNjY3LTIzLjQ2NyA5My44NjctMzQuMTMzIDEwLjY2Ni0xOS4yLTExNS4yLTc2LjgtMTY2LjQtNzAuNHoiIGZpbGw9IiMxMjk2REIiIHAtaWQ9IjIzMzkiPjwvcGF0aD48cGF0aCBkPSJNNjMxLjQ2NyA2NjMuNDY3bDU1LjQ2Ni04OS42Yy02LjQtMTIuOC0xMC42NjYtMjUuNi0xNy4wNjYtMzYuMjY3bC01Ny42IDkxLjczM0g1MDEuMzMzbDY0IDEwNC41MzQtNzQuNjY2IDExOS40NjZIMzQxLjMzM2wtNzQuNjY2LTEyMS42IDY0LTEwNC41MzNIMjE5LjczM2wtNzQuNjY2LTEyMS42TDIxOS43MzMgMzg0aDE0OS4zMzRsNDQuOCA3NC42NjcgMjkuODY2LTQ2LjkzNGMtMi4xMzMtMi4xMzMtMi4xMzMtNi40LTQuMjY2LTguNTMzLTQuMjY3LTE3LjA2Ny02LjQtMjkuODY3LTYuNC00MC41MzNsLTE5LjIgMjkuODY2LTI1LjYtNDIuNjY2aC0xODUuNmwtOTYgMTU3Ljg2NiA5NiAxNTUuNzM0aDY4LjI2NmwtNDIuNjY2IDcwLjQgOTYgMTU1LjczM0g1MTJsOTYtMTU1LjczMy00Mi42NjctNzAuNGg2Ni4xMzR6IiBmaWxsPSIjMTI5NkRCIiBwLWlkPSIyMzQwIj48L3BhdGg+PC9zdmc+" />
+				<img class="image" v-bind:src="GetStatusColor(site.status)" />
 			</div>
 			<div class="cname">{{ site.name }}</div> 
 			<table style="width: 100%">
 				<tr style="height: 50px">
-					<td :class="GetPrivilegeColor(site.privilege)" class="cprivilege" style="text-align: left;padding-left: 5px;">{{ site.privileges }}</td>
-					<td :class="GetStatusColor(site.status)" class="cstatus" style="text-align: right;padding-right: 5px;">{{ site.state }}</td>
+					<td class="cprivilege" style="text-align: left;padding-left: 5px;">{{ site.privileges }}</td>
+					<td class="cstatus" style="text-align: right;padding-right: 5px;">{{ site.state }}</td>
 				</tr>
 			</table>
 			<div class="override" @click='window.location.href="/cloud-data/container/manager/main?cid="+site.id'></div>

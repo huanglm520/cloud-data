@@ -23,6 +23,7 @@
     <link rel="icon" href="https://huanglm520.github.io/cloud-data.static.io/images/cloud.png" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/public.css" />
     <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/toolbar.css" />
+    <link rel="stylesheet" href="https://huanglm520.github.io/cloud-data.static.io/scripts/css/color.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
@@ -31,6 +32,7 @@
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/toolbar.js"></script>
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/code.js"></script>
     <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/check.js"></script>
+    <script type="text/javascript" src="https://huanglm520.github.io/cloud-data.static.io/scripts/js/color.js"></script>
 
 	<style type="text/css">
 		div.selectBarBack {
@@ -76,60 +78,57 @@
 			cursor: pointer;
 		}
 		div.content {
-			width: 100%;
+			width: 720px;
 			height: auto;
-			margin-top: 20px;
+			margin: auto;
+			margin-top: 0px;
+		}
+		div.dbOuter {
+			width: 100%;
 		}
 		div.db {
-			width: 600px;
-			height: 60px;
-			outline: none;
-			border: none;
-			border-radius: 5px;
-			background-color: #1296DB;
-			margin: auto;
+			width: 150px;
+			height: 150px;
+			margin-left: 15px;
+			margin-right: 15px;
 			margin-top: 30px;
+			background-color: rgba(18,150,219,0.07);
+			float: left;
 		}
 		div.image, img.image {
-			width: 45px;
-			height: 45px;
+			width: 80px;
+			height: 80px;
 		}
 		div.image {
-			float: left;
-			margin-top: 7px;
-			margin-left: 10px;
+			width: 100%;
+			text-align: center;
+			float: left; 
 		}
 		div.override {
-			width: 600px;
-			height: 60px;
-			background-color: rgba(255,255,255,0);
-			position: absolute;
-			z-index: 2;
+			background-color: rgba(0,0,0,0);
+			width: 150px;
+			height: 150px;
 			cursor: pointer;
+			position: absolute;
+			z-index: 999;
+			margin-top: -162px;
 		}
 		div.cname {
-			margin-top: 18px;
-			margin-left: 60px;
-			width: 320px;
-			text-align: center;
-		}
-		div.cstatus {
-			margin-top: -24px; 
-			margin-left: 380px;
-			width: 120px;
-			text-align: center; 
-		}
-		div.cprivilege {
-			margin-top: -25px;
-			margin-left: 480px;
-			width: 120px;
-			text-align: center; 
-		}
-		span.cname, span.cstatus, span.cprivilege {
 			font-family: "微软雅黑", "华文细黑";
-			font-size: 19px;
-			color: #FFFFFF;
+			font-size: 17px;
+			font-weight: 600;
+			color: #6B6C6D;
+			text-align: center;
+			margin-top: 8px; 
+			float: left;
+			width: 100%;
 		}
+		td.cprivilege, td.cstatus {
+			font-family: "微软雅黑", "华文细黑";
+			font-size: 17px;
+			font-weight: 600;
+		}
+
 	</style>
 
 </head>
@@ -216,27 +215,23 @@
 		</form>
 	</div>
 	
-	<div class="content"  id="content">
-	 	<div class="db" v-for="site in json">
+	<div class="content" id="content">
+		<div class="db" v-for="site in json">
 			<div class="image">
-				<img class="image" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTQ0ODYyNTU4NTUzIiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjIxNTAiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNMTY4LjIyODU3MSA4ODguNTM5NDI5YTQyLjkzNDg1NyA0Mi45MzQ4NTcgMCAwIDAgNDMuNDQ2ODU4LTQzLjQ0Njg1OCA0Mi45MzQ4NTcgNDIuOTM0ODU3IDAgMCAwLTQzLjM3MzcxNS00My4zNzM3MTQgNDIuOTM0ODU3IDQyLjkzNDg1NyAwIDAgMC00My40NDY4NTcgNDMuMzczNzE0YzAgMjQuMzU2NTcxIDE5LjA5MDI4NiA0My40NDY4NTcgNDMuNDQ2ODU3IDQzLjQ0Njg1OHogbS0xMi41ODA1NzEtNDMuNDQ2ODU4YTEzLjE2NTcxNCAxMy4xNjU3MTQgMCAwIDEgMTIuNjUzNzE0LTEyLjU4MDU3MSAxMy4xNjU3MTQgMTMuMTY1NzE0IDAgMCAxIDEyLjU4MDU3MiAxMi41ODA1NzEgMTMuMTY1NzE0IDEzLjE2NTcxNCAwIDAgMS0xMi41ODA1NzIgMTIuNjUzNzE1IDEzLjE2NTcxNCAxMy4xNjU3MTQgMCAwIDEtMTIuNjUzNzE0LTEyLjY1MzcxNXogbTEyLjY1MzcxNC02OTUuODgxMTQyYTQyLjkzNDg1NyA0Mi45MzQ4NTcgMCAwIDAtNDMuNDQ2ODU3IDQzLjM3MzcxNGMwIDI0LjI4MzQyOSAxOS4wOTAyODYgNDMuMzczNzE0IDQzLjQ0Njg1NyA0My4zNzM3MTRhNDIuOTM0ODU3IDQyLjkzNDg1NyAwIDAgMCA0My4zNzM3MTUtNDMuMzczNzE0IDQyLjkzNDg1NyA0Mi45MzQ4NTcgMCAwIDAtNDMuMzczNzE1LTQzLjM3MzcxNHogbTEyLjU4MDU3MiA0My4zNzM3MTRhMTMuMTY1NzE0IDEzLjE2NTcxNCAwIDAgMS0xMi41ODA1NzIgMTIuNTgwNTcxIDEzLjE2NTcxNCAxMy4xNjU3MTQgMCAwIDEtMTIuNjUzNzE0LTEyLjU4MDU3MSAxMy4xNjU3MTQgMTMuMTY1NzE0IDAgMCAxIDEyLjY1MzcxNC0xMi41ODA1NzIgMTMuMTY1NzE0IDEzLjE2NTcxNCAwIDAgMSAxMi41ODA1NzIgMTIuNTgwNTcyek0xNjguMzAxNzE0IDQ3MC4zMDg1NzFhNDIuOTM0ODU3IDQyLjkzNDg1NyAwIDAgMC00My40NDY4NTcgNDMuMzczNzE1YzAgMjQuMjgzNDI5IDE5LjA5MDI4NiA0My4zNzM3MTQgNDMuNDQ2ODU3IDQzLjM3MzcxNGE0Mi45MzQ4NTcgNDIuOTM0ODU3IDAgMCAwIDQzLjM3MzcxNS00My4zNzM3MTQgNDIuOTM0ODU3IDQyLjkzNDg1NyAwIDAgMC00My4zNzM3MTUtNDMuMzczNzE1eiBtMTIuNTgwNTcyIDQzLjM3MzcxNWExMy4xNjU3MTQgMTMuMTY1NzE0IDAgMCAxLTEyLjU4MDU3MiAxMi41ODA1NzEgMTMuMTY1NzE0IDEzLjE2NTcxNCAwIDAgMS0xMi42NTM3MTQtMTIuNTgwNTcxIDEzLjE2NTcxNCAxMy4xNjU3MTQgMCAwIDEgMTIuNjUzNzE0LTEyLjY1MzcxNSAxMy4xNjU3MTQgMTMuMTY1NzE0IDAgMCAxIDEyLjU4MDU3MiAxMi42NTM3MTV6IiBwLWlkPSIyMTUxIiBmaWxsPSIjZmZmZmZmIj48L3BhdGg+PHBhdGggZD0iTTk0My4zOTY1NzEgMS4xNzAyODZoLTg2My4wODU3MTRjLTQzLjg4NTcxNCAwLTc5LjcyNTcxNCAzNS43NjY4NTctNzkuNzI1NzE0IDc5LjcyNTcxNHY4NjIuOTM5NDI5YzAgNDMuOTU4ODU3IDM1Ljg0IDc5LjcyNTcxNCA3OS43MjU3MTQgNzkuNzI1NzE0aDg2Mi45Mzk0MjljNDMuOTU4ODU3IDAgNzkuNzI1NzE0LTM1Ljc2Njg1NyA3OS43MjU3MTQtNzkuNzI1NzE0VjgwLjg5NmE3OS43MjU3MTQgNzkuNzI1NzE0IDAgMCAwLTc5LjU3OTQyOS03OS43MjU3MTR6TTU3LjQ5MDI4NiA2ODkuNzM3MTQzSDk2Ni4yMTcxNDN2MjM5LjY4OTE0M2E0MC41OTQyODYgNDAuNTk0Mjg2IDAgMCAxLTQwLjUyMTE0MyA0MC41OTQyODVIOTguMDExNDI5YTQwLjU5NDI4NiA0MC41OTQyODYgMCAwIDEtNDAuNTk0Mjg2LTQwLjU5NDI4NVY2ODkuODEwMjg2eiBtMC02MC4yNjk3MTRWMzc1LjY2MTcxNEg5NjYuMjE3MTQzdjI1NC4wMjUxNDNINTcuNDkwMjg2di0wLjE0NjI4NnpNOTY2LjIxNzE0MyAzMTUuMzkySDU3LjQ5MDI4NlY5MS4xMzZjMC0yMC4wNDExNDMgMTYuMjM3NzE0LTM2LjI3ODg1NyAzNi4yNzg4NTctMzYuMjc4ODU3aDgzMS45MjY4NTdjMjIuMzgxNzE0IDAgNDAuNTIxMTQzIDE4LjIxMjU3MSA0MC41MjExNDMgNDAuNTk0Mjg2djIxOS45NDA1NzF6IiBwLWlkPSIyMTUyIiBmaWxsPSIjZmZmZmZmIj48L3BhdGg+PC9zdmc+" />
+				<img class="image" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNTUxNTA4NDQwMDQ3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjIzMzgiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNzUzLjA2NyAyMjEuODY3Yy0yLjEzNCAwLTguNTM0LTIuMTM0LTEwLjY2Ny0yLjEzNEM2NjUuNiAxNDkuMzMzIDU2NS4zMzMgMTI4IDUyNC44IDEyOGMtNDAuNTMzIDIuMTMzLTk4LjEzMyAyNS42LTEyMS42IDY0LTMyIDguNTMzLTc2LjggMTcuMDY3LTk2IDQ2LjkzMy0xNy4wNjcgMjcuNzM0IDQyLjY2NyA0NC44IDYxLjg2NyA1MS4yIDguNTMzIDIuMTM0IDQ5LjA2NiAxMi44IDEwMC4yNjYgMzQuMTM0bDIuMTM0IDIuMTMzdjIuMTMzYy0yLjEzNCA4LjUzNC0yLjEzNCAyMS4zMzQgNC4yNjYgNDkuMDY3IDE5LjIgNTUuNDY3IDQ5LjA2NyA5My44NjcgNjYuMTM0IDg5LjYgMTIuOC00LjI2NyAxMC42NjYtNjguMjY3IDE3LjA2Ni04OS42IDAgMCAyLjEzNC0yLjEzMyA0LjI2Ny0yLjEzM2g0LjI2N2M3Ni44IDQ5LjA2NiAxMzYuNTMzIDEyNS44NjYgMTU3Ljg2NiAyMjEuODY2Qzc1MC45MzMgNzA0IDcyMy4yIDgxMi44IDY2My40NjcgODk2YzEwLjY2Ni0yLjEzMyAxNy4wNjYtNi40IDMyLTE3LjA2NyAyMy40NjYtMTcuMDY2IDQ0LjgtNDAuNTMzIDYxLjg2Ni02NEM4ODEuMDY3IDY0MCA4OTMuODY3IDQ3My42IDgyNy43MzMgMzMwLjY2N2MwLTIuMTM0LTIuMTMzLTIuMTM0LTIuMTMzLTQuMjY3LTIuMTMzLTE5LjIgNzQuNjY3LTIzLjQ2NyA5My44NjctMzQuMTMzIDEwLjY2Ni0xOS4yLTExNS4yLTc2LjgtMTY2LjQtNzAuNHoiIGZpbGw9IiMxMjk2REIiIHAtaWQ9IjIzMzkiPjwvcGF0aD48cGF0aCBkPSJNNjMxLjQ2NyA2NjMuNDY3bDU1LjQ2Ni04OS42Yy02LjQtMTIuOC0xMC42NjYtMjUuNi0xNy4wNjYtMzYuMjY3bC01Ny42IDkxLjczM0g1MDEuMzMzbDY0IDEwNC41MzQtNzQuNjY2IDExOS40NjZIMzQxLjMzM2wtNzQuNjY2LTEyMS42IDY0LTEwNC41MzNIMjE5LjczM2wtNzQuNjY2LTEyMS42TDIxOS43MzMgMzg0aDE0OS4zMzRsNDQuOCA3NC42NjcgMjkuODY2LTQ2LjkzNGMtMi4xMzMtMi4xMzMtMi4xMzMtNi40LTQuMjY2LTguNTMzLTQuMjY3LTE3LjA2Ny02LjQtMjkuODY3LTYuNC00MC41MzNsLTE5LjIgMjkuODY2LTI1LjYtNDIuNjY2aC0xODUuNmwtOTYgMTU3Ljg2NiA5NiAxNTUuNzM0aDY4LjI2NmwtNDIuNjY2IDcwLjQgOTYgMTU1LjczM0g1MTJsOTYtMTU1LjczMy00Mi42NjctNzAuNGg2Ni4xMzR6IiBmaWxsPSIjMTI5NkRCIiBwLWlkPSIyMzQwIj48L3BhdGg+PC9zdmc+" />
 			</div>
-			<div style="position: absolute;z-index: 1">
-				<div class="cname">
-					<span class="cname">{{ site.name }}</span>
-				</div>
-				<div class="cstatus">
-					<span class="cstatus">{{ site.state }}</span> 
-				</div>
-				<div class="cprivilege">
-					<span class="cprivilege">{{ site.privileges }}</span>
-				</div>
-			</div>
-			<div class="override" onmouseover='$(this).animate({"background-color": "rgba(255,255,255,0.3)"}, 200);' onmouseout='$(this).animate({"background-color": "rgba(255,255,255,0)"}, 200);' @click='window.location.href="<%=path %>/container/manager/main?cid="+site.id'></div>
+			<div class="cname">{{ site.name }}</div> 
+			<table style="width: 100%">
+				<tr style="height: 50px">
+					<td :class="GetPrivilegeColor(site.privilege)" class="cprivilege" style="text-align: left;padding-left: 5px;">{{ site.privileges }}</td>
+					<td :class="GetStatusColor(site.status)" class="cstatus" style="text-align: right;padding-right: 5px;">{{ site.state }}</td>
+				</tr>
+			</table>
+			<div class="override" @click='window.location.href="/cloud-data/container/manager/main?cid="+site.id'></div>
 		</div>
 	</div>
 	
-	<div class="bottombar" style="margin-top: 50px;">
+	<div class="bottombar" style="margin-top: 50px;float: left;">
 		<div class="cr_one">
 	    	<span class="copyright">CopyRight&nbsp;&copy;&nbsp;Sunrise(Huang&nbsp;Liming)&nbsp;<%=application.getAttribute(AttributeKey.PAGE_TIME.key) %>&nbsp;All&nbsp;Rights&nbsp;Reserved</span>
 	    </div>
@@ -256,6 +251,7 @@
 			}
 			$("#status").val(/^all|running|stoping|modifying|creating$/.test(keys["status"]) ? keys["status"] : "all");
 			$("#privilege").val(/^all|owner|admin|guest$/.test(keys["privilege"]) ? keys["privilege"] : "all");
+			$("#container_keyword").val(keys["container_keyword"]);
 		}
 	</script>
 	

@@ -304,16 +304,16 @@ public class ContainerServerImpl implements ContainerService {
 			}
 		}
 		
-		switch (fieldBean.getKey()) {
-			case 0: {
-				sb.append(" primary key ");
-				break;
-			}
-			case 1: {
-				sb.append(" unique key ");
-				break;
-			}
-		}
+//		switch (fieldBean.getKey()) {
+//			case 0: {
+//				sb.append(" primary key ");
+//				break;
+//			}
+//			case 1: {
+//				sb.append(" unique key ");
+//				break;
+//			}
+//		}
 		
 		if (fieldBean.getIsnull() == FieldBean.PROHIBIT_NULL) {
 			sb.append(" not null ");

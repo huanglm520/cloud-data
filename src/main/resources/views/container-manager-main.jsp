@@ -110,7 +110,7 @@
 			margin-top: 30px;
 		}
 		button.operator {
-			width: 150px;
+			width: 174.5px;
 			height: 40px;
 			border: none;
 			outline: none;
@@ -160,6 +160,41 @@
 			z-index: 2;
 			display: none;
 		}
+		div.pop, div.errorPop {
+			width: 300px;
+			height: 0px;
+			background-color: #FFFFFF;
+			position: absolute;
+			z-index: 3;
+			left: 50%;
+			top: 50%;
+			margin-left: -150px;
+			margin-top: -110px;
+			border-radius: 5px;
+			display: none;
+		}
+		button#run, button#modify, button#stop{
+			width: 80px;
+			height: 35px;
+			font-size: 13px; 
+		}
+		button#modify {
+			color: #1460A6;
+		}
+		button#run {
+			color: #1AB821;
+		}
+		button#stop {
+			color: #D1301F;
+		}
+		button.closeButton {
+			width: 60px;
+			height: 30px;
+			font-size: 13px;
+		}
+		div.errorPop {
+			height: 150px;
+		}
 	</style>
 
 </head>
@@ -168,7 +203,46 @@
 	<!-- 添加隔离层 -->
 	<div class="quarantine" id="quarantine"></div>
 	<!-- 添加弹出层 -->
-	<div id="pop"></div>
+	<div id="pop" class="pop">
+		<div style="height: 30px; border-bottom: 1px solid #BDBDBD; padding-top: 5px; padding-left: 5px">
+			<span style="font-family: '微软雅黑'; font-size: 17px; font-weight: 300; color: #797979">修改容器状态</span>
+		</div>
+		<div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
+			<button id="run">运行中</button>
+			<button id="modify">修改中</button>
+			<button id="stop">已停用</button>
+		</div>
+		<div style="padding-top:8px; padding-right: 10px; height: 40px; border-top: 1px solid #BDBDBD; text-align: right;">
+			<button id="closePop" class="closeButton">关闭</button>
+		</div>
+	</div>
+	<!-- 添加错误弹出层 -->
+	<div class="errorPop" id="errorPop">
+		<div style="height: 30px; border-bottom: 1px solid #BDBDBD; padding-top: 5px; padding-left: 5px">
+			<span id="errorTitle" style="font-family: '微软雅黑'; font-size: 17px; font-weight: 300; color: #797979"></span>
+		</div>
+		<div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+			<span id="errorContent" style="font-size: 15px; color: #797979; font-weight: 300"></span>
+		</div>
+		<div style="padding-top:8px; padding-right: 10px; height: 40px; border-top: 1px solid #BDBDBD; text-align: right;">
+			<button id="closeErrorPop" class="closeButton">关闭</button> 
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		$("#closePop").button().click(function () {
+			$("#pop").animate({"height": "0px"}, 150, function() {
+				$("#pop").css({"display": "none"});
+				$("#quarantine").css({"display": "none"});
+			});
+		});
+		$("#closeErrorPop").button().click(function () {
+			$("#errorPop").animate({"height": "0px"}, 150, function() {
+				$("#errorPop").css({"display": "none"});
+				$("#quarantine").css({"display": "none"});
+			});
+		});
+	</script>
 	
 	<div class="topbar"> 
 		<div class="topbarinner">
@@ -252,9 +326,15 @@
 						<span class="tb_info">创建时间：{{ GetMyDate(site.buildtime) }}</span>
 					</div>
 				</div>
+				<div class="tb_info_time" style="font-size: 0px">
+					<button class="operator" style="background-color: #1F9E3E" onmouseover="$(this).animate({'background-color':'#2BC04F'}, 200);" onmouseout="$(this).animate({'background-color':'#1F9E3E'}, 200);" onclick="viewStatus()">修改容器状态</button>
+					<button class="operator" style="background-color: #1296DB" onmouseover="$(this).animate({'background-color':'#1CA6EE'}, 200);" onmouseout="$(this).animate({'background-color':'#1296DB'}, 200);" @click='window.location.href="<%=path%>/container/manager/field?cid="+site.id'>修改容器结构</button>
+					<button class="operator" style="background-color: #7266BB" onmouseover="$(this).animate({'background-color':'#8779DC'}, 200);" onmouseout="$(this).animate({'background-color':'#7266BB'}, 200);" @click='window.location.href="<%=path%>/container/manager/privilege?cid="+site.id'>修改容器权限</button>
+					<button class="operator" style="background-color: #ED2D05" onmouseover="$(this).animate({'background-color':'#F26A4E'}, 200);" onmouseout="$(this).animate({'background-color':'#ED2D05'}, 200);" @click='window.location.href="<%=path %>/container/manager/delete?cid="+site.id'>删除容器</button>
+				</div>
 			</div>
 		</div>
-		<div class="status_button">
+		<!-- <div class="status_button">
 			<button class="operator modify" id="modify" onmouseover="$(this).animate({'background-color':'#3E87CA'}, 200);" onmouseout="$(this).animate({'background-color':'#1460A6'}, 200);">修改此容器</button>
 			<button class="operator run" id="run" onmouseover="$(this).animate({'background-color':'#31D738'}, 200);" onmouseout="$(this).animate({'background-color':'#1AB821'}, 200);">运行此容器</button>
 			<button class="operator stop" id="stop" onmouseover="$(this).animate({'background-color':'#E75A4B'}, 200);" onmouseout="$(this).animate({'background-color':'#D1301F'}, 200);">停用此容器</button>
@@ -265,7 +345,7 @@
 		</div>
 		<div class="delete_button" v-for="site in info">
 			<button class="delete" onmouseover="$(this).animate({'background-color':'#F45454'}, 200);" onmouseout="$(this).animate({'background-color':'#FF0000'}, 200);" @click='window.location.href="<%=path %>/container/manager/delete?cid="+site.id'>删除此容器</button>
-		</div>
+		</div> --> 
 	</div>
 	<div class="bottombar">
 		<div class="cr_one">
@@ -276,6 +356,13 @@
 	
 	<script type="text/javascript">
 		$("div.db_title").width($("div.db_image").width()+$("span.db_name").width()+50);
+	</script>
+	
+	<script type="text/javascript">
+		function viewStatus() {
+			$("#quarantine").css({"display": "block"});
+			$("#pop").css({"display": "block"}).animate({"height": "200px"}, 150);
+		}
 	</script>
 	
 	<script type="text/javascript">
@@ -305,7 +392,7 @@
 		 **********************************************************************************
 		 **********************************************************************************/
 		// 绑定修改操作
-		$("#modify").click(function() {
+		$("#modify").button().click(function() {
 			$.ajax({
 				url: "<%=path%>/container/manager/change-status/",
 				type: "POST",
@@ -314,30 +401,47 @@
 				data: {"status":"modify", "cid":id},
 				dataType: "json",
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					$("#quarantine").css({"display": "block"});
-					$("#pop").empty();
-					$("#pop").append("连接到服务器时出现问题");
-					$("#pop").dialog({
-						height: 200,
-						width: 300,
-						model: true,
-						draggable: false,
-						buttons: {
-							"确定": function() {
-								$(this).dialog("close");
-								$("#quarantine").css("display", "none");
-								$("#pop").empty();
-								$("#ui-id-1").empty();
-							}
-						},
-						open: function(event, ui) {
-							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
-							$("#ui-id-1").text("错误");
-						}
+					$("#pop").animate({"height": "0px"}, 150, function() {
+						$("#pop").css({"display": "none"});
+						$("#errorTitle").text("错误");
+						$("#errorContent").text('').append("<span style='color: #FF0000'>连接到服务器时出现错误</span>");
+						$("#errorPop").css({"display":"block"}).animate({"height":"150px"}, 150);
 					});
 				},
 				success: function(data, textStatus) {
-					$("#quarantine").css({"display": "block"});
+					$("#pop").animate({"height": "0px"}, 150, function() {
+						$("#pop").css({"display": "none"});
+						$("#errorTitle").text("请求已完成");
+						if (data.code == Code["OK"]) {
+							$("#errorContent").text('').append("容器状态已变更为：<span style='color: #1460A6'>修改中</span>");
+						} else if (data.code == Code["NO_PRIVILEGE"]) {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>当前账户没有权限访问该容器</span>");
+						} else if (data.code == Code["NOT_LOGIN"]) {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>身份已过期，请重新登录</span>");
+						} else if (data.code == Code["ERROR_STATUS"]) {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>非法状态参数</span>");
+						} else {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>服务器端未知错误</span>");
+						}
+						$("#errorPop").css({"display":"block"}).animate({"height":"150px"}, 150);
+						$("#closeErrorPop").click(function () {
+							if (data.code == Code["NOT_LOGIN"] || data.code == Code["OK"]) {
+								window.location.reload();
+							}
+							$("#errorPop").animate({"height": "0px"}, 150, function() {
+								$("#errorPop").css({"display": "none"});
+								$("#quarantine").css({"display": "none"});
+							});
+							// 将按钮函数修改为原函数
+							$("#closeErrorPop").click(function () {
+								$("#errorPop").animate({"height": "0px"}, 150, function() {
+									$("#errorPop").css({"display": "none"});
+									$("#quarantine").css({"display": "none"});
+								});
+							});
+						});
+					});
+					/*$("#quarantine").css({"display": "block"});
 					$("#pop").empty();
 					if (data.code == Code["OK"]) {
 						$("#pop").append("容器状态已变更为：修改中");
@@ -370,7 +474,7 @@
 							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
 							$("#ui-id-1").text(data.code == Code["OK"] ? "请求已完成" : "请求失败");
 						}
-					});
+					});*/
 				}
 			});
 		});
@@ -383,7 +487,7 @@
 		 ******************************************************************************
 		 ******************************************************************************/
 		// 绑定运行操作
-		$("#run").click(function() {
+		$("#run").button().click(function() {
 			$.ajax({
 				url: "<%=path%>/container/manager/change-status/",
 				type: "POST",
@@ -392,30 +496,47 @@
 				data: {"status":"running", "cid":id},
 				dataType: "json",
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					$("#quarantine").css({"display": "block"});
-					$("#pop").empty();
-					$("#pop").append("连接到服务器时出现问题");
-					$("#pop").dialog({
-						height: 200,
-						width: 300,
-						model: true,
-						draggable: false,
-						buttons: {
-							"确定": function() {
-								$(this).dialog("close");
-								$("#quarantine").css("display", "none");
-								$("#pop").empty();
-								$("#ui-id-1").empty();
-							}
-						},
-						open: function(event, ui) {
-							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
-							$("#ui-id-1").text("错误");
-						}
+					$("#pop").animate({"height": "0px"}, 150, function() {
+						$("#pop").css({"display": "none"});
+						$("#errorTitle").text("错误");
+						$("#errorContent").text('').append("<span style='color: #FF0000'>连接到服务器时出现错误</span>");
+						$("#errorPop").css({"display":"block"}).animate({"height":"150px"}, 150);
 					});
 				},
 				success: function(data, textStatus) {
-					$("#quarantine").css({"display": "block"});
+					$("#pop").animate({"height": "0px"}, 150, function() {
+						$("#pop").css({"display": "none"});
+						$("#errorTitle").text("请求已完成");
+						if (data.code == Code["OK"]) {
+							$("#errorContent").text('').append("容器状态已变更为：<span style='color: #1AB821'>运行中</span>");
+						} else if (data.code == Code["NO_PRIVILEGE"]) {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>当前账户没有权限访问该容器</span>");
+						} else if (data.code == Code["NOT_LOGIN"]) {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>身份已过期，请重新登录</span>");
+						} else if (data.code == Code["ERROR_STATUS"]) {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>非法状态参数</span>");
+						} else {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>服务器端未知错误</span>");
+						}
+						$("#errorPop").css({"display":"block"}).animate({"height":"150px"}, 150);
+						$("#closeErrorPop").click(function () {
+							if (data.code == Code["NOT_LOGIN"] || data.code == Code["OK"]) {
+								window.location.reload();
+							}
+							$("#errorPop").animate({"height": "0px"}, 150, function() {
+								$("#errorPop").css({"display": "none"});
+								$("#quarantine").css({"display": "none"});
+							});
+							// 将按钮函数修改为原函数
+							$("#closeErrorPop").click(function () {
+								$("#errorPop").animate({"height": "0px"}, 150, function() {
+									$("#errorPop").css({"display": "none"});
+									$("#quarantine").css({"display": "none"});
+								});
+							});
+						});
+					});
+					/*$("#quarantine").css({"display": "block"});
 					$("#pop").empty();
 					if (data.code == Code["OK"]) {
 						$("#pop").append("容器状态已变更为：运行中");
@@ -448,7 +569,7 @@
 							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
 							$("#ui-id-1").text(data.code == Code["OK"] ? "请求已完成" : "请求失败");
 						}
-					});
+					});*/
 				}
 			});
 		});
@@ -461,7 +582,7 @@
 		 ********************************************************************************
 		 ********************************************************************************/
 		// 绑定停止操作
-		$("#stop").click(function() {
+		$("#stop").button().click(function() {
 			$.ajax({
 				url: "<%=path%>/container/manager/change-status/",
 				type: "POST",
@@ -470,30 +591,47 @@
 				data: {"status":"stop", "cid":id},
 				dataType: "json",
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					$("#quarantine").css({"display": "block"});
-					$("#pop").empty();
-					$("#pop").append("连接到服务器时出现问题");
-					$("#pop").dialog({
-						height: 200,
-						width: 300,
-						model: true,
-						draggable: false,
-						buttons: {
-							"确定": function() {
-								$(this).dialog("close");
-								$("#quarantine").css("display", "none");
-								$("#pop").empty();
-								$("#ui-id-1").empty();
-							}
-						},
-						open: function(event, ui) {
-							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
-							$("#ui-id-1").text("错误");
-						}
+					$("#pop").animate({"height": "0px"}, 150, function() {
+						$("#pop").css({"display": "none"});
+						$("#errorTitle").text("错误");
+						$("#errorContent").text('').append("<span style='color: #FF0000'>连接到服务器时出现错误</span>");
+						$("#errorPop").css({"display":"block"}).animate({"height":"150px"}, 150);
 					});
 				},
 				success: function(data, textStatus) {
-					$("#quarantine").css({"display": "block"});
+					$("#pop").animate({"height": "0px"}, 150, function() {
+						$("#pop").css({"display": "none"});
+						$("#errorTitle").text("请求已完成");
+						if (data.code == Code["OK"]) {
+							$("#errorContent").text('').append("容器状态已变更为：<span style='color: #D1301F'>已停用</span>");
+						} else if (data.code == Code["NO_PRIVILEGE"]) {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>当前账户没有权限访问该容器</span>");
+						} else if (data.code == Code["NOT_LOGIN"]) {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>身份已过期，请重新登录</span>");
+						} else if (data.code == Code["ERROR_STATUS"]) {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>非法状态参数</span>");
+						} else {
+							$("#errorContent").text('').append("<span style='color: #FF0000'>服务器端未知错误</span>");
+						}
+						$("#errorPop").css({"display":"block"}).animate({"height":"150px"}, 150);
+						$("#closeErrorPop").click(function () {
+							if (data.code == Code["NOT_LOGIN"] || data.code == Code["OK"]) {
+								window.location.reload();
+							}
+							$("#errorPop").animate({"height": "0px"}, 150, function() {
+								$("#errorPop").css({"display": "none"});
+								$("#quarantine").css({"display": "none"});
+							});
+							// 将按钮函数修改为原函数
+							$("#closeErrorPop").click(function () {
+								$("#errorPop").animate({"height": "0px"}, 150, function() {
+									$("#errorPop").css({"display": "none"});
+									$("#quarantine").css({"display": "none"});
+								});
+							});
+						});
+					});
+					/*$("#quarantine").css({"display": "block"});
 					$("#pop").empty();
 					if (data.code == Code["OK"]) {
 						$("#pop").append("容器状态已变更为：已停止");
@@ -526,7 +664,7 @@
 							$(".ui-dialog-titlebar-close", $(this).parent()).hide();
 							$("#ui-id-1").text(data.code == Code["OK"] ? "请求已完成" : "请求失败");
 						}
-					});
+					});*/
 				}
 			});
 		});

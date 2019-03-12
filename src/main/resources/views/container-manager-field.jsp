@@ -178,7 +178,7 @@
 					<td class="p_list_7"><span style="color: #1296DB; cursor: pointer;" @click="window.location.href='<%=path %>/container/manager/field/modify?fid='+site.id+'&cid='+id">修改</span>/<span style="color: #FF0000; cursor: pointer;" @click="window.location.href='<%=path %>/container/manager/field/delete?fid='+site.id+'&cid='+id">删除</span></td>
 				</tr>
 			</table>
-			<button class="add"  onmouseover="$(this).animate({'background-color':'#46B4EE'}, 200);" onmouseout="$(this).animate({'background-color':'#1296DB'}, 200);" @click='window.location.href="/cloud-data/container/manager/field/add?cid="+id'>+添加容器字段</button>
+			<button class="add"  onmouseover="$(this).animate({'background-color':'#46B4EE'}, 200);" onmouseout="$(this).animate({'background-color':'#1296DB'}, 200);" @click='window.location.href="<%=path %>/container/manager/field/add?cid="+id'>+添加容器字段</button>
 		</div>
 	</div>
 	

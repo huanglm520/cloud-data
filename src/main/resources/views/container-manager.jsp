@@ -227,7 +227,7 @@
 					<td class="cstatus" style="text-align: right;padding-right: 5px;">{{ site.state }}</td>
 				</tr>
 			</table>
-			<div class="override" @click='window.location.href="/cloud-data/container/manager/main?cid="+site.id'></div>
+			<div class="override" @click='window.location.href="<%=path %>/container/manager/main?cid="+site.id'></div>
 		</div>
 	</div>
 	

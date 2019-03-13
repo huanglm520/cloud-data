@@ -42,7 +42,7 @@ public class ContainerQueryServiceImpl implements ContainerQueryService {
 				// TODO Auto-generated catch block
 				map.put("code", 1);
 				map.put("errorcode", e.getErrorCode());
-				map.put("message", e.getMessage());
+				map.put("message", viewError(e.getMessage()));
 			}
 		} else if (csql.matches("update[\\S\\s]*\\$this;[\\S\\s]*") ||
 				   csql.matches("insert[\\S\\s]*\\$this;[\\S\\s]*") ||
@@ -56,7 +56,7 @@ public class ContainerQueryServiceImpl implements ContainerQueryService {
 				// TODO Auto-generated catch block
 				map.put("code", 1);
 				map.put("errorcode", e.getErrorCode());
-				map.put("message", e.getMessage());
+				map.put("message", viewError(e.getMessage()));
 			}
 		} else {
 			map = new HashMap<>();
@@ -69,6 +69,10 @@ public class ContainerQueryServiceImpl implements ContainerQueryService {
 	
 	private static void removeColList(Map<String, Object> map) {
 		map.remove("cols");
+	}
+	
+	private static String viewError(String error) {
+		return error.replaceAll("[\\S\\s]*com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException:([\\S\\s]*)", "$1");
 	}
 
 }

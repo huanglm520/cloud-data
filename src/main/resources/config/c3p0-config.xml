@@ -9,17 +9,20 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	<!-- 加载mysql配置文件 -->
+	<context:property-placeholder ignore-unresolvable="true" location="classpath:config/mysql.properties" />
+		
 	<bean id="dataSource"
 			class="com.mchange.v2.c3p0.ComboPooledDataSource"
 			destroy-method="close">
-		<property name="driverClass"
-			value="com.mysql.jdbc.Driver">
+		<property name="driverClass" value="${mysql.driver}">
 		</property>
 		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost/db_cloud_data?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8">
+			value="jdbc:mysql://${mysql.address}/${mysql.dbname}?useSSL=${mysql.useSSL}&amp;useUnicode=${mysql.useUnicode}&amp;characterEncoding=${mysql.characterEncoding}">
 		</property>
-		<property name="user" value="admin"></property>
-		<property name="password" value="YWRtaW5AbG9jYWxob3N0"></property>
+		<property name="user" value="${mysql.username}"></property>
+		<property name="password" value="${mysql.password}"></property>
 		<property name="testConnectionOnCheckin" value="false"/>
     	<property name="testConnectionOnCheckout" value="true"/>
 		

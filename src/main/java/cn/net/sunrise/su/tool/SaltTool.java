@@ -19,6 +19,6 @@ public class SaltTool {
 	}
 	
 	private SaltTool() {
-		throw new Error("No such object for class: SaltTool");
+		throw new Error("No such object for class: " + this.getClass().getName());
 	}
 }

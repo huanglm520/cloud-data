@@ -16,9 +16,9 @@ import cn.net.sunrise.su.beans.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.ContainerKey;
 import cn.net.sunrise.su.enums.PassportKey;
+import cn.net.sunrise.su.runtime.check.AppCheck;
 import cn.net.sunrise.su.service.ContainerQueryService;
 import cn.net.sunrise.su.service.ContainerService;
-import cn.net.sunrise.su.tool.AppCheck;
 
 @RestController
 @RequestMapping(value="/container/transmission", method=RequestMethod.POST)

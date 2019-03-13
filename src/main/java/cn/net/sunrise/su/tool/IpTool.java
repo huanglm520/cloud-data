@@ -11,6 +11,6 @@ public class IpTool {
 	}
 	
 	private IpTool() {
-		throw new Error("No such object for class: IpTool");
+		throw new Error("No such object for class: " + this.getClass().getName());
 	}
 }

@@ -9,9 +9,11 @@
 
     <Appenders>
     
-    	<Console name="consolePrint" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-        </Console>
+		 <Console name="Console" target="SYSTEM_OUT" follow="true">  
+            <PatternLayout>  
+                <pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>  
+            </PatternLayout>  
+        </Console>
         
         <RollingFile name="RollingFileDebug" fileName="${log-home}/debug.log"
             filePattern="${log-home}/olds/debug/$${date:yyyy-MM}/debug-%d{yyyy-MM-dd}-%i.log.gz">       

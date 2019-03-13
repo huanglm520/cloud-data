@@ -18,6 +18,6 @@ public class VerCode {
 	}
 	
 	private VerCode() {
-		throw new Error("No such object for class: VerCode");
+		throw new Error("No such object for class: " + this.getClass().getName());
 	}
 }

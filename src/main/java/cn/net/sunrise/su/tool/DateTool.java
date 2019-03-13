@@ -50,6 +50,6 @@ public class DateTool {
 	}
 	
 	private DateTool() {
-		throw new Error("No such object for class: DateTool");
+		throw new Error("No such object for class: " + this.getClass().getName());
 	}
 }

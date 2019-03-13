@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -8,6 +9,15 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+		
+  <!-- 导入数据检查配置文件 -->
+  <context:property-placeholder ignore-unresolvable="true" location="classpath:check/*.properties" />
+  
+  <!-- 导入邮件服务器配置 -->
+  <context:property-placeholder ignore-unresolvable="true" location="classpath:config/mail-config.properties" file-encoding="UTF-8" />
+  
+  <!-- 导入定时任务配置 -->
+  <context:property-placeholder ignore-unresolvable="true" location="classpath:config/task-cron.properties" />
   
   <!-- 配置扫描包路径 -->
   <context:component-scan base-package="cn.net.sunrise.su.runtime.*"></context:component-scan>
@@ -25,7 +35,6 @@
   </bean>
 
   <import resource="classpath:config/c3p0-config.xml"/>
-<!--   <import resource="classpath:config/mybatis-config.xml"/> -->
   <import resource="classpath:config/spring-mybatis.xml"/>
   
 </beans>

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.net.sunrise.su.beans.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.PassportKey;
+import cn.net.sunrise.su.runtime.check.AppCheck;
+import cn.net.sunrise.su.runtime.tool.Mail;
 import cn.net.sunrise.su.service.PassportService;
-import cn.net.sunrise.su.tool.AppCheck;
-import cn.net.sunrise.su.tool.Mail;
 import cn.net.sunrise.su.tool.VerCode;
 
 @RestController

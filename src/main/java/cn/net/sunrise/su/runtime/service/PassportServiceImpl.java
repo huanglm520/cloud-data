@@ -12,9 +12,9 @@ import cn.net.sunrise.su.beans.UserBean;
 import cn.net.sunrise.su.dao.LoginRecordDao;
 import cn.net.sunrise.su.dao.UserQueryDao;
 import cn.net.sunrise.su.enums.PassportKey;
+import cn.net.sunrise.su.runtime.check.UserCheck;
 import cn.net.sunrise.su.service.PassportService;
 import cn.net.sunrise.su.tool.SaltTool;
-import cn.net.sunrise.su.tool.UserCheck;
 
 @Service
 public class PassportServiceImpl implements PassportService {
@@ -63,11 +63,11 @@ public class PassportServiceImpl implements PassportService {
 			return PassportKey.ACCOUNT_NOT_ACCEPT;
 		}
 		
-		if (!UserCheck.checkFirst_Name(usb.getFirst_name())) {
+		if (!UserCheck.checkFirstName(usb.getFirst_name())) {
 			return PassportKey.FIRST_NAME_NOT_ACCEPT;
 		}
 		
-		if (!UserCheck.checkLast_name(usb.getLast_name())) {
+		if (!UserCheck.checkLastName(usb.getLast_name())) {
 			return PassportKey.LAST_NAME_NOT_ACCEPT;
 		}
 		

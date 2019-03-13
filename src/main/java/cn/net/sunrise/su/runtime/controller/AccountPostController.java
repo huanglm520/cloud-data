@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.net.sunrise.su.beans.UserBean;
 import cn.net.sunrise.su.enums.AttributeKey;
 import cn.net.sunrise.su.enums.PassportKey;
+import cn.net.sunrise.su.runtime.check.UserCheck;
 import cn.net.sunrise.su.service.PassportService;
-import cn.net.sunrise.su.tool.UserCheck;
 
 @RestController
 @RequestMapping(value="/account", method=RequestMethod.POST)
@@ -32,10 +32,10 @@ public class AccountPostController extends BaseController {
 		}
 		
 		// 校验数据
-		if (StringUtils.isBlank(firstname) || !UserCheck.checkFirst_Name(firstname)) {
+		if (StringUtils.isBlank(firstname) || !UserCheck.checkFirstName(firstname)) {
 			return PassportKey.FIRST_NAME_NOT_ACCEPT;
 		}
-		if (StringUtils.isBlank(lastname) || !UserCheck.checkLast_name(lastname)) {
+		if (StringUtils.isBlank(lastname) || !UserCheck.checkLastName(lastname)) {
 			return PassportKey.LAST_NAME_NOT_ACCEPT;
 		}
 		// 克隆session对象

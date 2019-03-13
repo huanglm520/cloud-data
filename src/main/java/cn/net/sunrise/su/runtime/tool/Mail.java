@@ -1,4 +1,4 @@
-package cn.net.sunrise.su.tool;
+package cn.net.sunrise.su.runtime.tool;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -12,49 +12,50 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Mail {
 	
 	// 定义信息源
-	private final String SERVER;
-	private final String PORT;
-	private final String USER;
-	private final String PASSWORD;
-	private final String FROMNICK;
-	private final String AUTH;
-	private final String SSL;
+	@Value("${mail.server.address}")
+	private String SERVER;
+	@Value("${mail.server.port}")
+	private String PORT;
+	@Value("${mail.server.username}")
+	private String USER;
+	@Value("${mail.server.password}")
+	private String PASSWORD;
+	@Value("${mail.server.fromnick}")
+	private String FROMNICK;
+	@Value("${mail.server.auth}")
+	private String AUTH;
+	@Value("${mail.server.ssl}")
+	private String SSL;
 	
-	public final String RegisterMessage;
-	public final String ForgetPasswordMessage;
-	public final String ChangeMailMessage;
-	public final String SubjectMessage;
-	
-	// 初始化信息源
-	{
-		Properties properties = PropertiesLoader.loadProperties(Mail.class, "/config/mail-config.properties");
-		SERVER = properties.getProperty("server");
-		PORT = properties.getProperty("port");
-		USER = properties.getProperty("user");
-		PASSWORD = properties.getProperty("password");
-		FROMNICK = properties.getProperty("fromnick");
-		AUTH = properties.getProperty("auth");
-		SSL = properties.getProperty("ssl");
-		
-		// 初始化消息对象
-		RegisterMessage = properties.getProperty("RegisterMessage");
-		ForgetPasswordMessage = properties.getProperty("ForgetPasswordMessage");
-		ChangeMailMessage = properties.getProperty("ChangeMailMessage");
-		SubjectMessage = properties.getProperty("SubjectMessage");
-	}
+	@Value("${mail.message.register}")
+	public String RegisterMessage;
+	@Value("${mail.message.forgetpassword}")
+	public String ForgetPasswordMessage;
+	@Value("${mail.message.changemail}")
+	public String ChangeMailMessage;
+	@Value("${mail.message.subject}")
+	public String SubjectMessage;
 	
 	// 私有化构造器，防止外部生成对象
 	private Mail() {}
 
 	
-	private static final Mail mail;
+	private static Mail mail;
 	
-	static {
-		mail = new Mail();
+	private static Logger logger = LogManager.getLogger(Mail.class);
+
+	@Autowired
+	private void setMail(Mail mail) {
+		Mail.mail = mail;
 	}
 	
 	// 外部接口，用于获取MailSocket对象
@@ -89,7 +90,7 @@ public class Mail {
 			mimeMessage.saveChanges();
 		} catch (UnsupportedEncodingException | MessagingException e) {
 			// TODO Auto-generated catch block
-			LogManager.getLogger().error(e);
+			logger.error(e);
 			return false;
 		}
 		
@@ -101,10 +102,19 @@ public class Mail {
 			transport.close();
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
-			LogManager.getLogger().error(e);
+			logger.error(e);
 			return false;
 		}
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Mail [SERVER=" + SERVER + ", PORT=" + PORT + ", USER=" + USER + ", PASSWORD=" + PASSWORD + ", FROMNICK="
+				+ FROMNICK + ", AUTH=" + AUTH + ", SSL=" + SSL + ", RegisterMessage=" + RegisterMessage
+				+ ", ForgetPasswordMessage=" + ForgetPasswordMessage + ", ChangeMailMessage=" + ChangeMailMessage
+				+ ", SubjectMessage=" + SubjectMessage + "]";
+	}
+
+	
 }
